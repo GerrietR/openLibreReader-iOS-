@@ -41,7 +41,7 @@
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.wormhole = [[MMWormhole alloc] initWithApplicationGroupIdentifier:@"group.bluetoolz.openbluereader"
+    self.wormhole = [[MMWormhole alloc] initWithApplicationGroupIdentifier:@"group.de.gerrietresents.openbluereader"
                                                          optionalDirectory:@"wormhole"];
     [self.wormhole listenForMessageWithIdentifier:@"currentData"
                                          listener:^(id messageObject) {

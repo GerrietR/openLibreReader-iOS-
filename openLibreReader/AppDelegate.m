@@ -56,9 +56,10 @@
     registerDevice([limitter class]);
     registerDevice([demoDevice class]);
 
+    
     _bluetoothService = [[BluetoothService alloc] init];
     [[NSNotificationCenter defaultCenter] postNotificationName:kConfigurationReloadNotification object:nil];
-    self.wormhole = [[MMWormhole alloc] initWithApplicationGroupIdentifier:@"group.bluetoolz.openbluereader"
+    self.wormhole = [[MMWormhole alloc] initWithApplicationGroupIdentifier:@"group.de.gerrietreents.openbluereader"
                                                          optionalDirectory:@"wormhole"];
     _wormholeData = [NSMutableDictionary new];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(recieved:) name:kCalibrationBGValue object:nil];
