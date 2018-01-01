@@ -247,7 +247,7 @@ static Configuration* __instance;
 }
 -(NSArray*) neededConfigurationSteps {
     NSString* device = [[Storage instance] getSelectedDeviceClass];
-    //NSString* calibration = [[Storage instance] getSelectedCalibrationClass];
+    NSString* calibration = [[Storage instance] getSelectedCalibrationClass];
     NSString* unit = [[Storage instance] getSelectedDisplayUnit];
 
     NSMutableArray* steps = [NSMutableArray new];
@@ -259,9 +259,9 @@ static Configuration* __instance;
         [steps addObject:[NSNumber numberWithInteger:ConfigDataSource]];
     }
 
-    /*if(calibration == nil || NSClassFromString(calibration)==nil || [_calibrations containsObject:NSClassFromString(calibration)] == NO) {
+    if(calibration == nil || NSClassFromString(calibration)==nil || [_calibrations containsObject:NSClassFromString(calibration)] == NO) {
         [steps addObject:[NSNumber numberWithInteger:ConfigCalibration]];
-    }*/
+    }
     return steps;
 }
 

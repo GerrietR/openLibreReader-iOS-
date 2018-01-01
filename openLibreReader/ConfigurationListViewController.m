@@ -42,6 +42,10 @@
                          @"description":NSLocalizedString(@"Select and configure used Device",@"device.description"),
                          @"controller":@"device"
                          },
+                       @{@"title":NSLocalizedString(@"Calibration", @"calibration.title"),
+                         @"description":NSLocalizedString(@"Select and configure calibration method",@"calibration.description"),
+                         @"controller":@"calibration"
+                         },
                        @{@"title":NSLocalizedString(@"Alarms", @"alarms.title"),
                          @"description":NSLocalizedString(@"Configure Alarms",@"alarms.description"),
                          @"controller":@"alarms"
@@ -82,6 +86,11 @@
     if([identifier isEqualToString:@"device"]) {
         if([[[Configuration instance] device] settingsSequeIdentifier]) {
             [self performSegueWithIdentifier:[[[Configuration instance] device] settingsSequeIdentifier] sender:self];
+        }
+        return NO;
+    } else if([identifier isEqualToString:@"calibration"]) {
+        if([[[Configuration instance] calibration] settingsSequeIdentifier]) {
+            [self performSegueWithIdentifier:[[[Configuration instance] calibration] settingsSequeIdentifier] sender:self];
         }
         return NO;
     } else if([identifier isEqualToString:@"units"]) {

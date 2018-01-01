@@ -12,5 +12,7 @@
 @interface Calibration : Configurable
 -(void) registerForRaw;
 -(void)unregister;
+
+-(NSString*) settingsSequeIdentifier;
 @end
 

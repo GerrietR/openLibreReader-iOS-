@@ -11,6 +11,7 @@
 
 #import "Calibration.h"
 #import "TestCalibration.h"
+#import "SimpleLinearRegressionCalibration.h"
 
 #import "blueReader.h"
 #import "nightscout.h"
@@ -43,6 +44,7 @@
     _alarms = [[Alarms alloc] init];
     registerCalibration([Calibration class]);
     registerCalibration([TestCalibration class]);
+    registerCalibration([SimpleLinearRegressionCalibration class]);
 
     registerDevice([blueReader class]);
     registerDevice([nightscout class]);

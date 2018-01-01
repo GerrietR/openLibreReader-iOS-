@@ -235,6 +235,10 @@
 		6CF394BF1F794F05006EFECA /* Charts.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Charts.xcodeproj; path = ../Charts/Charts.xcodeproj; sourceTree = "<group>"; };
 		6CF394CD1F7A82B8006EFECA /* nightscout.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = nightscout.m; sourceTree = "<group>"; };
 		6CF394CE1F7A82B8006EFECA /* nightscout.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = nightscout.h; sourceTree = "<group>"; };
+		96A9E8101FF7B71C00FB60CA /* SimpleLinearRegressionCalibration.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SimpleLinearRegressionCalibration.h; sourceTree = "<group>"; };
+		96A9E8111FF7B73B00FB60CA /* SimpleLinearRegressionCalibration.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SimpleLinearRegressionCalibration.m; sourceTree = "<group>"; };
+		96A9E8191FF902BC00FB60CA /* SimpleLinearRegressionViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SimpleLinearRegressionViewController.h; sourceTree = "<group>"; };
+		96A9E81A1FF902D600FB60CA /* SimpleLinearRegressionViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SimpleLinearRegressionViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -286,6 +290,10 @@
 				6C6CABC01F11B69D00810568 /* Calibration.m */,
 				6C6CABC21F11C57C00810568 /* TestCalibration.h */,
 				6C6CABC31F11C57C00810568 /* TestCalibration.m */,
+				96A9E8101FF7B71C00FB60CA /* SimpleLinearRegressionCalibration.h */,
+				96A9E8111FF7B73B00FB60CA /* SimpleLinearRegressionCalibration.m */,
+				96A9E8191FF902BC00FB60CA /* SimpleLinearRegressionViewController.h */,
+				96A9E81A1FF902D600FB60CA /* SimpleLinearRegressionViewController.m */,
 			);
 			name = Calibration;
 			sourceTree = "<group>";
@@ -755,12 +763,14 @@
 				6CAEE6811F617AD1001EBDEF /* BluetoothStatus.m in Sources */,
 				6C59E7571F5DA696004CC390 /* BluetoothService.m in Sources */,
 				6C6CAB7F1F0FB6F000810568 /* main.m in Sources */,
+				96A9E81B1FF902D600FB60CA /* SimpleLinearRegressionViewController.m in Sources */,
 				6C6CABBE1F11AD6300810568 /* bgRawValue.m in Sources */,
 				6C59E7421F5C6F37004CC390 /* DeviceCellTableViewCell.m in Sources */,
 				6C59E73F1F5C633B004CC390 /* DeviceViewController.m in Sources */,
 				6C6C81061F912BC400DE3B8C /* ConfigurationListViewController.m in Sources */,
 				6CC754B31F5F1606008194E1 /* Configurable.m in Sources */,
 				6C7EE8301F97E17200D4A288 /* AboutViewController.m in Sources */,
+				96A9E8121FF7B73C00FB60CA /* SimpleLinearRegressionCalibration.m in Sources */,
 				6C6CABC71F12862900810568 /* Configuration.m in Sources */,
 				6C64BFEC1F6F15DF00879A51 /* mmol.m in Sources */,
 			);

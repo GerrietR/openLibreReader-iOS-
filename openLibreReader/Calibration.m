@@ -68,4 +68,10 @@
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
+-(NSString*) settingsSequeIdentifier {
+    @throw [NSException exceptionWithName:@"Instantiationexception"
+                                   reason:@"not possible"
+                                 userInfo:nil];
+    return nil;
+}
 @end

@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="49e-Tb-3d3">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="49e-Tb-3d3">
     <device id="retina4_0" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
         <capability name="Alignment constraints to the first baseline" minToolsVersion="6.0"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -525,6 +525,86 @@
             </objects>
             <point key="canvasLocation" x="-56.521739130434788" y="2683.6956521739135"/>
         </scene>
+        <!--SimpleLinearRegressionCalibration Settings-->
+        <scene sceneID="NsV-zD-vCd">
+            <objects>
+                <viewController storyboardIdentifier="SimpleLinearRegressionViewController" title="SimpleLinearRegressionCalibration Settings" id="GVp-dO-a6l" customClass="SimpleLinearRegressionViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="15Z-c1-Q5U"/>
+                        <viewControllerLayoutGuide type="bottom" id="ThS-sT-7F2"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="EMa-lG-fDC">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="519"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mdk-8B-uPD">
+                                <rect key="frame" x="16" y="455" width="280" height="44"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                <color key="backgroundColor" red="0.90601851850000004" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
+                                <state key="normal" title="remove method">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="resetConfiguration:" destination="GVp-dO-a6l" eventType="touchUpInside" id="26i-5v-Rqx"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Slope" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zhj-2h-8zo" userLabel="Slope Label">
+                                <rect key="frame" x="16" y="81" width="67" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="TRo-xF-tr9" userLabel="Slope">
+                                <rect key="frame" x="124" y="72" width="97" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" keyboardType="numbersAndPunctuation"/>
+                                <connections>
+                                    <action selector="next:" destination="GVp-dO-a6l" eventType="editingDidEnd" id="EW7-KN-INb"/>
+                                </connections>
+                            </textField>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Intersection" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="occ-xh-3La" userLabel="Interception Label">
+                                <rect key="frame" x="16" y="114" width="100" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="w46-eL-ZI8" userLabel="Intersection">
+                                <rect key="frame" x="124" y="105" width="97" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" keyboardType="numbersAndPunctuation"/>
+                                <connections>
+                                    <action selector="next:" destination="GVp-dO-a6l" eventType="editingDidEnd" id="sfs-vZ-Y63"/>
+                                </connections>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="v4t-Te-y20">
+                                <rect key="frame" x="16" y="143" width="184" height="46"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Use this values"/>
+                                <connections>
+                                    <action selector="use:" destination="GVp-dO-a6l" eventType="touchUpInside" id="bzn-jN-yiv"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Linear Regression Calibration" id="ejm-s3-DjK"/>
+                    <connections>
+                        <outlet property="forget" destination="mdk-8B-uPD" id="Sk2-Pw-cHH"/>
+                        <outlet property="intercept" destination="w46-eL-ZI8" id="Bov-x5-cj4"/>
+                        <outlet property="slope" destination="TRo-xF-tr9" id="6Yh-Vx-RyA"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="WEP-s7-Zpe" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-249.375" y="1116.5492957746478"/>
+        </scene>
         <!--ConfigurationList-->
         <scene sceneID="SJL-Jx-TpG">
             <objects>
@@ -550,7 +630,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GWJ-xQ-LMW">
-                                                    <rect key="frame" x="16" y="16" width="263" height="20"/>
+                                                    <rect key="frame" x="23" y="19" width="256" height="20"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="20" id="9bL-M2-L7k"/>
                                                     </constraints>
@@ -559,7 +639,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jh8-bV-2vM">
-                                                    <rect key="frame" x="16" y="44" width="263" height="48"/>
+                                                    <rect key="frame" x="23" y="47" width="256" height="42.5"/>
                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -599,6 +679,7 @@
                         <segue destination="6IF-Mf-P3Z" kind="show" identifier="nightscoutDevice" id="5wi-Dq-W4r"/>
                         <segue destination="25V-g3-o35" kind="show" identifier="about" id="ots-qp-lVs"/>
                         <segue destination="Udd-kg-u9c" kind="show" identifier="limitterDeviceSettings" id="BMS-cy-mKK"/>
+                        <segue destination="GVp-dO-a6l" kind="show" identifier="SimpleLinearRegressionCalibrationSettings" id="X92-Dg-Xuf"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="brz-oA-ZbW" userLabel="First Responder" sceneMemberID="firstResponder"/>
