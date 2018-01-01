@@ -62,7 +62,7 @@ static Storage* __instance;
             [self closeBatteryDB];
             return nil;
         }
-        if(![self executeQuery:@"CREATE TABLE IF NOT EXISTS bg_values (id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, timestamp INTEGER, raw_source TEXT, raw_data BLOB, value INTEGER, value_module TEXT, value_data BLOB)" onDB:_db]){
+        if(![self executeQuery:@"CREATE TABLE IF NOT EXISTS bg_values (id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, timestamp INTEGER, raw_value INTEGER, raw_source TEXT, raw_data BLOB, value INTEGER, value_module TEXT, value_data BLOB)" onDB:_db]){
             [self closeValueDB];
             [self closeLogDB];
             [self closeBatteryDB];
@@ -186,18 +186,19 @@ static Storage* __instance;
     return NO;
 }
 
--(BOOL) addBGValue:(int)value valueModule:(NSString*)value_module valueData:(NSData*)value_data valueTime:(unsigned long)seconds rawSource:(NSString*)raw_source rawData:(NSData*)raw_data {
+-(BOOL) addBGValue:(int)value valueModule:(NSString*)value_module valueData:(NSData*)value_data valueTime:(unsigned long)seconds rawValue:(int)raw_value rawSource:(NSString*)raw_source rawData:(NSData*)raw_data {
     @try{
         [_dbLock lock];
         [self openValueDB];
         sqlite3_stmt *statement = nil;
-        if (sqlite3_prepare_v2(_db, "INSERT INTO bg_values (timestamp,raw_source,raw_data,value,value_module,value_data) VALUES (?,?,?,?,?,?)", -1, &statement, NULL) == SQLITE_OK) {
+        if (sqlite3_prepare_v2(_db, "INSERT INTO bg_values (timestamp,raw_value,raw_source,raw_data,value,value_module,value_data) VALUES (?,?,?,?,?,?,?)", -1, &statement, NULL) == SQLITE_OK) {
             sqlite3_bind_int64(statement, 1, seconds);
-            sqlite3_bind_text(statement, 2, [raw_source UTF8String], -1, SQLITE_TRANSIENT);
-            sqlite3_bind_blob(statement, 3, [raw_data bytes], (int)[raw_data length], SQLITE_TRANSIENT);
-            sqlite3_bind_int(statement, 4, value);
-            sqlite3_bind_text(statement, 5, [value_module UTF8String], -1, SQLITE_TRANSIENT);
-            sqlite3_bind_blob(statement, 6, [value_data bytes], (int)[value_data length], SQLITE_TRANSIENT);
+            sqlite3_bind_int(statement, 2, raw_value);
+            sqlite3_bind_text(statement, 3, [raw_source UTF8String], -1, SQLITE_TRANSIENT);
+            sqlite3_bind_blob(statement, 4, [raw_data bytes], (int)[raw_data length], SQLITE_TRANSIENT);
+            sqlite3_bind_int(statement, 5, value);
+            sqlite3_bind_text(statement, 6, [value_module UTF8String], -1, SQLITE_TRANSIENT);
+            sqlite3_bind_blob(statement, 7, [value_data bytes], (int)[value_data length], SQLITE_TRANSIENT);
         } else {
             [self log:@"unable to prepare add value" from:@"Storage"];
 
@@ -229,7 +230,7 @@ static Storage* __instance;
         [_dbLock lock];
         [self openValueDB];
         sqlite3_stmt *statement = nil;
-        if (sqlite3_prepare_v2(_db, "select value, timestamp, raw_source from bg_values where timestamp > ? and timestamp < ?", -1, &statement, NULL) == SQLITE_OK) {
+        if (sqlite3_prepare_v2(_db, "select value, timestamp, raw_source from bg_values where timestamp > ? and timestamp <= ?", -1, &statement, NULL) == SQLITE_OK) {
             sqlite3_bind_int64(statement, 1, (unsigned long)from);
             sqlite3_bind_int64(statement, 2, (unsigned long)to);
         } else{
@@ -320,7 +321,7 @@ static Storage* __instance;
         [_dbLock lock];
         [self openValueDB];
         sqlite3_stmt *statement = nil;
-        if (sqlite3_prepare_v2(_db, "select raw_source,raw_data,value from bg_values where timestamp < ? order by timestamp desc limit 1", -1, &statement, NULL) == SQLITE_OK) {
+        if (sqlite3_prepare_v2(_db, "select raw_source,raw_data,raw_value from bg_values where timestamp < ? order by timestamp desc limit 1", -1, &statement, NULL) == SQLITE_OK) {
             sqlite3_bind_int64(statement, 1, (unsigned long)before);
         } else{
             [self log:@"unable to get last bg before" from:@"Storage"];

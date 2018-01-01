@@ -124,6 +124,7 @@
                                        valueModule:@"Calibration"
                                          valueData:nil
                                          valueTime:[[sgv objectForKey:@"mills"] longValue]/1000
+                                          rawValue:[[sgv objectForKey:@"mgdl"] intValue]
                                          rawSource:@"nightscout"
                                            rawData:[NSKeyedArchiver archivedDataWithRootObject:sgv]];
                     bgValue* bgV = [[bgValue alloc] initWith:[[sgv objectForKey:@"mgdl"] intValue]

@@ -35,7 +35,6 @@
         double rawV = raw.rawValue;
 
         [[Storage instance] log:[NSString stringWithFormat:@"recieved Value %f",(rawV)] from:@"TestCalibration"];
-        [[Storage instance] addBGValue:10+(rawV) valueModule:@"RandomCalibration" valueData:nil valueTime:([[NSDate date] timeIntervalSince1970]) rawSource:[raw rawSource] rawData:[raw rawData]];
         double fac = random();
         fac /= (double)RAND_MAX;
         fac*=300.0;
@@ -43,6 +42,9 @@
         rawV = (rawV)+fac;
         if(rawV<30.0)rawV=30.0;
         if(rawV>375.0)rawV=375.0;
+        [[Storage instance] addBGValue:10+(rawV) valueModule:@"RandomCalibration" valueData:nil valueTime:([[NSDate date] timeIntervalSince1970])
+                              rawValue:[raw rawValue] rawSource:[raw rawSource] rawData:[raw rawData]];
+        
         bgValue* before = [[Storage instance] lastBgBefore:[[NSDate date] timeIntervalSince1970]];
         double delta = NAN;
         if([before timestamp] + (10*60) > [[NSDate date] timeIntervalSince1970]) {
