@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder.WatchKit.Storyboard" version="3.0" toolsVersion="13771" targetRuntime="watchKit" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="AgC-eL-Hgc">
+    <device id="watch38" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="watchOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBWatchKitPlugin" version="13756"/>
+    </dependencies>
+    <scenes>
+        <!--Interface Controller-->
+        <scene sceneID="aou-V4-d1y">
+            <objects>
+                <controller id="AgC-eL-Hgc" customClass="InterfaceController" customModule="openLibreWatch" customModuleProvider="target">
+                    <items>
+                        <group width="1" alignment="left" id="Ydn-pK-oqU">
+                            <items>
+                                <group width="0.40000000000000002" height="1" alignment="left" layout="vertical" id="DIz-az-pNT">
+                                    <items>
+                                        <label alignment="left" text="LastTime" id="Uj0-9x-dTy">
+                                            <fontDescription key="font" type="system" pointSize="13"/>
+                                            <variation key="device=watch38mm">
+                                                <fontDescription key="font" type="system" pointSize="10"/>
+                                            </variation>
+                                        </label>
+                                        <label alignment="left" text="Drift" id="VaI-TR-Rac">
+                                            <fontDescription key="font" type="system" pointSize="12"/>
+                                            <variation key="device=watch38mm">
+                                                <fontDescription key="font" type="system" pointSize="10"/>
+                                            </variation>
+                                        </label>
+                                    </items>
+                                </group>
+                                <label width="0.34999999999999998" height="1" alignment="right" text="CurrBG" textAlignment="right" id="F98-SU-MNi">
+                                    <fontDescription key="font" type="system" pointSize="32"/>
+                                    <variation key="device=watch38mm">
+                                        <fontDescription key="font" type="system" pointSize="32"/>
+                                    </variation>
+                                </label>
+                                <label height="1" alignment="right" text="↗" textAlignment="left" id="5sr-2k-xWE">
+                                    <fontDescription key="font" type="system" pointSize="32"/>
+                                </label>
+                            </items>
+                        </group>
+                        <imageView height="124" alignment="left" id="6vs-tb-FN8">
+                            <variation key="device=watch38mm" height="115"/>
+                        </imageView>
+                    </items>
+                    <connections>
+                        <outlet property="currentBG" destination="F98-SU-MNi" id="mTf-ir-uWY"/>
+                        <outlet property="direction" destination="5sr-2k-xWE" id="WuE-bf-bzF"/>
+                        <outlet property="drift" destination="VaI-TR-Rac" id="iPO-ee-FBL"/>
+                        <outlet property="imageView" destination="6vs-tb-FN8" id="alc-rO-RBv"/>
+                        <outlet property="lastTime" destination="Uj0-9x-dTy" id="h8C-0g-ODi"/>
+                    </connections>
+                </controller>
+            </objects>
+            <point key="canvasLocation" x="219" y="344"/>
+        </scene>
+        <!--Static Notification Interface Controller-->
+        <scene sceneID="AEw-b0-oYE">
+            <objects>
+                <notificationController id="YCC-NB-fut">
+                    <items>
+                        <label alignment="left" text="Alert Label" id="IdU-wH-bcW"/>
+                    </items>
+                    <notificationCategory key="notificationCategory" identifier="myCategory" id="JfB-70-Muf"/>
+                    <connections>
+                        <outlet property="notificationAlertLabel" destination="IdU-wH-bcW" id="JKC-fr-R95"/>
+                        <segue destination="4sK-HA-Art" kind="relationship" relationship="dynamicNotificationInterface" id="kXh-Jw-8B1"/>
+                    </connections>
+                </notificationController>
+            </objects>
+            <point key="canvasLocation" x="220" y="643"/>
+        </scene>
+        <!--Notification Controller-->
+        <scene sceneID="ZPc-GJ-vnh">
+            <objects>
+                <controller id="4sK-HA-Art" customClass="NotificationController" customModule="openLibreWatch" customModuleProvider="target"/>
+            </objects>
+            <point key="canvasLocation" x="468" y="643"/>
+        </scene>
+    </scenes>
+</document>

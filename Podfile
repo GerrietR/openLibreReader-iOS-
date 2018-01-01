@@ -8,6 +8,9 @@ target 'openLibreReader' do
     target 'openLibreReaderWidget' do
         inherit! :search_paths
     end
+    target 'openLibreWatch' do
+        inherit! :search_paths
+    end
     post_install do |installer|
       installer.pods_project.targets.each do |target|
         target.build_configurations.each do |config|
