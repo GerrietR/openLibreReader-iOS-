@@ -68,6 +68,10 @@
 		6CF394C91F795070006EFECA /* Charts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6CF394C51F794F06006EFECA /* Charts.framework */; };
 		6CF394CA1F795070006EFECA /* Charts.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 6CF394C51F794F06006EFECA /* Charts.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		6CF394CF1F7A82B8006EFECA /* nightscout.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CF394CD1F7A82B8006EFECA /* nightscout.m */; };
+		967D199A1FE69CD10088DCF5 /* demo.m in Sources */ = {isa = PBXBuildFile; fileRef = 967D19991FE69CD10088DCF5 /* demo.m */; };
+		967D199D1FE6A0680088DCF5 /* demoDeviceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 967D199C1FE6A0680088DCF5 /* demoDeviceViewController.m */; };
+		96A9E8121FF7B73C00FB60CA /* SimpleLinearRegressionCalibration.m in Sources */ = {isa = PBXBuildFile; fileRef = 96A9E8111FF7B73B00FB60CA /* SimpleLinearRegressionCalibration.m */; };
+		96A9E81B1FF902D600FB60CA /* SimpleLinearRegressionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 96A9E81A1FF902D600FB60CA /* SimpleLinearRegressionViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -235,6 +239,10 @@
 		6CF394BF1F794F05006EFECA /* Charts.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Charts.xcodeproj; path = ../Charts/Charts.xcodeproj; sourceTree = "<group>"; };
 		6CF394CD1F7A82B8006EFECA /* nightscout.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = nightscout.m; sourceTree = "<group>"; };
 		6CF394CE1F7A82B8006EFECA /* nightscout.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = nightscout.h; sourceTree = "<group>"; };
+		967D19981FE69C470088DCF5 /* demo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = demo.h; sourceTree = "<group>"; };
+		967D19991FE69CD10088DCF5 /* demo.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = demo.m; sourceTree = "<group>"; };
+		967D199B1FE6A02F0088DCF5 /* demoDeviceViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = demoDeviceViewController.h; sourceTree = "<group>"; };
+		967D199C1FE6A0680088DCF5 /* demoDeviceViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = demoDeviceViewController.m; sourceTree = "<group>"; };
 		96A9E8101FF7B71C00FB60CA /* SimpleLinearRegressionCalibration.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SimpleLinearRegressionCalibration.h; sourceTree = "<group>"; };
 		96A9E8111FF7B73B00FB60CA /* SimpleLinearRegressionCalibration.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SimpleLinearRegressionCalibration.m; sourceTree = "<group>"; };
 		96A9E8191FF902BC00FB60CA /* SimpleLinearRegressionViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SimpleLinearRegressionViewController.h; sourceTree = "<group>"; };
@@ -323,6 +331,10 @@
 				6C4184CB1F9BCFA300B156F7 /* limitter.m */,
 				6C4184CE1F9CCA4B00B156F7 /* limitterDeviceViewController.h */,
 				6C4184CF1F9CCA4C00B156F7 /* limitterDeviceViewController.m */,
+				967D19981FE69C470088DCF5 /* demo.h */,
+				967D19991FE69CD10088DCF5 /* demo.m */,
+				967D199B1FE6A02F0088DCF5 /* demoDeviceViewController.h */,
+				967D199C1FE6A0680088DCF5 /* demoDeviceViewController.m */,
 			);
 			name = Device;
 			sourceTree = "<group>";

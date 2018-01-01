@@ -493,6 +493,56 @@
             </objects>
             <point key="canvasLocation" x="742" y="359"/>
         </scene>
+        <!--demoDeviceSettings-->
+        <scene sceneID="L2r-TE-kfY">
+            <objects>
+                <viewController storyboardIdentifier="DemoDeviceViewController" title="Demo Settings" id="Sjj-2a-PDJ" userLabel="demoDeviceSettings" customClass="demoDeviceViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Q5k-k1-jiS"/>
+                        <viewControllerLayoutGuide type="bottom" id="dJE-ZE-EoS"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="1o9-fp-bZV">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="519"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Nf5-IN-UDy">
+                                <rect key="frame" x="20" y="455" width="280" height="44"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                <color key="backgroundColor" red="0.90601851850000004" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
+                                <state key="normal" title="forget Device">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="resetConfiguration:" destination="Sjj-2a-PDJ" eventType="touchUpInside" id="uck-Pf-Qij"/>
+                                </connections>
+                            </button>
+                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="Cfg-Xl-mKP" userLabel="Demo">
+                                <rect key="frame" x="20" y="114" width="49" height="31"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <connections>
+                                    <action selector="swChange:" destination="Sjj-2a-PDJ" eventType="valueChanged" id="vfo-vs-BHL"/>
+                                </connections>
+                            </switch>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Do Demo" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="u5g-Tc-Tn1" userLabel="DoDemoLabel">
+                                <rect key="frame" x="97" y="119" width="111" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Demo Settings" id="S7I-RH-EcP" userLabel="Demo Settings"/>
+                    <connections>
+                        <outlet property="forget" destination="Nf5-IN-UDy" id="IGZ-M6-EVZ"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="KWD-vo-hDr" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-911.25" y="2648.2394366197182"/>
+        </scene>
         <!--About-->
         <scene sceneID="fVW-V9-dmu">
             <objects>
@@ -679,6 +729,7 @@
                         <segue destination="6IF-Mf-P3Z" kind="show" identifier="nightscoutDevice" id="5wi-Dq-W4r"/>
                         <segue destination="25V-g3-o35" kind="show" identifier="about" id="ots-qp-lVs"/>
                         <segue destination="Udd-kg-u9c" kind="show" identifier="limitterDeviceSettings" id="BMS-cy-mKK"/>
+                        <segue destination="Sjj-2a-PDJ" kind="show" identifier="demoDeviceSettings" id="pRR-2u-ho5"/>
                         <segue destination="GVp-dO-a6l" kind="show" identifier="SimpleLinearRegressionCalibrationSettings" id="X92-Dg-Xuf"/>
                     </connections>
                 </viewController>
