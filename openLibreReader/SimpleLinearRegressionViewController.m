@@ -49,7 +49,7 @@
     _intercept.text = [data objectForKey:@"SimpleLinearRegressionIntercept"];
     if ([_intercept.text isEqualToString:@""])
     {
-        _intercept.text = [NSString stringWithFormat:@"%.2lf", 19.86]; // some default value from experience
+        _intercept.text = [NSString stringWithFormat:@"%.2lf", -19.86]; // some default value from experience
     }
 }
 
