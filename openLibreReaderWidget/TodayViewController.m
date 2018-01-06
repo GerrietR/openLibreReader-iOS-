@@ -77,7 +77,7 @@
     _chartView.xAxis.labelTextColor = [UIColor blackColor];
 
     _chartView.rightAxis.enabled = NO;
-    [_chartView set_legend:nil];
+  // todo?  [_chartView set_legend:nil];
     [_chartView setChartDescription:nil];
 
     _set1 = [[LineChartDataSet alloc] initWithValues:_data label:nil];
