@@ -21,6 +21,9 @@
 -(BOOL) addBatteryValue:(int)volt raw:(int)raw source:(NSString*)source device:(Class)device;
 -(NSArray*) batteryValuesFrom:(NSTimeInterval)from to:(NSTimeInterval)to;
 
+-(BOOL) addCalibration:(int)value reference:(int)reference valueTime:(unsigned long)seconds module:(NSString*)module;
+-(NSArray*) calibrationFrom:(NSTimeInterval)from to:(NSTimeInterval)to;
+-(void) deleteCalibration:(NSTimeInterval)timestamp module:(NSString*) module;
 -(BOOL) log:(NSString*)message from:(NSString*)from;
 
 -(NSMutableDictionary*) deviceData;

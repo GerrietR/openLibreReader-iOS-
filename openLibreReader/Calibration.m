@@ -11,7 +11,16 @@
 #import "bgValue.h"
 #import "Storage.h"
 
+static Calibration* __instance;
+
 @implementation Calibration
+
+
++(instancetype) instance {
+    if(__instance==nil)
+        __instance = [[Calibration alloc] init];
+    return __instance;
+}
 
 -(instancetype) init {
     self = [super init];

@@ -11,10 +11,18 @@
 #import "Storage.h"
 #import "Device.h"
 
+static TestCalibration* __instance;
+
 @interface TestCalibration ()
 @end
 
 @implementation TestCalibration
+
++(instancetype) instance {
+    if(__instance==nil)
+        __instance = [[TestCalibration alloc] init];
+    return __instance;
+}
 
 -(instancetype) init {
     self = [super init];

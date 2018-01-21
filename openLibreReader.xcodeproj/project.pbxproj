@@ -79,8 +79,11 @@
 		967D198D1FE5484B0088DCF5 /* openLibreWatch.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 967D196E1FE548490088DCF5 /* openLibreWatch.app */; };
 		967D199A1FE69CD10088DCF5 /* demo.m in Sources */ = {isa = PBXBuildFile; fileRef = 967D19991FE69CD10088DCF5 /* demo.m */; };
 		967D199D1FE6A0680088DCF5 /* demoDeviceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 967D199C1FE6A0680088DCF5 /* demoDeviceViewController.m */; };
+		967E6F9E2013918F0037C297 /* openLibreReaderTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 967E6F9D2013918F0037C297 /* openLibreReaderTests.m */; };
+		967E6FA92014CF350037C297 /* CalibrationListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 967E6FA82014CF340037C297 /* CalibrationListViewController.m */; };
 		96A9E8121FF7B73C00FB60CA /* SimpleLinearRegressionCalibration.m in Sources */ = {isa = PBXBuildFile; fileRef = 96A9E8111FF7B73B00FB60CA /* SimpleLinearRegressionCalibration.m */; };
 		96A9E81B1FF902D600FB60CA /* SimpleLinearRegressionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 96A9E81A1FF902D600FB60CA /* SimpleLinearRegressionViewController.m */; };
+		96A9E81E200100CA00FB60CA /* calibrationValue.m in Sources */ = {isa = PBXBuildFile; fileRef = 96A9E81D200100CA00FB60CA /* calibrationValue.m */; };
 		D3D66823AC638B036C44F61B /* Pods_openLibreReader.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6C7EE85A1F9B708F00D4A288 /* Pods_openLibreReader.framework */; };
 /* End PBXBuildFile section */
 
@@ -119,6 +122,13 @@
 			proxyType = 1;
 			remoteGlobalIDString = 967D196D1FE548490088DCF5;
 			remoteInfo = openLibreWatch;
+		};
+		967E6FA02013918F0037C297 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 6C6CAB721F0FB6F000810568 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 6C6CAB791F0FB6F000810568;
+			remoteInfo = openLibreReader;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -292,10 +302,17 @@
 		967D19991FE69CD10088DCF5 /* demo.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = demo.m; sourceTree = "<group>"; };
 		967D199B1FE6A02F0088DCF5 /* demoDeviceViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = demoDeviceViewController.h; sourceTree = "<group>"; };
 		967D199C1FE6A0680088DCF5 /* demoDeviceViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = demoDeviceViewController.m; sourceTree = "<group>"; };
+		967E6F9B2013918F0037C297 /* openLibreReaderTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = openLibreReaderTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		967E6F9D2013918F0037C297 /* openLibreReaderTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = openLibreReaderTests.m; sourceTree = "<group>"; };
+		967E6F9F2013918F0037C297 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		967E6FA72014CBAE0037C297 /* CalibrationListViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CalibrationListViewController.h; sourceTree = "<group>"; };
+		967E6FA82014CF340037C297 /* CalibrationListViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CalibrationListViewController.m; sourceTree = "<group>"; };
 		96A9E8101FF7B71C00FB60CA /* SimpleLinearRegressionCalibration.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SimpleLinearRegressionCalibration.h; sourceTree = "<group>"; };
 		96A9E8111FF7B73B00FB60CA /* SimpleLinearRegressionCalibration.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SimpleLinearRegressionCalibration.m; sourceTree = "<group>"; };
 		96A9E8191FF902BC00FB60CA /* SimpleLinearRegressionViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SimpleLinearRegressionViewController.h; sourceTree = "<group>"; };
 		96A9E81A1FF902D600FB60CA /* SimpleLinearRegressionViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SimpleLinearRegressionViewController.m; sourceTree = "<group>"; };
+		96A9E81C2001004000FB60CA /* calibrationValue.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = calibrationValue.h; sourceTree = "<group>"; };
+		96A9E81D200100CA00FB60CA /* calibrationValue.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = calibrationValue.m; sourceTree = "<group>"; };
 		FDA85F3FBA8B0F9E1527DEA4 /* Pods-openLibreWatch.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-openLibreWatch.debug.xcconfig"; path = "Pods/Target Support Files/Pods-openLibreWatch/Pods-openLibreWatch.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -341,6 +358,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		967E6F982013918F0037C297 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -368,6 +392,8 @@
 				96A9E8111FF7B73B00FB60CA /* SimpleLinearRegressionCalibration.m */,
 				96A9E8191FF902BC00FB60CA /* SimpleLinearRegressionViewController.h */,
 				96A9E81A1FF902D600FB60CA /* SimpleLinearRegressionViewController.m */,
+				967E6FA72014CBAE0037C297 /* CalibrationListViewController.h */,
+				967E6FA82014CF340037C297 /* CalibrationListViewController.m */,
 			);
 			name = Calibration;
 			sourceTree = "<group>";
@@ -416,6 +442,8 @@
 				6C6CABCA1F12920900810568 /* bgValue.m */,
 				6C6CABCD1F12B0B200810568 /* batteryValue.h */,
 				6C6CABCE1F12B0B200810568 /* batteryValue.m */,
+				96A9E81C2001004000FB60CA /* calibrationValue.h */,
+				96A9E81D200100CA00FB60CA /* calibrationValue.m */,
 			);
 			name = Data;
 			sourceTree = "<group>";
@@ -448,6 +476,7 @@
 				6C7EE8461F9B704800D4A288 /* openLibreReaderWidget */,
 				967D196F1FE548490088DCF5 /* openLibreWatch */,
 				967D197E1FE5484A0088DCF5 /* openLibreWatch Extension */,
+				967E6F9C2013918F0037C297 /* openLibreReaderTests */,
 				6C6CAB7B1F0FB6F000810568 /* Products */,
 				6C6CABB11F0FDCE400810568 /* Frameworks */,
 				1FBCC21430C4C4C4462669D3 /* Pods */,
@@ -461,6 +490,7 @@
 				6C7EE8431F9B704700D4A288 /* openLibreReaderWidget.appex */,
 				967D196E1FE548490088DCF5 /* openLibreWatch.app */,
 				967D197A1FE5484A0088DCF5 /* openLibreWatch Extension.appex */,
+				967E6F9B2013918F0037C297 /* openLibreReaderTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -605,6 +635,15 @@
 			path = "openLibreWatch Extension";
 			sourceTree = "<group>";
 		};
+		967E6F9C2013918F0037C297 /* openLibreReaderTests */ = {
+			isa = PBXGroup;
+			children = (
+				967E6F9D2013918F0037C297 /* openLibreReaderTests.m */,
+				967E6F9F2013918F0037C297 /* Info.plist */,
+			);
+			path = openLibreReaderTests;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -689,6 +728,24 @@
 			productReference = 967D197A1FE5484A0088DCF5 /* openLibreWatch Extension.appex */;
 			productType = "com.apple.product-type.watchkit2-extension";
 		};
+		967E6F9A2013918F0037C297 /* openLibreReaderTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 967E6FA42013918F0037C297 /* Build configuration list for PBXNativeTarget "openLibreReaderTests" */;
+			buildPhases = (
+				967E6F972013918F0037C297 /* Sources */,
+				967E6F982013918F0037C297 /* Frameworks */,
+				967E6F992013918F0037C297 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				967E6FA12013918F0037C297 /* PBXTargetDependency */,
+			);
+			name = openLibreReaderTests;
+			productName = openLibreReaderTests;
+			productReference = 967E6F9B2013918F0037C297 /* openLibreReaderTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -740,6 +797,12 @@
 							};
 						};
 					};
+					967E6F9A2013918F0037C297 = {
+						CreatedOnToolsVersion = 9.2;
+						DevelopmentTeam = 23935DS764;
+						ProvisioningStyle = Automatic;
+						TestTargetID = 6C6CAB791F0FB6F000810568;
+					};
 				};
 			};
 			buildConfigurationList = 6C6CAB751F0FB6F000810568 /* Build configuration list for PBXProject "openLibreReader" */;
@@ -766,6 +829,7 @@
 				6C7EE8421F9B704700D4A288 /* openLibreReaderWidget */,
 				967D196D1FE548490088DCF5 /* openLibreWatch */,
 				967D19791FE5484A0088DCF5 /* openLibreWatch Extension */,
+				967E6F9A2013918F0037C297 /* openLibreReaderTests */,
 			);
 		};
 /* End PBXProject section */
@@ -826,6 +890,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				967D19881FE5484B0088DCF5 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		967E6F992013918F0037C297 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -984,6 +1055,7 @@
 				6C6CABB91F10112600810568 /* Storage.m in Sources */,
 				6C56D4F71F9795CA000BC92A /* nightscoutDeviceViewController.m in Sources */,
 				6CC754AC1F5DB9D5008194E1 /* ConfigurationTableViewCell.m in Sources */,
+				96A9E81E200100CA00FB60CA /* calibrationValue.m in Sources */,
 				6C6CABC41F11C57C00810568 /* TestCalibration.m in Sources */,
 				6C6C81121F94EF4B00DE3B8C /* LimitsViewController.m in Sources */,
 				6C59E75B1F5DA88B004CC390 /* Device.m in Sources */,
@@ -1008,6 +1080,7 @@
 				6C6CAB7F1F0FB6F000810568 /* main.m in Sources */,
 				96A9E81B1FF902D600FB60CA /* SimpleLinearRegressionViewController.m in Sources */,
 				6C6CABBE1F11AD6300810568 /* bgRawValue.m in Sources */,
+				967E6FA92014CF350037C297 /* CalibrationListViewController.m in Sources */,
 				6C59E7421F5C6F37004CC390 /* DeviceCellTableViewCell.m in Sources */,
 				6C59E73F1F5C633B004CC390 /* DeviceViewController.m in Sources */,
 				6C6C81061F912BC400DE3B8C /* ConfigurationListViewController.m in Sources */,
@@ -1039,6 +1112,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		967E6F972013918F0037C297 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				967E6F9E2013918F0037C297 /* openLibreReaderTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -1056,6 +1137,11 @@
 			isa = PBXTargetDependency;
 			target = 967D196D1FE548490088DCF5 /* openLibreWatch */;
 			targetProxy = 967D198B1FE5484B0088DCF5 /* PBXContainerItemProxy */;
+		};
+		967E6FA12013918F0037C297 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 6C6CAB791F0FB6F000810568 /* openLibreReader */;
+			targetProxy = 967E6FA02013918F0037C297 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -1413,6 +1499,48 @@
 			};
 			name = Release;
 		};
+		967E6FA22013918F0037C297 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 23935DS764;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = openLibreReaderTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = de.gerrietreents.openLibreReaderTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/openLibreReader.app/openLibreReader";
+			};
+			name = Debug;
+		};
+		967E6FA32013918F0037C297 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 23935DS764;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = openLibreReaderTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = de.gerrietreents.openLibreReaderTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/openLibreReader.app/openLibreReader";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -1457,6 +1585,15 @@
 			buildConfigurations = (
 				967D198E1FE5484B0088DCF5 /* Debug */,
 				967D198F1FE5484B0088DCF5 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		967E6FA42013918F0037C297 /* Build configuration list for PBXNativeTarget "openLibreReaderTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				967E6FA22013918F0037C297 /* Debug */,
+				967E6FA32013918F0037C297 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
