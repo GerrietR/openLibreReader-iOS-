@@ -48,7 +48,7 @@
     if([((BluetoothStatus*)[notification object]) state]==CBManagerStatePoweredOn) {
         [[NSNotificationCenter defaultCenter] postNotificationName:BLUETOOTH_DISCONNECT_ALL_DEVICES
                                                             object:nil];
-        [[NSNotificationCenter defaultCenter] postNotificationName:BLUETOOTH_START_SCAN object:nil];
+        [[NSNotificationCenter defaultCenter] postNotificationName:BLUETOOTH_START_SCAN object:[NSNumber numberWithBool:true]];
     }
 }
 

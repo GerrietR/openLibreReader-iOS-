@@ -28,7 +28,7 @@
                                              selector:@selector(restore:)
                                                  name:BLUETOOTH_RESTORE_DEVICE object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(startScanning)
+                                             selector:@selector(startScanning:)
                                                  name:BLUETOOTH_START_SCAN object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(stopScanning)
@@ -135,10 +135,15 @@
                                                         object:peripheral];
 }
 
-- (void) startScanning {
-    [[Storage instance] log:@"start scanning" from:@"BluetoothService"];
+- (void) startScanning:(NSNotification*)notitifaction {
+    Boolean all = [notitifaction.object boolValue];
+    [[Storage instance] log:[NSString stringWithFormat:@"start scanning for %@",all?@"all":@"specific"] from:@"BluetoothService"];
     _foundDevices = [NSMutableArray array];
-    [_manager scanForPeripheralsWithServices:[[Configuration instance] getRequestedDeviceUUIDs] options:[NSDictionary dictionaryWithObject:[NSNumber numberWithBool:NO] forKey:CBCentralManagerScanOptionAllowDuplicatesKey]];
+    if(all) {
+        [_manager scanForPeripheralsWithServices:nil options:[NSDictionary dictionaryWithObject:[NSNumber numberWithBool:NO] forKey:CBCentralManagerScanOptionAllowDuplicatesKey]];
+    } else {
+        [_manager scanForPeripheralsWithServices:[[Configuration instance] getRequestedDeviceUUIDs] options:nil];
+    }
 }
 
 -(void) stopScanning {

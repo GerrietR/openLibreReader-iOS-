@@ -122,6 +122,9 @@
 /* nightscout: connect nor url */
 "error, no data" = "error, no data";
 
+/* blueReader: failed connecting to device */
+"failed connection to %@" = "failed connection to %@";
+
 /* nightscout: failed */
 "failed to connect" = "failed to connect";
 
