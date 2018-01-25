@@ -9,6 +9,7 @@ target 'openLibreReader' do
     shared_pods
     pod 'Socket.IO-Client-Swift', '~> 12.0.0' # Or latest version
     pod 'Charts'
+    pod 'XLForm'
 end
 
 target 'openLibreReaderWidget' do

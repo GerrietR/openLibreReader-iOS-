@@ -272,6 +272,15 @@
 /* limitter: Description */
 "The LimiTTer or SweetReader is used to fetch values from the libre Tag." = "The LimiTTer or SweetReader is used to fetch values from the libre Tag.";
 
+/* transmitter: Description */
+"The Transmitter is used to fetch values from the libre Tag." = "The Transmitter is used to fetch values from the libre Tag.";
+
+/* transmitter: no data found */
+"transmitter failed" = "TransmiTTer failed";
+
+/* transmitter: sensor ok */
+"transmitter ok" = "TransmiTTer OK";
+
 /* alarmalert.title */
 "until re-enable" = "until re-enable";
 
@@ -283,3 +292,18 @@
 
 /* nightscout: Description */
 "Values are recieved from a Nightscout instance.\nAlarms might stop working, if app is not actively showing." = "Values are recieved from a Nightscout instance.\nAlarms will stop working, if app is not actively open in the foreground.";
+
+/* No comment provided by engineer. */
+"%@ can't be empty" = "";
+
+/* No comment provided by engineer. */
+"Choose From Library" = "";
+
+/* No comment provided by engineer. */
+"Invalid email address" = "";
+
+/* No comment provided by engineer. */
+"Take Photo" = "";
+
+/* No comment provided by engineer. */
+"XLFormViewController_ValidationErrorTitle" = "";

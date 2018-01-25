@@ -13,6 +13,7 @@
 		6C0D172A1F7196E500050A73 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6C0D172C1F7196E500050A73 /* Localizable.strings */; };
 		6C4184CD1F9BCFA400B156F7 /* limitter.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C4184CB1F9BCFA300B156F7 /* limitter.m */; };
 		6C4184D01F9CCA4C00B156F7 /* limitterDeviceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C4184CF1F9CCA4C00B156F7 /* limitterDeviceViewController.m */; };
+		6C4F5C63201A2F07003CC0D3 /* transmitter.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C4F5C62201A2F07003CC0D3 /* transmitter.m */; };
 		6C56D4F41F969F43000BC92A /* NSUploadViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C56D4F31F969F43000BC92A /* NSUploadViewController.m */; };
 		6C56D4F71F9795CA000BC92A /* nightscoutDeviceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C56D4F51F9795C9000BC92A /* nightscoutDeviceViewController.m */; };
 		6C56F19A2011352800528A94 /* NotificationCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6C7EE8441F9B704800D4A288 /* NotificationCenter.framework */; };
@@ -150,6 +151,8 @@
 		6C4184CC1F9BCFA400B156F7 /* limitter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = limitter.h; sourceTree = "<group>"; };
 		6C4184CE1F9CCA4B00B156F7 /* limitterDeviceViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = limitterDeviceViewController.h; sourceTree = "<group>"; };
 		6C4184CF1F9CCA4C00B156F7 /* limitterDeviceViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = limitterDeviceViewController.m; sourceTree = "<group>"; };
+		6C4F5C61201A2F06003CC0D3 /* transmitter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = transmitter.h; sourceTree = "<group>"; };
+		6C4F5C62201A2F07003CC0D3 /* transmitter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = transmitter.m; sourceTree = "<group>"; };
 		6C56D4F11F969F43000BC92A /* NSUploadViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NSUploadViewController.h; sourceTree = "<group>"; };
 		6C56D4F31F969F43000BC92A /* NSUploadViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NSUploadViewController.m; sourceTree = "<group>"; };
 		6C56D4F51F9795C9000BC92A /* nightscoutDeviceViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = nightscoutDeviceViewController.m; sourceTree = "<group>"; };
@@ -377,6 +380,8 @@
 				6C56D4F51F9795C9000BC92A /* nightscoutDeviceViewController.m */,
 				6C4184CC1F9BCFA400B156F7 /* limitter.h */,
 				6C4184CB1F9BCFA300B156F7 /* limitter.m */,
+				6C4F5C61201A2F06003CC0D3 /* transmitter.h */,
+				6C4F5C62201A2F07003CC0D3 /* transmitter.m */,
 				6C4184CE1F9CCA4B00B156F7 /* limitterDeviceViewController.h */,
 				6C4184CF1F9CCA4C00B156F7 /* limitterDeviceViewController.m */,
 			);
@@ -901,6 +906,7 @@
 				"${BUILT_PRODUCTS_DIR}/MMWormhole-iOS/MMWormhole.framework",
 				"${BUILT_PRODUCTS_DIR}/Socket.IO-Client-Swift/SocketIO.framework",
 				"${BUILT_PRODUCTS_DIR}/StarscreamSocketIO/StarscreamSocketIO.framework",
+				"${BUILT_PRODUCTS_DIR}/XLForm/XLForm.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
@@ -908,6 +914,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MMWormhole.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SocketIO.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/StarscreamSocketIO.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/XLForm.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -1026,6 +1033,7 @@
 				6CAEE6811F617AD1001EBDEF /* BluetoothStatus.m in Sources */,
 				6C59E7571F5DA696004CC390 /* BluetoothService.m in Sources */,
 				6C6CAB7F1F0FB6F000810568 /* main.m in Sources */,
+				6C4F5C63201A2F07003CC0D3 /* transmitter.m in Sources */,
 				96A9E81B1FF902D600FB60CA /* SimpleLinearRegressionViewController.m in Sources */,
 				6C6CABBE1F11AD6300810568 /* bgRawValue.m in Sources */,
 				6C59E7421F5C6F37004CC390 /* DeviceCellTableViewCell.m in Sources */,

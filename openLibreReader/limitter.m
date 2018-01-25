@@ -57,7 +57,7 @@
         } else {
             DeviceStatus* ds = [[DeviceStatus alloc] init];
             ds.status = NO_DEVICE;
-            ds.statusText = [NSString stringWithFormat:NSLocalizedString(@"Not able to connect to %@",@"blueReader: Not able to connect to device"),[lastUsed UUIDString]];
+            ds.statusText = [NSString stringWithFormat:NSLocalizedString(@"Not able to connect to %@",@"LimiTTer: Not able to connect to device"),[lastUsed UUIDString]];
             ds.device = nil;
             [[NSNotificationCenter defaultCenter] postNotificationName:kDeviceStatusNotification object:ds];
             self.lastDeviceStatus = ds;
@@ -88,7 +88,7 @@
         [self setDevice:[notification object]];
         DeviceStatus* ds = [[DeviceStatus alloc] init];
         ds.status = DEVICE_CONNECTING;
-        ds.statusText = [NSString stringWithFormat:NSLocalizedString(@"Connecting to %@",@"limitter: conencting to device"),[[notification object] name]];
+        ds.statusText = [NSString stringWithFormat:NSLocalizedString(@"Connecting to %@",@"limitter: connecting to device"),[[notification object] name]];
         ds.device = nil;
         [[NSNotificationCenter defaultCenter] postNotificationName:kDeviceStatusNotification object:ds];
         self.lastDeviceStatus = ds;
@@ -131,7 +131,7 @@
     if(![self device] || [[[self device] identifier] isEqual:[((CBPeripheral*)[notification object])identifier]]) {
         DeviceStatus* ds = [[DeviceStatus alloc] init];
         ds.status = DEVICE_DISCONNECTED;
-        ds.statusText = [NSString stringWithFormat:NSLocalizedString(@"failed connection to %@",@"blueReader: failed connecting to device"),[[notification object] name]];
+        ds.statusText = [NSString stringWithFormat:NSLocalizedString(@"failed connection to %@",@"LimiTTer: failed connecting to device"),[[notification object] name]];
         ds.device = nil;
         [[NSNotificationCenter defaultCenter] postNotificationName:kDeviceStatusNotification object:ds];
         self.lastDeviceStatus = ds;
