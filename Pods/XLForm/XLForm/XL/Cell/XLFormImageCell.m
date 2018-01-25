@@ -75,7 +75,7 @@
                                                           message: nil
                                                    preferredStyle: UIAlertControllerStyleActionSheet];
     
-    [alertController addAction:[UIAlertAction actionWithTitle: NSLocalizedString(@"Choose From Library", nil)
+   /* [alertController addAction:[UIAlertAction actionWithTitle: NSLocalizedString(@"Choose From Library", nil)
                                                         style: UIAlertActionStyleDefault
                                                       handler: ^(UIAlertAction * _Nonnull action) {
                                                           [self openImage:UIImagePickerControllerSourceTypePhotoLibrary];
@@ -87,7 +87,7 @@
                                                           handler: ^(UIAlertAction * _Nonnull action) {
                                                               [self openImage:UIImagePickerControllerSourceTypeCamera];
                                                           }]];
-    }
+    }*/
     
     [alertController addAction:[UIAlertAction actionWithTitle: NSLocalizedString(@"Cancel", nil)
                                                         style: UIAlertActionStyleCancel
@@ -104,6 +104,7 @@
     });
 }
 
+/*
 - (void)openImage:(UIImagePickerControllerSourceType)source
 {
     imagePickerController = [[UIImagePickerController alloc] init];
@@ -143,5 +144,5 @@
         [self.formViewController dismissViewControllerAnimated: YES completion: nil];
     }
 }
-
+*/
 @end
