@@ -75,15 +75,9 @@ Add the project as a dependency to your Package.swift:
 import PackageDescription
 
 let package = Package(
-    name: "socket.io-test",
-    products: [
-        .executable(name: "socket.io-test", targets: ["YourTargetName"])
-    ],
+    name: "YourSocketIOProject",
     dependencies: [
-        .package(url: "https://github.com/socketio/socket.io-client-swift", .upToNextMajor(from: "12.1.0"))
-    ],
-    targets: [
-        .target(name: "YourTargetName", dependencies: ["SocketIO"], path: "./Path/To/Your/Sources")
+        .package(url: "https://github.com/socketio/socket.io-client-swift", .upToNextMajor(from: "12.0.0"))
     ]
 )
 ```
@@ -91,14 +85,13 @@ let package = Package(
 Then import `import SocketIO`.
 
 ### Carthage
-Add this line to your `Cartfile`:
+Add these line to your `Cartfile`:
 ```
-github "socketio/socket.io-client-swift" ~> 12.1.2 # Or latest version
+github "nuclearace/Starscream" ~> 8.0.7
+github "socketio/socket.io-client-swift" ~> 12.0.0 # Or latest version
 ```
 
 Run `carthage update --platform ios,macosx`.
-
-Add the `Starscream` and `SocketIO` frameworks to your projects and follow the usual Carthage process.
 
 ### CocoaPods 1.0.0 or later
 Create `Podfile` and add `pod 'Socket.IO-Client-Swift'`:
@@ -107,7 +100,7 @@ Create `Podfile` and add `pod 'Socket.IO-Client-Swift'`:
 use_frameworks!
 
 target 'YourApp' do
-    pod 'Socket.IO-Client-Swift', '~> 12.1.2' # Or latest version
+    pod 'Socket.IO-Client-Swift', '~> 12.0.0' # Or latest version
 end
 ```
 

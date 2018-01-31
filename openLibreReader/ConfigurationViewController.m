@@ -57,6 +57,7 @@
         if([[[Configuration instance] neededConfigurationSteps] count] == _index+1) {
             [self shouldPerformSegueWithIdentifier:@"drillDown" sender:self];//MIND the difference here!
         } else {
+            [_selectionData setObject:_configuratedClass forKey:[[[Configuration instance] neededConfigurationSteps] objectAtIndex:_index]];
             [self performSegueWithIdentifier:@"drillDown" sender:self];
         }
         return;

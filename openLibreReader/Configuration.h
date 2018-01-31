@@ -74,6 +74,7 @@
 -(BOOL) keepRunning;
 -(void) setOverrideMute:(BOOL)noMute;
 -(BOOL) overrideMute;
+-(NSArray*) getRequestedDeviceUUIDs;
 
 #pragma mark - nightscout
 -(BOOL) nsUpload;
@@ -82,6 +83,7 @@
 -(void) setNightscoutUploadURL:(NSString*)url;
 -(NSString*) nightscoutUploadHash;
 -(void) setNightscoutUploadHash:(NSString*)url;
+
 
 @end
 

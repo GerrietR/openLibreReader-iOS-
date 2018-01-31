@@ -10,7 +10,7 @@
 @implementation mmol
 
 +(NSString*) configurationName {
-    return @"mmol";
+    return @"mmol/l";
 }
 
 +(NSString*) configurationDescription {

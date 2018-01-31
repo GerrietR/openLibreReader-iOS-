@@ -98,10 +98,14 @@
             NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
             [request setHTTPMethod:@"GET"];
             [request addValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
-            [request addValue:[[Configuration instance] nightscoutUploadHash] forHTTPHeaderField:@"api-secret"];
-            [request setURL:[NSURL URLWithString:[[[Configuration instance] nightscoutUploadURL] stringByAppendingString:@"/api/v1/verifyauth"]]];
+            NSMutableDictionary* data = [[Storage instance] deviceData];
+
+            [request addValue:[data objectForKey:@"nightscoutHash"] forHTTPHeaderField:@"api-secret"];
+            [request setURL:[NSURL URLWithString:[[data objectForKey:@"nightscoutURL"] stringByAppendingString:@"/api/v1/verifyauth"]]];
+
             NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration
                                                         defaultSessionConfiguration];
+            NSLog(@"requesting: %@",[request description]);
             NSURLSession *session = [NSURLSession sessionWithConfiguration:configuration];
             NSURLSessionDataTask *postDataTask = [session dataTaskWithRequest:request
                                                             completionHandler:^(NSData *data, NSURLResponse *response, NSError *error)
@@ -116,6 +120,7 @@
                                                       }
                                                       UIAlertAction* cancel = [UIAlertAction actionWithTitle:NSLocalizedString(@"close",@"nsUpload.close") style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
                                                           if(_hideOnSuccess && canHide) {
+                                                              [[Configuration instance].device reload];
                                                               [super dismissViewControllerAnimated:YES completion:nil];
                                                           }
                                                       }];

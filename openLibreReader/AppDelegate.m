@@ -59,7 +59,7 @@
     
     _bluetoothService = [[BluetoothService alloc] init];
     [[NSNotificationCenter defaultCenter] postNotificationName:kConfigurationReloadNotification object:nil];
-    self.wormhole = [[MMWormhole alloc] initWithApplicationGroupIdentifier:@"group.de.gerrietreents.openbluereader"
+    self.wormhole = [[MMWormhole alloc] initWithApplicationGroupIdentifier:@"group.de.gerrietreents2.openbluereader"
                                                          optionalDirectory:@"wormhole"];
     _wormholeData = [NSMutableDictionary new];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(recieved:) name:kCalibrationBGValue object:nil];
@@ -94,11 +94,15 @@
 }
 -(void) makeWormholeData {
     NSData* archive = [NSKeyedArchiver archivedDataWithRootObject:_wormholeData];
-    [_wormholeData setObject:[[Storage instance] getSelectedDisplayUnit] forKey:@"unit"];
-    [_wormholeData setObject:[NSNumber numberWithInt:[[Configuration instance] lowerBGLimit]] forKey:@"lowerBGLimit"];
-    [_wormholeData setObject:[NSNumber numberWithInt:[[Configuration instance] upperBGLimit]] forKey:@"upperBGLimit"];
-    [_wormholeData setObject:[NSNumber numberWithInt:[[Configuration instance] lowBGLimit]] forKey:@"lowBGLimit"];
-    [_wormholeData setObject:[NSNumber numberWithInt:[[Configuration instance] highBGLimit]] forKey:@"highBGLimit"];
+
+    if([[Storage instance] getSelectedDisplayUnit]) {
+        [_wormholeData setObject:[[Storage instance] getSelectedDisplayUnit] forKey:@"unit"];
+    }
+    Configuration* c = [Configuration instance];
+    [_wormholeData setObject:[NSNumber numberWithInt:[c valueInDisplayUnit:[[Configuration instance] lowerBGLimit]]] forKey:@"lowerBGLimit"];
+    [_wormholeData setObject:[NSNumber numberWithInt:[c valueInDisplayUnit:[[Configuration instance] upperBGLimit]]] forKey:@"upperBGLimit"];
+    [_wormholeData setObject:[NSNumber numberWithInt:[c valueInDisplayUnit:[[Configuration instance] lowBGLimit]]] forKey:@"lowBGLimit"];
+    [_wormholeData setObject:[NSNumber numberWithInt:[c valueInDisplayUnit:[[Configuration instance] highBGLimit]]] forKey:@"highBGLimit"];
 
     [self.wormhole passMessageObject:archive
                           identifier:@"currentData"];
@@ -146,7 +150,7 @@
 
     NSMutableArray* valueArray = [NSMutableArray new];
     for(bgValue* value in [[Storage instance] bgValuesFrom:[[NSDate date]timeIntervalSince1970]-(8*60*60) to:[[NSDate date]timeIntervalSince1970]]) {
-        [valueArray addObject:@{@"value":[NSNumber numberWithDouble:value.value],
+        [valueArray addObject:@{@"value":[NSNumber numberWithDouble:[c valueInDisplayUnit:value.value]],
                                 @"timestamp":[NSNumber numberWithDouble:value.timestamp]
                                 }];
     }
@@ -180,7 +184,12 @@
 - (void)applicationDidBecomeActive:(UIApplication *)application {
     // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
     [[NSNotificationCenter defaultCenter] postNotificationName:kAppDidActivate object:nil];
-
+    if([[Configuration instance] device]) {
+        if([[[Configuration instance] device] needsConnection]) {
+            NSLog(@"trying to reload device");
+            [[[Configuration instance] device] reload];
+        }
+    }
 }
 
 

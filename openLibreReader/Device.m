@@ -66,4 +66,9 @@
                                  userInfo:nil];
     return nil;
 }
+
+-(NSArray*) getRequestedDeviceUUIDs {
+    return nil;
+}
+
 @end

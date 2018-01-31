@@ -7,6 +7,7 @@
 
 #import "BluetoothService.h"
 #import "Storage.h"
+#import "Configuration.h"
 
 @interface BluetoothService () <CBCentralManagerDelegate,CBPeripheralDelegate>
     @property (retain) CBCentralManager* manager;
@@ -27,7 +28,7 @@
                                              selector:@selector(restore:)
                                                  name:BLUETOOTH_RESTORE_DEVICE object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(startScanning)
+                                             selector:@selector(startScanning:)
                                                  name:BLUETOOTH_START_SCAN object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(stopScanning)
@@ -71,7 +72,7 @@
 -(void) discover:(NSNotification*)notofication {
     [[Storage instance] log:@"start discover" from:@"BluetoothService"];
     CBPeripheral* p = [notofication object];
-    [p discoverServices:nil];
+    [p discoverServices:[[Configuration instance].device getRequestedDeviceUUIDs]];
 }
 
 -(void) connect:(NSNotification*)notofication {
@@ -134,10 +135,15 @@
                                                         object:peripheral];
 }
 
-- (void) startScanning {
-    [[Storage instance] log:@"start scanning" from:@"BluetoothService"];
+- (void) startScanning:(NSNotification*)notitifaction {
+    Boolean all = [notitifaction.object boolValue];
+    [[Storage instance] log:[NSString stringWithFormat:@"start scanning for %@",all?@"all":@"specific"] from:@"BluetoothService"];
     _foundDevices = [NSMutableArray array];
-    [_manager scanForPeripheralsWithServices:nil options:[NSDictionary dictionaryWithObject:[NSNumber numberWithBool:NO] forKey:CBCentralManagerScanOptionAllowDuplicatesKey]];
+    if(all) {
+        [_manager scanForPeripheralsWithServices:nil options:[NSDictionary dictionaryWithObject:[NSNumber numberWithBool:NO] forKey:CBCentralManagerScanOptionAllowDuplicatesKey]];
+    } else {
+        [_manager scanForPeripheralsWithServices:[[Configuration instance] getRequestedDeviceUUIDs] options:nil];
+    }
 }
 
 -(void) stopScanning {

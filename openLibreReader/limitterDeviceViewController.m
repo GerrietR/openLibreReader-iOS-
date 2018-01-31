@@ -93,7 +93,7 @@
     }
 
     bgRawValue* bg = [[Storage instance] lastRawBgBefore:[NSDate date].timeIntervalSince1970];
-    if([[bg.rawSource lowercaseString] isEqualToString:@"limitter"])
+    if([[bg.rawSource lowercaseString] isEqualToString:@"limitter"] || [[bg.rawSource lowercaseString] isEqualToString:@"transmitter"])
     {
         NSString* string = [[NSString alloc] initWithData:bg.rawData encoding:NSUTF8StringEncoding];
         NSArray* dat = [string componentsSeparatedByString:@" "];
@@ -176,7 +176,7 @@
         [_chartView notifyDataSetChanged];
     }
     bgRawValue* bg = [[Storage instance] lastRawBgBefore:[NSDate date].timeIntervalSince1970];
-    if([[bg.rawSource lowercaseString] isEqualToString:@"limitter"])
+    if([[bg.rawSource lowercaseString] isEqualToString:@"limitter"] || [[bg.rawSource lowercaseString] isEqualToString:@"transmitter"])
     {
         NSString* string = [[NSString alloc] initWithData:bg.rawData encoding:NSUTF8StringEncoding];
         NSArray* dat = [string componentsSeparatedByString:@" "];

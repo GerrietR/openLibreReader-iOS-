@@ -59,102 +59,112 @@
     [[NSNotificationCenter defaultCenter] postNotificationName:kDeviceStatusNotification object:ds];
     self.lastDeviceStatus = ds;
 
-    NSURL* url = [[NSURL alloc] initWithString:[[[Storage instance] deviceData] objectForKey:@"nightscoutURL"]];
+    if([[Storage instance] deviceData] && [[[Storage instance] deviceData] objectForKey:@"nightscoutURL"])
+    {
+        NSURL* url = [[NSURL alloc] initWithString:[[[Storage instance] deviceData] objectForKey:@"nightscoutURL"]];
 
-    _socket = [[SocketIOClient alloc] initWithSocketURL:url config:@{@"log": @NO, @"compress": @YES}];
+        _socket = [[SocketIOClient alloc] initWithSocketURL:url config:@{@"log": @NO, @"compress": @YES}];
 
-    [_socket on:@"connect" callback:^(NSArray* data, SocketAckEmitter* ack) {
-        DeviceStatus* ds = [[DeviceStatus alloc] init];
-        ds.status = DEVICE_CONNECTED;
-        ds.statusText = [NSString stringWithFormat:NSLocalizedString(@"connected",@"nightscout: connected")];
-        ds.device = nil;
-        [[NSNotificationCenter defaultCenter] postNotificationName:kDeviceStatusNotification object:ds];
-        self.lastDeviceStatus = ds;
-        NSDictionary* deviceData = [[Storage instance] deviceData];
-        NSObject* onj = [deviceData objectForKey:@"lastSGV"];
-        if([onj isKindOfClass:[NSNumber class]])
-            _lastSGV = [((NSNumber*)onj) longValue];
-        NSDictionary* answer = @{@"client": @"iOS_openLibreReader",
-                                 @"history":[NSNumber numberWithInt:48],
-                                 @"status":@"true",
-                                 @"from": [NSNumber numberWithLong:_lastSGV+1000],
-                                 @"secret": [[[Storage instance] deviceData] objectForKey:@"nightscoutHash"]};
-        [[_socket emitWithAck:@"authorize" with:@[answer]] timingOutAfter:10 callback:^(NSArray * muh) {
-            if([muh isEqual:@"NO ACK"]) {
-                [_socket disconnect];
+        [_socket on:@"connect" callback:^(NSArray* data, SocketAckEmitter* ack) {
+            DeviceStatus* ds = [[DeviceStatus alloc] init];
+            ds.status = DEVICE_CONNECTED;
+            ds.statusText = [NSString stringWithFormat:NSLocalizedString(@"connected",@"nightscout: connected")];
+            ds.device = nil;
+            [[NSNotificationCenter defaultCenter] postNotificationName:kDeviceStatusNotification object:ds];
+            self.lastDeviceStatus = ds;
+            NSDictionary* deviceData = [[Storage instance] deviceData];
+            NSObject* onj = [deviceData objectForKey:@"lastSGV"];
+            if([onj isKindOfClass:[NSNumber class]])
+                _lastSGV = [((NSNumber*)onj) longValue];
+            NSDictionary* answer = @{@"client": @"iOS_openLibreReader",
+                                     @"history":[NSNumber numberWithInt:48],
+                                     @"status":@"true",
+                                     @"from": [NSNumber numberWithLong:_lastSGV+1000],
+                                     @"secret": [[[Storage instance] deviceData] objectForKey:@"nightscoutHash"]};
+            [[_socket emitWithAck:@"authorize" with:@[answer]] timingOutAfter:10 callback:^(NSArray * muh) {
+                if([muh isEqual:@"NO ACK"]) {
+                    [_socket disconnect];
+                    [self reload];
+                }
+            }];
+
+        }];
+        [_socket on:@"disconnect" callback:^(NSArray* data, SocketAckEmitter* ack) {
+            DeviceStatus* ds = [[DeviceStatus alloc] init];
+            ds.status = DEVICE_DISCONNECTED;
+            ds.statusText = [NSString stringWithFormat:NSLocalizedString(@"lost connection",@"nightscout: disconnected")];
+            ds.device = nil;
+            [[NSNotificationCenter defaultCenter] postNotificationName:kDeviceStatusNotification object:ds];
+            self.lastDeviceStatus = ds;
+            if(!_shuttingDown) {
                 [self reload];
             }
         }];
+        [self.socket onAny:^(SocketAnyEvent* any) {
+            NSString* event = any.event;
+            NSArray* data = any.items;
+            [self log:[NSString stringWithFormat:@"any: %@ %@",event,data]];
+        }];
+        [_socket on:@"ping" callback:^(NSArray* data, SocketAckEmitter* ack) {}];
+        [_socket on:@"dataUpdate" callback:^(NSArray* data, SocketAckEmitter* ack) {
+            [self log:[NSString stringWithFormat:@"dataUpdate recieved"]];
+            DeviceStatus* ds = [[DeviceStatus alloc] init];
+            ds.status = DEVICE_OK;
+            ds.statusText = [NSString stringWithFormat:NSLocalizedString(@"connected, recieving",@"nightscout: recieving")];
+            ds.device = nil;
+            [[NSNotificationCenter defaultCenter] postNotificationName:kDeviceStatusNotification object:ds];
+            self.lastDeviceStatus = ds;
+            for(NSDictionary* dataPart in data) {
+                if([dataPart objectForKey:@"sgvs"]) {
+                    NSArray* sgvs =[dataPart objectForKey:@"sgvs"];
+                    for(NSDictionary* sgv in sgvs) {
+                        _lastSGV = MAX(_lastSGV, [[sgv objectForKey:@"mills"] longValue]);
 
-    }];
-    [_socket on:@"disconnect" callback:^(NSArray* data, SocketAckEmitter* ack) {
-        DeviceStatus* ds = [[DeviceStatus alloc] init];
-        ds.status = DEVICE_DISCONNECTED;
-        ds.statusText = [NSString stringWithFormat:NSLocalizedString(@"lost connection",@"nightscout: disconnected")];
-        ds.device = nil;
-        [[NSNotificationCenter defaultCenter] postNotificationName:kDeviceStatusNotification object:ds];
-        self.lastDeviceStatus = ds;
-        if(!_shuttingDown) {
-            [self reload];
-        }
-    }];
-    [self.socket onAny:^(SocketAnyEvent* any) {
-        NSString* event = any.event;
-        NSArray* data = any.items;
-
-        [self log:[NSString stringWithFormat:@"any: %@ %@",event,data]];
-    }];
-    [_socket on:@"ping" callback:^(NSArray* data, SocketAckEmitter* ack) {}];
-    [_socket on:@"dataUpdate" callback:^(NSArray* data, SocketAckEmitter* ack) {
-        [self log:[NSString stringWithFormat:@"dataUpdate recieved"]];
-        DeviceStatus* ds = [[DeviceStatus alloc] init];
-        ds.status = DEVICE_OK;
-        ds.statusText = [NSString stringWithFormat:NSLocalizedString(@"connected, recieving",@"nightscout: recieving")];
-        ds.device = nil;
-        [[NSNotificationCenter defaultCenter] postNotificationName:kDeviceStatusNotification object:ds];
-        self.lastDeviceStatus = ds;
-        for(NSDictionary* dataPart in data) {
-            if([dataPart objectForKey:@"sgvs"]) {
-                NSArray* sgvs =[dataPart objectForKey:@"sgvs"];
-                for(NSDictionary* sgv in sgvs) {
-                    _lastSGV = MAX(_lastSGV, [[sgv objectForKey:@"mills"] longValue]);
-
-                    [self log:[NSString stringWithFormat:@"[nightscout] recieved Value %f",[[sgv objectForKey:@"mgdl"] doubleValue]]];
-                    [[Storage instance] addBGValue:[[sgv objectForKey:@"mgdl"] intValue]
-                                       valueModule:@"Calibration"
-                                         valueData:nil
-                                         valueTime:[[sgv objectForKey:@"mills"] longValue]/1000
-                                          rawValue:[[sgv objectForKey:@"mgdl"] intValue]
-                                         rawSource:@"nightscout"
-                                           rawData:[NSKeyedArchiver archivedDataWithRootObject:sgv]];
-                    bgValue* bgV = [[bgValue alloc] initWith:[[sgv objectForKey:@"mgdl"] intValue]
-                                                        from:@"nightscout"
-                                                          at:[[sgv objectForKey:@"mills"] longValue]/1000
-                                    delta:NAN raw:nil];
-                    [[NSNotificationCenter defaultCenter] postNotificationName:kCalibrationBGValue object:bgV];
+                        [self log:[NSString stringWithFormat:@"[nightscout] recieved Value %f",[[sgv objectForKey:@"mgdl"] doubleValue]]];
+                        [[Storage instance] addBGValue:[[sgv objectForKey:@"mgdl"] intValue]
+                                           valueModule:@"Calibration"
+                                             valueData:nil
+                                             valueTime:[[sgv objectForKey:@"mills"] longValue]/1000
+                                             rawSource:@"nightscout"
+                                               rawData:[NSKeyedArchiver archivedDataWithRootObject:sgv]];
+                        bgValue* bgV = [[bgValue alloc] initWith:[[sgv objectForKey:@"mgdl"] intValue]
+                                                            from:@"nightscout"
+                                                              at:[[sgv objectForKey:@"mills"] longValue]/1000
+                                                           delta:NAN raw:nil];
+                        [[NSNotificationCenter defaultCenter] postNotificationName:kCalibrationBGValue object:bgV];
+                    }
                 }
             }
-        }
 
-        NSMutableDictionary* deviceData = [[Storage instance] deviceData];
-        [deviceData setObject:[NSNumber numberWithLong:_lastSGV] forKey:@"lastSGV"];
-        [[Storage instance] saveDeviceData:deviceData];
-    }];
-    ds = [[DeviceStatus alloc] init];
-    ds.status = DEVICE_CONNECTING;
-    ds.statusText = [NSString stringWithFormat:NSLocalizedString(@"connecting",@"nightscout: connecting")];
-    ds.device = nil;
-    [[NSNotificationCenter defaultCenter] postNotificationName:kDeviceStatusNotification object:ds];
-    self.lastDeviceStatus = ds;
-    [_socket connectWithTimeoutAfter:10 withHandler:^{
-        [self log:[NSString stringWithFormat:@"failed to connect: %@",_socket.debugDescription]];
-        DeviceStatus* ds = [[DeviceStatus alloc] init];
-        ds.status = DEVICE_DISCONNECTED;
-        ds.statusText = [NSString stringWithFormat:NSLocalizedString(@"failed to connect",@"nightscout: failed")];
+            NSMutableDictionary* deviceData = [[Storage instance] deviceData];
+            [deviceData setObject:[NSNumber numberWithLong:_lastSGV] forKey:@"lastSGV"];
+            [[Storage instance] saveDeviceData:deviceData];
+        }];
+        ds = [[DeviceStatus alloc] init];
+        ds.status = DEVICE_CONNECTING;
+        ds.statusText = [NSString stringWithFormat:NSLocalizedString(@"connecting",@"nightscout: connecting")];
         ds.device = nil;
         [[NSNotificationCenter defaultCenter] postNotificationName:kDeviceStatusNotification object:ds];
         self.lastDeviceStatus = ds;
-    }];
+
+        [_socket connectWithTimeoutAfter:10 withHandler:^{
+            [self log:[NSString stringWithFormat:@"failed to connect: %@",_socket.debugDescription]];
+            DeviceStatus* ds = [[DeviceStatus alloc] init];
+            ds.status = DEVICE_DISCONNECTED;
+            ds.statusText = [NSString stringWithFormat:NSLocalizedString(@"failed to connect",@"nightscout: failed")];
+            ds.device = nil;
+            [[NSNotificationCenter defaultCenter] postNotificationName:kDeviceStatusNotification object:ds];
+            self.lastDeviceStatus = ds;
+        }];
+    } else {
+        ds = [[DeviceStatus alloc] init];
+        ds.status = DEVICE_ERROR;
+        ds.statusText = [NSString stringWithFormat:NSLocalizedString(@"error, no data",@"nightscout: connect nor url")];
+
+        ds.device = nil;
+        [[NSNotificationCenter defaultCenter] postNotificationName:kDeviceStatusNotification object:ds];
+        self.lastDeviceStatus = ds;
+    }
 }
 
 -(void) requestStatus:(NSNotification*)notification {

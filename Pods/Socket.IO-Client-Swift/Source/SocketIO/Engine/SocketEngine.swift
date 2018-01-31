@@ -24,7 +24,7 @@
 
 import Dispatch
 import Foundation
-import Starscream
+import StarscreamSocketIO
 
 /// The class that handles the engine.io protocol and transports.
 /// See `SocketEnginePollable` and `SocketEngineWebsocket` for transport specific methods.
@@ -134,7 +134,7 @@ public final class SocketEngine : NSObject, URLSessionDelegate, SocketEnginePoll
     private var pongsMissedMax = 0
     private var probeWait = ProbeWaitQueue()
     private var secure = false
-    private var security: SocketIO.SSLSecurity?
+    private var security: SSLSecurity?
     private var selfSigned = false
 
     // MARK: Initializers
@@ -325,12 +325,11 @@ public final class SocketEngine : NSObject, URLSessionDelegate, SocketEnginePoll
             }
         }
 
-        
         ws?.callbackQueue = engineQueue
         ws?.enableCompression = compress
         ws?.delegate = self
         ws?.disableSSLCertValidation = selfSigned
-        ws?.security = security?.security
+        ws?.security = security
 
         ws?.connect()
     }
@@ -518,13 +517,13 @@ public final class SocketEngine : NSObject, URLSessionDelegate, SocketEnginePoll
 
         switch type {
         case .message:
-            handleMessage(String(message.dropFirst()))
+            handleMessage(String(message.characters.dropFirst()))
         case .noop:
             handleNOOP()
         case .pong:
             handlePong(with: message)
         case .open:
-            handleOpen(openData: String(message.dropFirst()))
+            handleOpen(openData: String(message.characters.dropFirst()))
         case .close:
             handleClose(message)
         default:
