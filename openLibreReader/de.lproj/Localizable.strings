@@ -11,6 +11,9 @@
 /* alarmalert.title */
 "30 minutes" = "30 Minuten";
 
+/* SimpleLinearRegressionCalibration: description */
+"A simple linear regression model is used for calibration" = "Ein einfaches lineares Regressionsmodell wird für die Kalibration benutzt ";
+
 /* about.title */
 "About" = "Über diese App";
 
@@ -35,11 +38,14 @@
 /* blueReader: sensor ok */
 "blueReader ok" = "blueReader ok";
 
-/* alarmalert.title */
-"Cancel" = "Abbrechen";
+/* calibration.title */
+"Calibration" = "Kalibration";
 
 /* blueReader.cancel */
 "cancel" = "Abbrechen";
+
+/* alarmalert.title */
+"Cancel" = "Abbrechen";
 
 /* unitalert.change */
 "Change the Unit" = "Die Anzeigeeinheit ändern";
@@ -112,6 +118,12 @@
 
 /* NoCalibration: description */
 "Does not apply any Calibration to the recieved Value." = "Keine Kalibration wird benutzt.";
+
+/* nightscout: connect nor url */
+"error, no data" = "Fehler, keine Daten!";
+
+/* blueReader: failed connecting to device */
+"failed connection to %@" = "Verbindung zu %@ fehlgeschlagen";
 
 /* nightscout: failed */
 "failed to connect" = "Verbindung fehlgeschlagen";
@@ -201,15 +213,24 @@
    nightscout: reloading */
 "reloading" = "wird geladen";
 
+/* CalibrationMethod.title */
+"Remove calibration method" = "Kalibrationsmethode entfernen";
+
 /* blueReader.remove
    blueReader.title */
 "Remove Device" = "Gerät entfernen";
+
+/* CalibrationMethod.remove */
+"Remove method" = "Methode entfernen";
 
 /* last reading second */
 "second" = "Sekunde";
 
 /* last reading seconds */
 "seconds" = "Sekunden";
+
+/* calibration.description */
+"Select and configure calibration method" = "Kalibrationsmethode auswählen und konfigurieren";
 
 /* device.description */
 "Select and configure used Device" = "Gerät auswählen und einrichten";
@@ -224,6 +245,9 @@
    blueReader.titleShutdown */
 "Shutdown Device" = "Gerät Ausschalten";
 
+/* SimpleLinearRegressionCalibration: headline */
+"Simple Linear Regression Calibration" = "Einfach lineare Regressions-Kalibration";
+
 /* notification.1 */
 "Snooze for 1h" = "1 Stunde schlummern";
 
@@ -231,7 +255,7 @@
 "Snooze for 2h" = "2 Stunden schlummern";
 
 /* notification.30 */
-"Snooze for 30 minutes" = "30 Minuten schlimmern";
+"Snooze for 30 minutes" = "30 Minuten schlummern";
 
 /* blueReader: Description */
 "The blueReader is used to fetch values from the libre Tag.\nThe interval of fetches can be configured in 1 minute intervals." = "Der blueReader wird für die Datenübertragung verwendet.\nDas Interval der Auslesung kann in minütlichen Schritten festgelegt werden.";
@@ -245,6 +269,18 @@
 /* limitter: Description */
 "The LimiTTer is used to fetch values from the libre Tag." = "LimiTTer diy Transmitter";
 
+/* limitter: Description */
+"The LimiTTer or SweetReader is used to fetch values from the libre Tag." = "Der SweetReader oder LimiTTer selbstbau Transmitter.\nWährend die App im Hintergrund ist, können Daten verpasst werden!";
+
+/* transmitter: Description */
+"The Transmitter is used to fetch values from the libre Tag." = "Der Transmitter wird benutzt um Werte von dem Libre zu empfangen.";
+
+/* transmitter: no data found */
+"transmitter failed" = "Transmitter fehlgeschlagen";
+
+/* transmitter: sensor ok */
+"transmitter ok" = "Transmitter ok";
+
 /* alarmalert.title */
 "until re-enable" = "Bis zum Einschalten";
 
@@ -252,7 +288,22 @@
 "use this if your values are measured in mg/dl, typically between 50 and 300" = "Diese Option für Werte in mg/dl benutzen, typischerweise liegen diese zwischen 50 und 300";
 
 /* Description for mmol unit */
-"use this if your values are measured in mmol, typically between 3.3 and 9.5" = "Diese Option für Werte in mmol benutzen, typischerweise liegen diese zwischen 3.3 und 9.5";
+"use this if your values are measured in mmol, typically between 3.3 and 9.5" = "Diese Option für Werte in mmol/l benutzen, typischerweise liegen diese zwischen 3.3 und 9.5";
 
 /* nightscout: Description */
 "Values are recieved from a Nightscout instance.\nAlarms might stop working, if app is not actively showing." = "Werte werden von einer Nightscout Instanz empfangen.\nWenn die App nicht angezeigt wird, können keine Daten empfangen werden und Alarme ausgelöst werden!";
+
+/* No comment provided by engineer. */
+"%@ can't be empty" = "";
+
+/* No comment provided by engineer. */
+"Choose From Library" = "";
+
+/* No comment provided by engineer. */
+"Invalid email address" = "";
+
+/* No comment provided by engineer. */
+"Take Photo" = "";
+
+/* No comment provided by engineer. */
+"XLFormViewController_ValidationErrorTitle" = "";

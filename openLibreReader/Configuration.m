@@ -461,6 +461,12 @@ static Configuration* __instance;
     [general setObject:url forKey:@"uploadHash"];
     [[Storage instance] setNSData:general];
 }
+-(NSArray*) getRequestedDeviceUUIDs {
+    if(self.device) {
+        return [self.device getRequestedDeviceUUIDs];
+    }
+    return nil;
+}
 @end
 
 void registerDevice(Class deviceClass) {

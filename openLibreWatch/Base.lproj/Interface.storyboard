@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder.WatchKit.Storyboard" version="3.0" toolsVersion="13771" targetRuntime="watchKit" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="AgC-eL-Hgc">
-    <device id="watch38" orientation="portrait">
+    <device id="watch42" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
@@ -32,10 +32,10 @@
                                         </label>
                                     </items>
                                 </group>
-                                <label width="0.34999999999999998" height="1" alignment="right" text="CurrBG" textAlignment="right" id="F98-SU-MNi">
-                                    <fontDescription key="font" type="system" pointSize="32"/>
+                                <label width="0.34999999999999998" height="1" alignment="right" text="888" textAlignment="right" id="F98-SU-MNi">
+                                    <fontDescription key="font" type="system" pointSize="31"/>
                                     <variation key="device=watch38mm">
-                                        <fontDescription key="font" type="system" pointSize="32"/>
+                                        <fontDescription key="font" type="system" pointSize="26"/>
                                     </variation>
                                 </label>
                                 <label height="1" alignment="right" text="↗" textAlignment="left" id="5sr-2k-xWE">

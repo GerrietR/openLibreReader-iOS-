@@ -49,7 +49,7 @@ static Calibration* __instance;
                            valueModule:@"Calibration"
                              valueData:nil
                              valueTime:([[NSDate date] timeIntervalSince1970])
-                              rawValue:raw.rawValue rawSource:[raw rawSource] rawData:[raw rawData]];
+                             rawSource:[raw rawSource] rawData:[raw rawData]];
         bgValue* before = [[Storage instance] lastBgBefore:[[NSDate date] timeIntervalSince1970]];
         double delta = NAN;
         if([before timestamp] + (10*60) > [[NSDate date] timeIntervalSince1970]) {
@@ -70,7 +70,11 @@ static Calibration* __instance;
 }
 
 +(UIViewController*) configurationViewController {
-    return nil;
+   /* UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+
+    UIViewController* vc = [storyboard instantiateViewControllerWithIdentifier:@"CalibrationViewController"];
+    return vc;
+    */ return nil;
 }
 
 -(void)unregister {
@@ -78,9 +82,6 @@ static Calibration* __instance;
 }
 
 -(NSString*) settingsSequeIdentifier {
-    @throw [NSException exceptionWithName:@"Instantiationexception"
-                                   reason:@"not possible"
-                                 userInfo:nil];
-    return nil;
+    return @"CalibrationSettings";
 }
 @end

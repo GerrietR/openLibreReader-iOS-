@@ -205,3 +205,36 @@
 
 /* Class = "UINavigationItem"; title = "LimiTTer Settings"; ObjectID = "th6-GJ-kId"; */
 "th6-GJ-kId.title" = "LimiTTer Einstellungen";
+
+/* Class = "UIViewController"; title = "SimpleLinearRegressionCalibration Settings"; ObjectID = "GVp-dO-a6l"; */
+"GVp-dO-a6l.title" = "Einfach lineare Regressions-Kalibration";
+
+/* Class = "UILabel"; text = "Slope"; ObjectID = "Zhj-2h-8zo"; */
+"Zhj-2h-8zo.text" = "Steigung";
+
+/* Class = "UINavigationItem"; title = "Linear Regression Calibration"; ObjectID = "ejm-s3-DjK"; */
+"ejm-s3-DjK.title" = "Lineare regression Kalibration";
+
+/* Class = "UIButton"; normalTitle = "remove method"; ObjectID = "mdk-8B-uPD"; */
+"mdk-8B-uPD.normalTitle" = "Methode entfernen";
+
+/* Class = "UILabel"; text = "Intersection"; ObjectID = "occ-xh-3La"; */
+"occ-xh-3La.text" = "Schnittpunkt";
+
+/* Class = "UIButton"; normalTitle = "Use this values"; ObjectID = "v4t-Te-y20"; */
+"v4t-Te-y20.normalTitle" = "Diese Werte benutzen";
+
+/* Class = "UIViewController"; title = "Calibration Settings"; ObjectID = "JEf-xN-GKP"; */
+"JEf-xN-GKP.title" = "Kalibrtionseinstellungen";
+
+/* Class = "UINavigationItem"; title = "Calibration"; ObjectID = "RNw-ay-mgf"; */
+"RNw-ay-mgf.title" = "Kalibration";
+
+/* Class = "UIButton"; normalTitle = "remove method"; ObjectID = "jbj-1K-UF7"; */
+"jbj-1K-UF7.normalTitle" = "Methode entfernen";
+
+/* Class = "UINavigationItem"; title = "Calibration"; ObjectID = "peE-Ql-xWO"; */
+"peE-Ql-xWO.title" = "Kalibration";
+
+/* Class = "UINavigationItem"; title = "Linear Regression Calibration"; ObjectID = "Hqr-nZ-tyf"; */
+"Hqr-nZ-tyf.title" = "Lineare regression Kalibration";

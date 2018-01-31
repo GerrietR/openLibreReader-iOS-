@@ -12,7 +12,7 @@
 
 + (instancetype)instance;
 
--(BOOL) addBGValue:(int)value valueModule:(NSString*)value_module valueData:(NSData*)value_data valueTime:(unsigned long)seconds rawValue:(int)raw_value rawSource:(NSString*)raw_source rawData:(NSData*)raw_data;
+-(BOOL) addBGValue:(int)value valueModule:(NSString*)value_module valueData:(NSData*)value_data valueTime:(unsigned long)seconds rawSource:(NSString*)raw_source rawData:(NSData*)raw_data;
 -(NSArray*) bgValuesFrom:(NSTimeInterval)from to:(NSTimeInterval)to;
 -(NSTimeInterval) lastBGValue;
 -(bgValue*) lastBgBefore:(NSTimeInterval)before;

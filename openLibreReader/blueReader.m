@@ -40,7 +40,7 @@
     [[NSNotificationCenter defaultCenter] removeObserver:self];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(requestStatus:) name:kDeviceRequestStatusNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(deviceConnected:) name:BLUETOOTH_DEVICE_CONNECTED object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(disconnected:) name:BLUETOOTH_DEVICE_FAILED object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(failed:) name:BLUETOOTH_DEVICE_FAILED object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(deviceDiscovered:) name:BLUETOOTH_DEVICE_DISCOVERED_SERVICE_CHARACTERISTICS object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(btStatus:) name:BLUETOOTH_STATUS object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(deviceRestored:) name:BLUETOOTH_RESTORED_DEVICE object:nil];
@@ -112,7 +112,7 @@
 }
 
 -(void) disconnected:(NSNotification*) notification {
-    if(![self device] || [[self device] isEqual:[notification object]]) {
+    if(![self device] || [[[self device] identifier] isEqual:[((CBPeripheral*)[notification object])identifier]]) {
         DeviceStatus* ds = [[DeviceStatus alloc] init];
         ds.status = DEVICE_DISCONNECTED;
         ds.statusText = [NSString stringWithFormat:NSLocalizedString(@"Disconnected from %@",@"blueReader: disconnect from device"),[[notification object] name]];
@@ -122,11 +122,36 @@
 
         _tx = nil;
         _rx = nil;
-        if(!_shouldDisconnect && [self device]) {
+        if(!_shouldDisconnect) {
             [[NSNotificationCenter defaultCenter] postNotificationName:BLUETOOTH_CONNECT_DEVICE object:[self device]];
         } else {
             [self setDevice:nil];
         }
+    }
+    else {
+        NSLog(@"not reconnecting to %@, waiting for %@",[notification object],[self device]);
+    }
+}
+-(void) failed:(NSNotification*) notification {
+    if(![self device] || [[[self device] identifier] isEqual:[((CBPeripheral*)[notification object])identifier]]) {
+        DeviceStatus* ds = [[DeviceStatus alloc] init];
+        ds.status = DEVICE_DISCONNECTED;
+        ds.statusText = [NSString stringWithFormat:NSLocalizedString(@"failed connection to %@",@"blueReader: failed connecting to device"),[[notification object] name]];
+        ds.device = nil;
+        [[NSNotificationCenter defaultCenter] postNotificationName:kDeviceStatusNotification object:ds];
+        self.lastDeviceStatus = ds;
+
+        _tx = nil;
+        _rx = nil;
+        if(!_shouldDisconnect) {
+            [[NSNotificationCenter defaultCenter] postNotificationName:BLUETOOTH_START_SCAN object:nil];
+            [[NSNotificationCenter defaultCenter] postNotificationName:BLUETOOTH_CONNECT_DEVICE object:[self device]];
+        } else {
+            [self setDevice:nil];
+        }
+    }
+    else {
+        NSLog(@"failed connecting to %@, waiting for %@",[notification object],[self device]);
     }
 }
 
@@ -279,6 +304,10 @@
     if([[[service UUID] UUIDString] isEqualToString:BLUETOOTH_SERVICE_NORDIC_UART])
         return YES;
     return NO;
+}
+
+-(NSArray*) getRequestedDeviceUUIDs {
+    return [NSArray arrayWithObjects:[CBUUID UUIDWithString:BLUETOOTH_SERVICE_NORDIC_UART], nil];
 }
 
 +(BOOL) compatibleName:(CBPeripheral*) peripheral {

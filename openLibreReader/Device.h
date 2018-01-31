@@ -31,5 +31,7 @@
 -(void) log:(NSString*)message;
 
 -(NSString*) settingsSequeIdentifier;
+
+-(NSArray*) getRequestedDeviceUUIDs;
 @end
 

@@ -1,21 +1,29 @@
-platform :ios, '10.0'
 use_frameworks!
 
-target 'openLibreReader' do
-    pod 'Socket.IO-Client-Swift', '~> 12.1.2' # Or latest version
+def shared_pods
     pod 'MMWormhole', '~> 2.0.0'
+end
+
+target 'openLibreReader' do
+    platform :ios, '10.0'
+    shared_pods
+    pod 'Socket.IO-Client-Swift', '~> 12.0.0' # Or latest version
     pod 'Charts'
-    target 'openLibreReaderWidget' do
-        inherit! :search_paths
-    end
-    target 'openLibreWatch' do
-        inherit! :search_paths
-    end
-    post_install do |installer|
-      installer.pods_project.targets.each do |target|
-        target.build_configurations.each do |config|
-          config.build_settings['SWIFT_VERSION'] = '4.0'
-        end
-      end
-    end
+    pod 'XLForm'
+end
+
+target 'openLibreReaderWidget' do
+	platform :ios, '10.0'
+    shared_pods
+    pod 'Charts'
+end
+    
+target 'openLibreWatch' do
+    platform :watchos, '2.0'
+    shared_pods
+end
+
+target 'openLibreWatch Extension' do
+    platform :watchos, '2.0'
+    shared_pods
 end
