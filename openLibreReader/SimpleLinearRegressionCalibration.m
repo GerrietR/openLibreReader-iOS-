@@ -158,6 +158,18 @@ static SimpleLinearRegressionCalibration* __instance;
     }
 }
 
+-(float) getCurrentBG;
+{
+    if (isCalibrating)
+    {
+        return referenceValue;
+    }
+    else
+    {
+        return -1.0;
+    }
+}
+
 -(unsigned long) getNumberOfCalibration{
     NSArray* values = [[Storage instance]  calibrationFrom:[[NSDate distantPast] timeIntervalSince1970]  to:[[NSDate date] timeIntervalSince1970]];
     return [values count];
@@ -217,8 +229,8 @@ static SimpleLinearRegressionCalibration* __instance;
     calibrationValue* calibration;
     for (calibration in values)
     {
-        [xValues addObject:[NSNumber numberWithInt:calibration.referenceValue]];
-        [yValues addObject:[NSNumber numberWithInt:calibration.value]];
+        [xValues addObject:[NSNumber numberWithInt:calibration.value]];
+        [yValues addObject:[NSNumber numberWithInt:calibration.referenceValue]];
     }
     [self linearRegressionInternal:slope intercept:intercept xvalues:xValues yvalues:yValues];
     

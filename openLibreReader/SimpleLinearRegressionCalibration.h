@@ -15,6 +15,8 @@
 
 -(bool) isCalibrating:(float*)progress;
 
+-(float) getCurrentBG;
+
 -(unsigned long) getNumberOfCalibration;
 
 -(void) cancelCalibration;

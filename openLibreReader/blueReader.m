@@ -12,6 +12,8 @@
 #import "DeviceViewController.h"
 #import "Configuration.h"
 #import "nightscout.h"
+#import <objc/runtime.h>
+
 @interface blueReader ()
     @property (weak) CBCharacteristic* tx;
     @property (weak) CBCharacteristic* rx;
@@ -133,10 +135,11 @@
     }
 }
 -(void) failed:(NSNotification*) notification {
-    if(![self device] || [[[self device] identifier] isEqual:[((CBPeripheral*)[notification object])identifier]]) {
+    CBPeripheral* peripheral = ((CBPeripheral*)[(NSDictionary*)[notification object] valueForKey:@"peripheral"]);
+    if(![self device] || ([[[self device] identifier] isEqual:[peripheral identifier]])) {
         DeviceStatus* ds = [[DeviceStatus alloc] init];
         ds.status = DEVICE_DISCONNECTED;
-        ds.statusText = [NSString stringWithFormat:NSLocalizedString(@"failed connection to %@",@"blueReader: failed connecting to device"),[[notification object] name]];
+        ds.statusText = [NSString stringWithFormat:NSLocalizedString(@"failed connection to %@",@"blueReader: failed connecting to device"),[peripheral name]];
         ds.device = nil;
         [[NSNotificationCenter defaultCenter] postNotificationName:kDeviceStatusNotification object:ds];
         self.lastDeviceStatus = ds;

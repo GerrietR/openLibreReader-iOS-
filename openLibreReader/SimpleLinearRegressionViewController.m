@@ -83,6 +83,7 @@
         _addCalibration.enabled = false;
         _delayStepper.enabled = false;
         _bloodglucose.enabled = false;
+        _bloodglucose.text = [NSString stringWithFormat:@"%.0lf", [c getCurrentBG]];
         _cancelCalibration.enabled = true;
         _calibrationProgress.hidden = false;
         _calibrationProgress.progress = progress;
@@ -93,6 +94,7 @@
             _calibrationStatus.text= NSLocalizedString(@"Waiting for next value",@"CalibrationMethod.StatusWait");
         }
         _calibrationStatus.hidden = false;
+        _calculateButton.enabled = false;
     }
     else
     {
@@ -102,7 +104,16 @@
         _cancelCalibration.enabled = false;
         _calibrationProgress.hidden = true;
         _calibrationStatus.hidden = true;
-        
+        if ([c getNumberOfCalibration] >= 2)
+        {
+            _calculateButton.enabled = true;
+            _calculateButton.backgroundColor = _calculateButton.tintColor;
+        }
+        else
+        {
+            _calculateButton.enabled = false;
+            _calculateButton.backgroundColor = UIColor.lightGrayColor;
+        }
         if (_timer)
         {
             [_timer invalidate];
@@ -118,19 +129,20 @@
 
 
 -(IBAction)next:(id)sender {
-    SimpleLinearRegressionCalibration* model = [SimpleLinearRegressionCalibration instance];
+  /*  SimpleLinearRegressionCalibration* model = [SimpleLinearRegressionCalibration instance];
     if(sender == _slope) {
         double v = [[_slope.text stringByReplacingOccurrencesOfString:@"," withString:@"."] doubleValue];
         [model setSlope:v];
     } else if(sender == _intercept) {
         double v = [[_intercept.text stringByReplacingOccurrencesOfString:@"," withString:@"."] doubleValue];
         [model setIntercept:v];
-    }
+    }*/
 }
 
 - (IBAction)cancelCalibration:(id)sender {
     SimpleLinearRegressionCalibration* c = [SimpleLinearRegressionCalibration instance];
     [c cancelCalibration];
+    [self updateUI];
 }
 
 - (IBAction)addCalibration:(id)sender {
@@ -205,6 +217,12 @@
 }
 
 -(IBAction)use:(id)sender {
+    SimpleLinearRegressionCalibration* model = [SimpleLinearRegressionCalibration instance];
+    
+    double v = [[_slope.text stringByReplacingOccurrencesOfString:@"," withString:@"."] doubleValue];
+    [model setSlope:v];
+    double w = [[_intercept.text stringByReplacingOccurrencesOfString:@"," withString:@"."] doubleValue];
+    [model setIntercept:w];
     [super dismissViewControllerAnimated:YES completion:nil];
 }
 
