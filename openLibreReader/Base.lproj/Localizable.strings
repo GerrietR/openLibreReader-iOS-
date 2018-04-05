@@ -1,4 +1,7 @@
 
+/* No comment provided by engineer. */
+"%@ can't be empty" = "%@ can't be empty";
+
 /* last reading */
 "%d %@ ago" = "%1$d %2$@ ago";
 
@@ -56,6 +59,9 @@
 /* unitalert.title */
 "Change Unit" = "Change Unit";
 
+/* No comment provided by engineer. */
+"Choose From Library" = "Choose From Library";
+
 /* nsUpload.close */
 "close" = "close";
 
@@ -101,6 +107,9 @@
 /* NoCalibration: default Headline */
 "Default Calibration" = "Default Calibration";
 
+/* CalibrationMethod.StatusDelay */
+"Delaying" = "Delaying";
+
 /* device.title */
 "Device" = "Device";
 
@@ -145,6 +154,9 @@
 
 /* last reading hours */
 "hours" = "hours";
+
+/* No comment provided by engineer. */
+"Invalid email address" = "Invalid email address";
 
 /* limit.title */
 "Limit Values" = "Limit Values";
@@ -257,6 +269,9 @@
 /* notification.30 */
 "Snooze for 30 minutes" = "Snooze for 30 minutes";
 
+/* No comment provided by engineer. */
+"Take Photo" = "Take Photo";
+
 /* blueReader: Description */
 "The blueReader is used to fetch values from the libre Tag.\nThe interval of fetches can be configured in 1 minute intervals." = "The blueReader is used to fetch values from the libre Tag.\nThe interval of fetches can be configured in 1 minute intervals.";
 
@@ -290,20 +305,14 @@
 /* Description for mmol unit */
 "use this if your values are measured in mmol, typically between 3.3 and 9.5" = "use this if your values are measured in mmol/l, typically between 3.3 and 9.5";
 
+/* demoDevice: Description */
+"Values are generated randomly" = "Values are generated randomly";
+
 /* nightscout: Description */
 "Values are recieved from a Nightscout instance.\nAlarms might stop working, if app is not actively showing." = "Values are recieved from a Nightscout instance.\nAlarms will stop working, if app is not actively open in the foreground.";
 
-/* No comment provided by engineer. */
-"%@ can't be empty" = "";
+/* CalibrationMethod.StatusWait */
+"Waiting for next value" = "Waiting for next value";
 
 /* No comment provided by engineer. */
-"Choose From Library" = "";
-
-/* No comment provided by engineer. */
-"Invalid email address" = "";
-
-/* No comment provided by engineer. */
-"Take Photo" = "";
-
-/* No comment provided by engineer. */
-"XLFormViewController_ValidationErrorTitle" = "";
+"XLFormViewController_ValidationErrorTitle" = "Validation Error";
