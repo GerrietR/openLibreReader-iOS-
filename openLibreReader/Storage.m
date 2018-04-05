@@ -10,6 +10,7 @@
 
 #import "bgValue.h"
 #import "batteryValue.h"
+#import "calibrationValue.h"
 #import "Device.h"
 
 #import "Configuration.h"
@@ -17,6 +18,7 @@
 #define VALUES_DB @"value"
 #define LOG_DB @"log"
 #define BATTERY_DB @"battery"
+#define CALIBRATION_DB @"calibration"
 
 static Storage* __instance;
 
@@ -28,6 +30,8 @@ static Storage* __instance;
     @property (nonatomic) NSLock *logLock;
     @property (nonatomic) sqlite3* battery;
     @property (nonatomic) NSLock *batteryLock;
+    @property (nonatomic) sqlite3* calibration;
+    @property (nonatomic) NSLock *calibrationLock;
 @end
 
 @implementation Storage
@@ -49,38 +53,53 @@ static Storage* __instance;
         _dbLock = [[NSLock alloc] init];
         _logLock = [[NSLock alloc] init];
         _batteryLock = [[NSLock alloc] init];
+        _calibrationLock = [[NSLock alloc] init];
         [_dbLock lock];
         [_logLock lock];
         [_batteryLock lock];
+        [_calibrationLock lock];
         [self openValueDB];
         [self openLogDB];
         [self openBatteryDB];
+        [self openCalibrationDB];
 
         if(![self executeQuery:@"CREATE TABLE IF NOT EXISTS log (id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, timestamp INTEGER, message TEXT)" onDB:_log]){
             [self closeValueDB];
             [self closeLogDB];
             [self closeBatteryDB];
+            [self closeCalibrationDB];
             return nil;
         }
         if(![self executeQuery:@"CREATE TABLE IF NOT EXISTS bg_values (id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, timestamp INTEGER, raw_source TEXT, raw_data BLOB, value INTEGER, value_module TEXT, value_data BLOB)" onDB:_db]){
             [self closeValueDB];
             [self closeLogDB];
             [self closeBatteryDB];
+            [self closeCalibrationDB];
             return nil;
         }
         if(![self executeQuery:@"CREATE TABLE IF NOT EXISTS battery (id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, timestamp INTEGER, source TEXT, volts INTEGER, raw INTEGER, device TEXT)" onDB:_battery]){
             [self closeValueDB];
             [self closeLogDB];
             [self closeBatteryDB];
+            [self closeCalibrationDB];
+            return nil;
+        }
+        if(![self executeQuery:@"CREATE TABLE IF NOT EXISTS calibration (id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, timestamp INTEGER, value INTEGER,  reference_value INTEGER, calibration_module TEXT)" onDB:_calibration]){
+            [self closeValueDB];
+            [self closeLogDB];
+            [self closeBatteryDB];
+            [self closeCalibrationDB];
             return nil;
         }
 
         [self closeValueDB];
         [self closeLogDB];
         [self closeBatteryDB];
+        [self closeCalibrationDB];
         [_dbLock unlock];
         [_logLock unlock];
         [_batteryLock unlock];
+        [_calibrationLock unlock];
 
     }
     return self;
@@ -104,6 +123,27 @@ static Storage* __instance;
         if(_db)
             sqlite3_close(_db);
         _db = nil;
+    }@catch(NSException *e){
+        NSLog(@"got error on %@",[e debugDescription]);
+    }
+}
+
+-(BOOL) openCalibrationDB {
+    @try{
+        if(_calibration)
+            return true;
+        return sqlite3_open([[_documentsDirectory stringByAppendingPathComponent:[CALIBRATION_DB stringByAppendingString:@".sqlite"] ] UTF8String], &_calibration) != SQLITE_OK;
+    }@catch(NSException *e){
+        NSLog(@"got error on %@",[e debugDescription]);
+    }
+    return NO;
+}
+
+-(void) closeCalibrationDB {
+    @try{
+        if(_calibration)
+            sqlite3_close(_calibration);
+        _calibration = nil;
     }@catch(NSException *e){
         NSLog(@"got error on %@",[e debugDescription]);
     }
@@ -421,6 +461,117 @@ static Storage* __instance;
     }
     return values;
 }
+
+
+-(BOOL) addCalibration:(int)value reference:(int)reference valueTime:(unsigned long)seconds module:(NSString*)module {
+    [_calibrationLock lock];
+    @try {
+        [self openCalibrationDB];
+        sqlite3_stmt *statement = nil;
+        if (sqlite3_prepare_v2(_calibration, "INSERT INTO calibration (timestamp, value, reference_value, calibration_module) VALUES (?,?,?,?)", -1, &statement, NULL) == SQLITE_OK) {
+            sqlite3_bind_int64(statement, 1, seconds);
+            sqlite3_bind_int(statement, 2, value);
+            sqlite3_bind_int(statement, 3, reference);
+            sqlite3_bind_text(statement, 4, [module UTF8String], -1, SQLITE_TRANSIENT);
+        }
+        else{
+            [self log:@"unable to prepare add calibration" from:@"Storage"];
+            
+            [self closeCalibrationDB];
+            return false;
+        }
+        if (sqlite3_step(statement) != SQLITE_DONE) {
+            [self log:@"unable to save add calibration" from:@"Storage"];
+            
+            [self closeCalibrationDB];
+            return false;
+        }
+        
+        // Clean up and delete the resources used by the prepared statement.
+        sqlite3_finalize(statement);
+        
+        [self closeCalibrationDB];
+        return true;
+    }@catch(NSException *e){
+        NSLog(@"got error on %@",[e debugDescription]);
+    }
+    @finally {
+        [_calibrationLock unlock];
+    }
+    return NO;
+}
+
+-(NSArray*) calibrationFrom:(NSTimeInterval)from to:(NSTimeInterval)to {
+    NSMutableArray* values = [NSMutableArray array];
+    [_calibrationLock lock];
+    @try {
+        [self openCalibrationDB];
+        sqlite3_stmt *statement = nil;
+        if (sqlite3_prepare_v2(_calibration, "select timestamp, value, reference_value, calibration_module from calibration where timestamp > ? and timestamp <= ?", -1, &statement, NULL) == SQLITE_OK) {
+            sqlite3_bind_int64(statement, 1, (unsigned long)from);
+            sqlite3_bind_int64(statement, 2, (unsigned long)to);
+        } else{
+            [self log:@"unable to prepare calibrationFrom:to:" from:@"Storage"];
+            [self closeCalibrationDB];
+            return nil;
+        }
+        
+        while (sqlite3_step(statement) == SQLITE_ROW) {
+            long long timestamp = sqlite3_column_int64(statement, 0);
+            int value = sqlite3_column_int(statement, 1);
+            int reference = sqlite3_column_int(statement, 2);
+            NSString* module = [NSString stringWithUTF8String:(char*)sqlite3_column_text(statement, 3)];
+            
+            calibrationValue* v = [[calibrationValue alloc] initWith:value reference:reference from:module at:timestamp];
+            [values addObject:v];
+        }
+        sqlite3_finalize(statement);
+        [self closeCalibrationDB];
+    }
+    @catch(NSException *e){
+        NSLog(@"got error on %@",[e debugDescription]);
+    }
+    @finally {
+        [_calibrationLock unlock];
+    }
+    return values;
+}
+
+-(void) deleteCalibration:(NSTimeInterval)timestamp module:(NSString*) module
+{
+    [_calibrationLock lock];
+    @try {
+        [self openCalibrationDB];
+        sqlite3_stmt *statement = nil;
+        if (sqlite3_prepare_v2(_calibration, "delete from calibration where timestamp = ? and calibration_module = ?", -1, &statement, NULL) == SQLITE_OK) {
+            sqlite3_bind_int64(statement, 1, (unsigned long)timestamp);
+            sqlite3_bind_text(statement, 2, [module UTF8String], -1, SQLITE_TRANSIENT);
+        } else{
+            [self log:@"unable to prepare deleteCalibration" from:@"Storage"];
+            [self closeCalibrationDB];
+            return;
+        }
+        int dbrc = 0;
+        if ((dbrc = sqlite3_step(statement)) != SQLITE_DONE) {
+            NSLog(@"couldn't delete calibration with timestamp %f from datasets: result code %i", timestamp, dbrc);
+            [self closeCalibrationDB];
+            return;
+        }
+        else {
+            NSLog(@"deleted the calibration with timestamp %f from datasets", timestamp);
+        };
+        sqlite3_finalize(statement);
+        
+        [self closeCalibrationDB];
+    }
+    @catch(NSException *e){
+        NSLog(@"got error on %@",[e debugDescription]);
+    }
+    @finally {
+        [_calibrationLock unlock];
+    }
+    
+};
 
 #pragma mark -
 #pragma mark deviceData

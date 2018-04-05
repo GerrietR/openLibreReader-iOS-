@@ -123,7 +123,7 @@
 }
 
 - (void)centralManager:(CBCentralManager *)central didFailToConnectPeripheral:(CBPeripheral *)peripheral error:(nullable NSError *)error {
-    [[Storage instance] log:[NSString stringWithFormat:@"failed connect to %@",[peripheral identifier]] from:@"BluetoothService"];
+    [[Storage instance] log:[NSString stringWithFormat:@"failed connect to %@, error %@",[peripheral identifier],[error localizedDescription]] from:@"BluetoothService"];
     [_connectedPeripherals removeObject:peripheral];
     [[NSNotificationCenter defaultCenter] postNotificationName:BLUETOOTH_DEVICE_FAILED
                                                         object:@{@"peripheral":peripheral,@"error":error}];

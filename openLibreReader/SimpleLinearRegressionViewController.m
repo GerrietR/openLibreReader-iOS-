@@ -7,6 +7,7 @@
 //
 
 #import "SimpleLinearRegressionViewController.h"
+#import "SimpleLinearRegressionCalibration.h"
 #import "Configuration.h"
 #import "Storage.h"
 #import <CommonCrypto/CommonDigest.h>
@@ -14,7 +15,17 @@
 @interface SimpleLinearRegressionViewController ()
 @property (nonatomic, strong) IBOutlet UITextField* slope;
 @property (nonatomic, strong) IBOutlet UITextField* intercept;
+@property (nonatomic, strong) IBOutlet UITextField* bloodglucose;
+@property (nonatomic, strong) IBOutlet UILabel* delay;
+@property (weak, nonatomic) IBOutlet UIStepper *delayStepper;
+@property (weak, nonatomic) IBOutlet UIButton *addCalibration;
+@property (weak, nonatomic) IBOutlet UIProgressView *calibrationProgress;
+@property (weak, nonatomic) IBOutlet UILabel *calibrationStatus;
+@property (weak, nonatomic) IBOutlet UIButton *cancelCalibration;
+@property (weak, nonatomic) IBOutlet UIButton *calculateButton;
+@property (weak, nonatomic) IBOutlet UILabel *statistics;
 @property (nonatomic, strong) IBOutlet UIButton* forget;
+@property NSTimer *timer; // retain?
 @end
 
 // todo: this file contains some copy&pasted stuff. A cleanup is needed!
@@ -31,6 +42,8 @@
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
+    _calculateButton.layer.cornerRadius = 4;
+    _forget.layer.cornerRadius = 4;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -51,6 +64,9 @@
     {
         _intercept.text = [NSString stringWithFormat:@"%.2lf", -19.86]; // some default value from experience
     }
+    _bloodglucose.text=@"";
+    _delay.text=@"20m";
+    [self updateUI];
 }
 
 -(void)viewDidDisappear:(BOOL)animated {
@@ -59,22 +75,126 @@
     }
 }
 
+-(void)updateUI {
+    SimpleLinearRegressionCalibration* c = [SimpleLinearRegressionCalibration instance];
+    float progress = 0.0;
+    if ([c isCalibrating:&progress])
+    {
+        _addCalibration.enabled = false;
+        _delayStepper.enabled = false;
+        _bloodglucose.enabled = false;
+        _bloodglucose.text = [NSString stringWithFormat:@"%.0lf", [c getCurrentBG]];
+        _cancelCalibration.enabled = true;
+        _calibrationProgress.hidden = false;
+        _calibrationProgress.progress = progress;
+        if (progress < 1.0)
+        {
+            _calibrationStatus.text= NSLocalizedString(@"Delaying",@"CalibrationMethod.StatusDelay");
+        } else {
+            _calibrationStatus.text= NSLocalizedString(@"Waiting for next value",@"CalibrationMethod.StatusWait");
+        }
+        _calibrationStatus.hidden = false;
+        _calculateButton.enabled = false;
+    }
+    else
+    {
+        _addCalibration.enabled = true;
+        _delayStepper.enabled = true;
+        _bloodglucose.enabled = true;
+        _cancelCalibration.enabled = false;
+        _calibrationProgress.hidden = true;
+        _calibrationStatus.hidden = true;
+        if ([c getNumberOfCalibration] >= 2)
+        {
+            _calculateButton.enabled = true;
+            _calculateButton.backgroundColor = _calculateButton.tintColor;
+        }
+        else
+        {
+            _calculateButton.enabled = false;
+            _calculateButton.backgroundColor = UIColor.lightGrayColor;
+        }
+        if (_timer)
+        {
+            [_timer invalidate];
+            _timer = nil;
+        }
+    }
+    _statistics.text =[ NSString stringWithFormat:@"Number of Calibrations: %lu", [c getNumberOfCalibration]];
+}
+
+- (void)_timerFired:(NSTimer *)timer {
+    [self updateUI];
+}
+
+
 -(IBAction)next:(id)sender {
-    NSMutableDictionary* data = [[Storage instance] deviceData];
+  /*  SimpleLinearRegressionCalibration* model = [SimpleLinearRegressionCalibration instance];
     if(sender == _slope) {
         double v = [[_slope.text stringByReplacingOccurrencesOfString:@"," withString:@"."] doubleValue];
-        NSString* slope = [NSString stringWithFormat:@"%.2f",v];
-        NSLog(@"got %@ as new value for slope",slope);
-        [data setObject:slope forKey:@"SimpleLinearRegressionSlope"];
+        [model setSlope:v];
     } else if(sender == _intercept) {
         double v = [[_intercept.text stringByReplacingOccurrencesOfString:@"," withString:@"."] doubleValue];
-        NSString* intercept = [NSString stringWithFormat:@"%.2f",v];
-        NSLog(@"got %@ as new value for intercept",intercept);
-        [data setObject:intercept forKey:@"SimpleLinearRegressionIntercept"];
-    }
-    [[Storage instance] saveDeviceData:data];
+        [model setIntercept:v];
+    }*/
 }
+
+- (IBAction)cancelCalibration:(id)sender {
+    SimpleLinearRegressionCalibration* c = [SimpleLinearRegressionCalibration instance];
+    [c cancelCalibration];
+    [self updateUI];
+}
+
+- (IBAction)addCalibration:(id)sender {
+    SimpleLinearRegressionCalibration* c = [SimpleLinearRegressionCalibration instance];
+    [c startCalibration:_bloodglucose.text.floatValue delay:_delayStepper.value ];
+    if (!_timer) {
+        _timer = [NSTimer scheduledTimerWithTimeInterval:1.0f
+                                                  target:self
+                                                selector:@selector(_timerFired:)
+                                                userInfo:nil
+                                                 repeats:YES];
+    }
+}
+- (IBAction)calculateRegressionParameters:(id)sender {
+    SimpleLinearRegressionCalibration* c = [SimpleLinearRegressionCalibration instance];
+    double intercept = 0.0;
+    double slope = 0.0;
+    [c linearRegression:&slope intercept:&intercept];
+    _slope.text = [NSString stringWithFormat:@"%.2lf", slope];
+    _intercept.text = [NSString stringWithFormat:@"%.2lf", intercept];
+}
+
 -(IBAction)check:(id)sender {
+}
+
+- (void)dismissKeyboards {
+    if (_bloodglucose.isEditing)
+    {
+        [_bloodglucose endEditing:YES];
+    }
+    if (_slope.isEditing)
+    {
+        [_slope endEditing:YES];
+    }
+    if (_intercept.isEditing)
+    {
+        [_intercept endEditing:YES];
+    }
+}
+
+-(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    [self dismissKeyboards];
+}
+
+- (IBAction)stepperValueChanged:(id)sender {
+    [self dismissKeyboards];
+    if (sender == _delayStepper)
+    {
+        NSUInteger value = _delayStepper.value;
+        _delay.text = [NSString stringWithFormat:@"%02lum", (unsigned long)value];
+    }
 }
 
 - (void)textFieldDidBeginEditing:(UITextField *)textField {
@@ -97,6 +217,12 @@
 }
 
 -(IBAction)use:(id)sender {
+    SimpleLinearRegressionCalibration* model = [SimpleLinearRegressionCalibration instance];
+    
+    double v = [[_slope.text stringByReplacingOccurrencesOfString:@"," withString:@"."] doubleValue];
+    [model setSlope:v];
+    double w = [[_intercept.text stringByReplacingOccurrencesOfString:@"," withString:@"."] doubleValue];
+    [model setIntercept:w];
     [super dismissViewControllerAnimated:YES completion:nil];
 }
 

@@ -64,7 +64,7 @@ static Configuration* __instance;
             [[NSNotificationCenter defaultCenter] postNotificationName:@"CONFIGUARTION_DEVICE_CHANGED" object:_device];
         }
         if([[Storage instance] getSelectedCalibrationClass]) {
-            Calibration* newCalibration = [[NSClassFromString([[Storage instance] getSelectedCalibrationClass]) alloc] init];
+            Calibration* newCalibration = [NSClassFromString([[Storage instance] getSelectedCalibrationClass]) instance];
             if(newCalibration) {
                 if(_calibration) {
                     [_calibration unregister];
@@ -74,7 +74,7 @@ static Configuration* __instance;
 
             }
         } else {
-            Calibration* newCalibration = [[Calibration alloc] init];
+            Calibration* newCalibration = [Calibration instance];
             if(_calibration) {
                 [_calibration unregister];
             }

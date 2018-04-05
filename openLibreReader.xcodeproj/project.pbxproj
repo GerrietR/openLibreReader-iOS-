@@ -65,7 +65,12 @@
 		6CC754B31F5F1606008194E1 /* Configurable.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CC754B21F5F1606008194E1 /* Configurable.m */; };
 		6CF394CF1F7A82B8006EFECA /* nightscout.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CF394CD1F7A82B8006EFECA /* nightscout.m */; };
 		961151501FEE7315006507F6 /* WatchScatterPlotImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9611514F1FEE7315006507F6 /* WatchScatterPlotImage.swift */; };
+		964463E320210C5900FE4506 /* demoDeviceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 964463E020210C5800FE4506 /* demoDeviceViewController.m */; };
+		964463E420210C5900FE4506 /* demo.m in Sources */ = {isa = PBXBuildFile; fileRef = 964463E120210C5800FE4506 /* demo.m */; };
 		96640DE81FED31920035CCC4 /* ConnectivityHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96640DE71FED31920035CCC4 /* ConnectivityHandler.swift */; };
+		96791F9720226CDC00E87D98 /* CalibrationListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 96791F9620226CDC00E87D98 /* CalibrationListViewController.m */; };
+		96791F9A20226CED00E87D98 /* calibrationValue.m in Sources */ = {isa = PBXBuildFile; fileRef = 96791F9920226CED00E87D98 /* calibrationValue.m */; };
+		96791FA22022749700E87D98 /* openLibreReaderTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 96791FA12022749700E87D98 /* openLibreReaderTests.m */; };
 		967D19721FE5484A0088DCF5 /* Interface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 967D19701FE5484A0088DCF5 /* Interface.storyboard */; };
 		967D19741FE5484A0088DCF5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 967D19731FE5484A0088DCF5 /* Assets.xcassets */; };
 		967D197B1FE5484A0088DCF5 /* openLibreWatch Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 967D197A1FE5484A0088DCF5 /* openLibreWatch Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
@@ -255,9 +260,20 @@
 		90F44DAC9D615F9283B5EA61 /* Pods-openLibreReader.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-openLibreReader.release.xcconfig"; path = "Pods/Target Support Files/Pods-openLibreReader/Pods-openLibreReader.release.xcconfig"; sourceTree = "<group>"; };
 		9611514F1FEE7315006507F6 /* WatchScatterPlotImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchScatterPlotImage.swift; sourceTree = "<group>"; };
 		963689471FA8B12900D51B4C /* Starscream.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Starscream.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		964463DF20210C4300FE4506 /* demo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = demo.h; sourceTree = "<group>"; };
+		964463E020210C5800FE4506 /* demoDeviceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = demoDeviceViewController.m; sourceTree = "<group>"; };
+		964463E120210C5800FE4506 /* demo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = demo.m; sourceTree = "<group>"; };
+		964463E220210C5900FE4506 /* demoDeviceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = demoDeviceViewController.h; sourceTree = "<group>"; };
 		96640DA71FEBCF980035CCC4 /* Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Bridging-Header.h"; sourceTree = "<group>"; };
 		96640DE61FED31910035CCC4 /* openLibreReader-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "openLibreReader-Bridging-Header.h"; sourceTree = "<group>"; };
 		96640DE71FED31920035CCC4 /* ConnectivityHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectivityHandler.swift; sourceTree = "<group>"; };
+		96791F9520226CDB00E87D98 /* CalibrationListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CalibrationListViewController.h; sourceTree = "<group>"; };
+		96791F9620226CDC00E87D98 /* CalibrationListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CalibrationListViewController.m; sourceTree = "<group>"; };
+		96791F9820226CED00E87D98 /* calibrationValue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = calibrationValue.h; sourceTree = "<group>"; };
+		96791F9920226CED00E87D98 /* calibrationValue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = calibrationValue.m; sourceTree = "<group>"; };
+		96791F9F2022749700E87D98 /* openLibreReaderTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = openLibreReaderTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		96791FA12022749700E87D98 /* openLibreReaderTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = openLibreReaderTests.m; sourceTree = "<group>"; };
+		96791FA32022749700E87D98 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		967D196E1FE548490088DCF5 /* openLibreWatch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = openLibreWatch.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		967D19711FE5484A0088DCF5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Interface.storyboard; sourceTree = "<group>"; };
 		967D19731FE5484A0088DCF5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -272,8 +288,6 @@
 		967D198A1FE5484B0088DCF5 /* PushNotificationPayload.apns */ = {isa = PBXFileReference; lastKnownFileType = text; path = PushNotificationPayload.apns; sourceTree = "<group>"; };
 		967D19961FE55B860088DCF5 /* openLibreWatch.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = openLibreWatch.entitlements; sourceTree = "<group>"; };
 		967D19971FE55BBA0088DCF5 /* openLibreWatch Extension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "openLibreWatch Extension.entitlements"; sourceTree = "<group>"; };
-		967D19991FE69CD10088DCF5 /* demo.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = demo.m; sourceTree = "<group>"; };
-		967D199C1FE6A0680088DCF5 /* demoDeviceViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = demoDeviceViewController.m; sourceTree = "<group>"; };
 		96A9E8101FF7B71C00FB60CA /* SimpleLinearRegressionCalibration.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SimpleLinearRegressionCalibration.h; sourceTree = "<group>"; };
 		96A9E8111FF7B73B00FB60CA /* SimpleLinearRegressionCalibration.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SimpleLinearRegressionCalibration.m; sourceTree = "<group>"; };
 		96A9E8191FF902BC00FB60CA /* SimpleLinearRegressionViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SimpleLinearRegressionViewController.h; sourceTree = "<group>"; };
@@ -343,6 +357,8 @@
 		6C59E7431F5C82DB004CC390 /* Calibration */ = {
 			isa = PBXGroup;
 			children = (
+				96791F9520226CDB00E87D98 /* CalibrationListViewController.h */,
+				96791F9620226CDC00E87D98 /* CalibrationListViewController.m */,
 				6C6CABBF1F11B69D00810568 /* Calibration.h */,
 				6C6CABC01F11B69D00810568 /* Calibration.m */,
 				6C6CABC21F11C57C00810568 /* TestCalibration.h */,
@@ -360,6 +376,10 @@
 		6C59E7441F5C82F1004CC390 /* Device */ = {
 			isa = PBXGroup;
 			children = (
+				964463E120210C5800FE4506 /* demo.m */,
+				964463E220210C5900FE4506 /* demoDeviceViewController.h */,
+				964463E020210C5800FE4506 /* demoDeviceViewController.m */,
+				964463DF20210C4300FE4506 /* demo.h */,
 				6C59E7531F5DA5B5004CC390 /* BluetoothDevice.h */,
 				6C59E7541F5DA5B5004CC390 /* BluetoothDevice.m */,
 				6C59E7401F5C6F37004CC390 /* DeviceCellTableViewCell.h */,
@@ -391,6 +411,8 @@
 		6C59E7451F5C8315004CC390 /* Data */ = {
 			isa = PBXGroup;
 			children = (
+				96791F9820226CED00E87D98 /* calibrationValue.h */,
+				96791F9920226CED00E87D98 /* calibrationValue.m */,
 				6C6CABB71F10112600810568 /* Storage.h */,
 				6C6CABB81F10112600810568 /* Storage.m */,
 				6C6CABBC1F11AD6300810568 /* bgRawValue.h */,
@@ -431,6 +453,7 @@
 				967D196F1FE548490088DCF5 /* openLibreWatch */,
 				967D197E1FE5484A0088DCF5 /* openLibreWatch Extension */,
 				6C56F19B2011352800528A94 /* openLibreReaderWidget */,
+				96791FA02022749700E87D98 /* openLibreReaderTests */,
 				6C6CAB7B1F0FB6F000810568 /* Products */,
 				6C6CABB11F0FDCE400810568 /* Frameworks */,
 				6CE27134200F829500660E56 /* Recovered References */,
@@ -445,6 +468,7 @@
 				967D196E1FE548490088DCF5 /* openLibreWatch.app */,
 				967D197A1FE5484A0088DCF5 /* openLibreWatch Extension.appex */,
 				6C56F1992011352800528A94 /* openLibreReaderWidget.appex */,
+				96791F9F2022749700E87D98 /* openLibreReaderTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -544,8 +568,6 @@
 		6CE27134200F829500660E56 /* Recovered References */ = {
 			isa = PBXGroup;
 			children = (
-				967D199C1FE6A0680088DCF5 /* demoDeviceViewController.m */,
-				967D19991FE69CD10088DCF5 /* demo.m */,
 			);
 			name = "Recovered References";
 			sourceTree = "<group>";
@@ -1020,7 +1042,9 @@
 				6C59E7551F5DA5B5004CC390 /* BluetoothDevice.m in Sources */,
 				6CC754A91F5DAD48008194E1 /* ConfigurationViewController.m in Sources */,
 				6C8ADC3F200F8E4200147072 /* CalibrationViewController.m in Sources */,
+				964463E320210C5900FE4506 /* demoDeviceViewController.m in Sources */,
 				6C6CAB821F0FB6F000810568 /* AppDelegate.m in Sources */,
+				96791F9720226CDC00E87D98 /* CalibrationListViewController.m in Sources */,
 				6C64BFF11F6F16E900879A51 /* mgdl.m in Sources */,
 				6C6CABCF1F12B0B200810568 /* batteryValue.m in Sources */,
 				6C4184CD1F9BCFA400B156F7 /* limitter.m in Sources */,
@@ -1032,7 +1056,9 @@
 				6C6CAB851F0FB6F000810568 /* HomeViewController.m in Sources */,
 				6CAEE6811F617AD1001EBDEF /* BluetoothStatus.m in Sources */,
 				6C59E7571F5DA696004CC390 /* BluetoothService.m in Sources */,
+				96791F9A20226CED00E87D98 /* calibrationValue.m in Sources */,
 				6C6CAB7F1F0FB6F000810568 /* main.m in Sources */,
+				964463E420210C5900FE4506 /* demo.m in Sources */,
 				6C4F5C63201A2F07003CC0D3 /* transmitter.m in Sources */,
 				96A9E81B1FF902D600FB60CA /* SimpleLinearRegressionViewController.m in Sources */,
 				6C6CABBE1F11AD6300810568 /* bgRawValue.m in Sources */,
