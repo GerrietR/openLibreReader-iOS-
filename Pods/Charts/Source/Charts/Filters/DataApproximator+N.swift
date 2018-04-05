@@ -112,11 +112,11 @@ extension DataApproximator {
         } while !queue.isEmpty
         
         // create a new array with series, only take the kept ones
-        let reducedEntries = points.enumerated().compactMap { (index: Int, point: CGPoint) -> CGPoint? in
+        /*let reducedEntries = points.enumerated().compactMap { (index: Int, point: CGPoint) -> CGPoint? in
             return keep[index] ? point : nil
-        }
+        }*/
         
-        return reducedEntries
+        return points //reducedEntries
     }
     
     // Keeps array sorted
