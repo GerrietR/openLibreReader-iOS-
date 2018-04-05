@@ -213,8 +213,10 @@
         set1 = (LineChartDataSet *)_chartView.data.dataSets[0];
         set1.values = _data;
         set1.circleColors = _dataColors;
-        [_chartView.data notifyDataChanged];
-        [_chartView notifyDataSetChanged];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [_chartView.data notifyDataChanged];
+            [_chartView notifyDataSetChanged];
+        });
     }
 }
 
