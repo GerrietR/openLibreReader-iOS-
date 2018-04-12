@@ -35,17 +35,20 @@
 /* chart: below target */
 "Below Target" = "Below Target";
 
+/* linregcalibration.bg */
+"BG" = "BG";
+
 /* blueReader: sensor ok */
 "blueReader ok" = "blueReader ok";
 
 /* calibration.title */
 "Calibration" = "Calibration";
 
-/* blueReader.cancel */
-"cancel" = "cancel";
-
 /* alarmalert.title */
 "Cancel" = "Cancel";
+
+/* blueReader.cancel */
+"cancel" = "cancel";
 
 /* unitalert.change */
 "Change the Unit" = "Change the Unit";
@@ -100,6 +103,9 @@
 
 /* NoCalibration: default Headline */
 "Default Calibration" = "Default Calibration";
+
+/* CalibrationMethod.StatusDelay */
+"Delaying" = "Delaying";
 
 /* device.title */
 "Device" = "Device";
@@ -200,6 +206,9 @@
 /* blueReader: Not able to connect to device */
 "Not able to connect to %@" = "Not able to connect to %@";
 
+/* CalibrationMethod.Statistics */
+"Number of Calibrations" = "Number of Calibrations";
+
 /* notification.app */
 "Open opneLibreReader" = "Open openLibreReader App";
 
@@ -234,6 +243,9 @@
 
 /* device.description */
 "Select and configure used Device" = "Select and configure used Device";
+
+/* linregcalibration.sensor */
+"Sensor" = "Sensor";
 
 /* limitter.sensorage */
 "Sensor running for %d days, %d hours and %d minutes" = "Sensor running for %d days, %d hours and %d minutes";
@@ -293,6 +305,9 @@
 /* nightscout: Description */
 "Values are recieved from a Nightscout instance.\nAlarms might stop working, if app is not actively showing." = "Values are recieved from a Nightscout instance.\nAlarms will stop working, if app is not actively open in the foreground.";
 
+/* CalibrationMethod.StatusWait */
+"Waiting for next value" = "Waiting for next value";
+
 /* No comment provided by engineer. */
 "%@ can't be empty" = "";
 
@@ -304,6 +319,9 @@
 
 /* No comment provided by engineer. */
 "Take Photo" = "";
+
+/* demoDevice: Description */
+"Values are generated randomly" = "";
 
 /* No comment provided by engineer. */
 "XLFormViewController_ValidationErrorTitle" = "";
