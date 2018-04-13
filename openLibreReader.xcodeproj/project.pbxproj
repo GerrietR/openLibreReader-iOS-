@@ -68,6 +68,9 @@
 		964463E320210C5900FE4506 /* demoDeviceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 964463E020210C5800FE4506 /* demoDeviceViewController.m */; };
 		964463E420210C5900FE4506 /* demo.m in Sources */ = {isa = PBXBuildFile; fileRef = 964463E120210C5800FE4506 /* demo.m */; };
 		96640DE81FED31920035CCC4 /* ConnectivityHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96640DE71FED31920035CCC4 /* ConnectivityHandler.swift */; };
+		96791F9720226CDC00E87D98 /* CalibrationListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 96791F9620226CDC00E87D98 /* CalibrationListViewController.m */; };
+		96791F9A20226CED00E87D98 /* calibrationValue.m in Sources */ = {isa = PBXBuildFile; fileRef = 96791F9920226CED00E87D98 /* calibrationValue.m */; };
+		96791FA22022749700E87D98 /* openLibreReaderTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 96791FA12022749700E87D98 /* openLibreReaderTests.m */; };
 		967D19721FE5484A0088DCF5 /* Interface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 967D19701FE5484A0088DCF5 /* Interface.storyboard */; };
 		967D19741FE5484A0088DCF5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 967D19731FE5484A0088DCF5 /* Assets.xcassets */; };
 		967D197B1FE5484A0088DCF5 /* openLibreWatch Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 967D197A1FE5484A0088DCF5 /* openLibreWatch Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
@@ -89,6 +92,13 @@
 			proxyType = 1;
 			remoteGlobalIDString = 6C56F1982011352800528A94;
 			remoteInfo = openLibreReaderWidget;
+		};
+		96791FA42022749700E87D98 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 6C6CAB721F0FB6F000810568 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 6C6CAB791F0FB6F000810568;
+			remoteInfo = openLibreReader;
 		};
 		967D197C1FE5484A0088DCF5 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -264,6 +274,13 @@
 		96640DA71FEBCF980035CCC4 /* Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Bridging-Header.h"; sourceTree = "<group>"; };
 		96640DE61FED31910035CCC4 /* openLibreReader-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "openLibreReader-Bridging-Header.h"; sourceTree = "<group>"; };
 		96640DE71FED31920035CCC4 /* ConnectivityHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectivityHandler.swift; sourceTree = "<group>"; };
+		96791F9520226CDB00E87D98 /* CalibrationListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CalibrationListViewController.h; sourceTree = "<group>"; };
+		96791F9620226CDC00E87D98 /* CalibrationListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CalibrationListViewController.m; sourceTree = "<group>"; };
+		96791F9820226CED00E87D98 /* calibrationValue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = calibrationValue.h; sourceTree = "<group>"; };
+		96791F9920226CED00E87D98 /* calibrationValue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = calibrationValue.m; sourceTree = "<group>"; };
+		96791F9F2022749700E87D98 /* openLibreReaderTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = openLibreReaderTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		96791FA12022749700E87D98 /* openLibreReaderTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = openLibreReaderTests.m; sourceTree = "<group>"; };
+		96791FA32022749700E87D98 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		967D196E1FE548490088DCF5 /* openLibreWatch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = openLibreWatch.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		967D19711FE5484A0088DCF5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Interface.storyboard; sourceTree = "<group>"; };
 		967D19731FE5484A0088DCF5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -278,8 +295,6 @@
 		967D198A1FE5484B0088DCF5 /* PushNotificationPayload.apns */ = {isa = PBXFileReference; lastKnownFileType = text; path = PushNotificationPayload.apns; sourceTree = "<group>"; };
 		967D19961FE55B860088DCF5 /* openLibreWatch.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = openLibreWatch.entitlements; sourceTree = "<group>"; };
 		967D19971FE55BBA0088DCF5 /* openLibreWatch Extension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "openLibreWatch Extension.entitlements"; sourceTree = "<group>"; };
-		967D19991FE69CD10088DCF5 /* demo.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = demo.m; sourceTree = "<group>"; };
-		967D199C1FE6A0680088DCF5 /* demoDeviceViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = demoDeviceViewController.m; sourceTree = "<group>"; };
 		96A9E8101FF7B71C00FB60CA /* SimpleLinearRegressionCalibration.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SimpleLinearRegressionCalibration.h; sourceTree = "<group>"; };
 		96A9E8111FF7B73B00FB60CA /* SimpleLinearRegressionCalibration.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SimpleLinearRegressionCalibration.m; sourceTree = "<group>"; };
 		96A9E8191FF902BC00FB60CA /* SimpleLinearRegressionViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SimpleLinearRegressionViewController.h; sourceTree = "<group>"; };
@@ -323,6 +338,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		96791F9C2022749700E87D98 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		967D19771FE5484A0088DCF5 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -349,6 +371,8 @@
 		6C59E7431F5C82DB004CC390 /* Calibration */ = {
 			isa = PBXGroup;
 			children = (
+				96791F9520226CDB00E87D98 /* CalibrationListViewController.h */,
+				96791F9620226CDC00E87D98 /* CalibrationListViewController.m */,
 				6C6CABBF1F11B69D00810568 /* Calibration.h */,
 				6C6CABC01F11B69D00810568 /* Calibration.m */,
 				6C6CABC21F11C57C00810568 /* TestCalibration.h */,
@@ -401,6 +425,8 @@
 		6C59E7451F5C8315004CC390 /* Data */ = {
 			isa = PBXGroup;
 			children = (
+				96791F9820226CED00E87D98 /* calibrationValue.h */,
+				96791F9920226CED00E87D98 /* calibrationValue.m */,
 				6C6CABB71F10112600810568 /* Storage.h */,
 				6C6CABB81F10112600810568 /* Storage.m */,
 				6C6CABBC1F11AD6300810568 /* bgRawValue.h */,
@@ -441,6 +467,7 @@
 				967D196F1FE548490088DCF5 /* openLibreWatch */,
 				967D197E1FE5484A0088DCF5 /* openLibreWatch Extension */,
 				6C56F19B2011352800528A94 /* openLibreReaderWidget */,
+				96791FA02022749700E87D98 /* openLibreReaderTests */,
 				6C6CAB7B1F0FB6F000810568 /* Products */,
 				6C6CABB11F0FDCE400810568 /* Frameworks */,
 				6CE27134200F829500660E56 /* Recovered References */,
@@ -455,6 +482,7 @@
 				967D196E1FE548490088DCF5 /* openLibreWatch.app */,
 				967D197A1FE5484A0088DCF5 /* openLibreWatch Extension.appex */,
 				6C56F1992011352800528A94 /* openLibreReaderWidget.appex */,
+				96791F9F2022749700E87D98 /* openLibreReaderTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -554,10 +582,17 @@
 		6CE27134200F829500660E56 /* Recovered References */ = {
 			isa = PBXGroup;
 			children = (
-				967D199C1FE6A0680088DCF5 /* demoDeviceViewController.m */,
-				967D19991FE69CD10088DCF5 /* demo.m */,
 			);
 			name = "Recovered References";
+			sourceTree = "<group>";
+		};
+		96791FA02022749700E87D98 /* openLibreReaderTests */ = {
+			isa = PBXGroup;
+			children = (
+				96791FA12022749700E87D98 /* openLibreReaderTests.m */,
+				96791FA32022749700E87D98 /* Info.plist */,
+			);
+			path = openLibreReaderTests;
 			sourceTree = "<group>";
 		};
 		967D196F1FE548490088DCF5 /* openLibreWatch */ = {
@@ -650,6 +685,24 @@
 			productReference = 6C6CAB7A1F0FB6F000810568 /* openLibreReader.app */;
 			productType = "com.apple.product-type.application";
 		};
+		96791F9E2022749700E87D98 /* openLibreReaderTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 96791FA82022749700E87D98 /* Build configuration list for PBXNativeTarget "openLibreReaderTests" */;
+			buildPhases = (
+				96791F9B2022749700E87D98 /* Sources */,
+				96791F9C2022749700E87D98 /* Frameworks */,
+				96791F9D2022749700E87D98 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				96791FA52022749700E87D98 /* PBXTargetDependency */,
+			);
+			name = openLibreReaderTests;
+			productName = openLibreReaderTests;
+			productReference = 96791F9F2022749700E87D98 /* openLibreReaderTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		967D196D1FE548490088DCF5 /* openLibreWatch */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 967D19941FE5484B0088DCF5 /* Build configuration list for PBXNativeTarget "openLibreWatch" */;
@@ -721,6 +774,12 @@
 							};
 						};
 					};
+					96791F9E2022749700E87D98 = {
+						CreatedOnToolsVersion = 9.2;
+						DevelopmentTeam = 43X8NV3CXC;
+						ProvisioningStyle = Automatic;
+						TestTargetID = 6C6CAB791F0FB6F000810568;
+					};
 					967D196D1FE548490088DCF5 = {
 						CreatedOnToolsVersion = 9.0.1;
 						DevelopmentTeam = 43X8NV3CXC;
@@ -761,6 +820,7 @@
 				967D196D1FE548490088DCF5 /* openLibreWatch */,
 				967D19791FE5484A0088DCF5 /* openLibreWatch Extension */,
 				6C56F1982011352800528A94 /* openLibreReaderWidget */,
+				96791F9E2022749700E87D98 /* openLibreReaderTests */,
 			);
 		};
 /* End PBXProject section */
@@ -786,6 +846,13 @@
 				6C6C80F91F86BA3800DE3B8C /* default_error.caf in Resources */,
 				6C6C80FD1F86BF9500DE3B8C /* default_error_shorter.aiff in Resources */,
 				6C6C80FE1F86BF9500DE3B8C /* default_error_shorter.caf in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		96791F9D2022749700E87D98 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1032,6 +1099,7 @@
 				6C8ADC3F200F8E4200147072 /* CalibrationViewController.m in Sources */,
 				964463E320210C5900FE4506 /* demoDeviceViewController.m in Sources */,
 				6C6CAB821F0FB6F000810568 /* AppDelegate.m in Sources */,
+				96791F9720226CDC00E87D98 /* CalibrationListViewController.m in Sources */,
 				6C64BFF11F6F16E900879A51 /* mgdl.m in Sources */,
 				6C6CABCF1F12B0B200810568 /* batteryValue.m in Sources */,
 				6C4184CD1F9BCFA400B156F7 /* limitter.m in Sources */,
@@ -1043,6 +1111,7 @@
 				6C6CAB851F0FB6F000810568 /* HomeViewController.m in Sources */,
 				6CAEE6811F617AD1001EBDEF /* BluetoothStatus.m in Sources */,
 				6C59E7571F5DA696004CC390 /* BluetoothService.m in Sources */,
+				96791F9A20226CED00E87D98 /* calibrationValue.m in Sources */,
 				6C6CAB7F1F0FB6F000810568 /* main.m in Sources */,
 				964463E420210C5900FE4506 /* demo.m in Sources */,
 				6C4F5C63201A2F07003CC0D3 /* transmitter.m in Sources */,
@@ -1056,6 +1125,14 @@
 				96A9E8121FF7B73C00FB60CA /* SimpleLinearRegressionCalibration.m in Sources */,
 				6C6CABC71F12862900810568 /* Configuration.m in Sources */,
 				6C64BFEC1F6F15DF00879A51 /* mmol.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		96791F9B2022749700E87D98 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				96791FA22022749700E87D98 /* openLibreReaderTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1078,6 +1155,11 @@
 			isa = PBXTargetDependency;
 			target = 6C56F1982011352800528A94 /* openLibreReaderWidget */;
 			targetProxy = 6C56F1A32011352800528A94 /* PBXContainerItemProxy */;
+		};
+		96791FA52022749700E87D98 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 6C6CAB791F0FB6F000810568 /* openLibreReader */;
+			targetProxy = 96791FA42022749700E87D98 /* PBXContainerItemProxy */;
 		};
 		967D197D1FE5484A0088DCF5 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -1220,7 +1302,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
-				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -1241,6 +1323,7 @@
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
+				STRIP_INSTALLED_PRODUCT = NO;
 				SWIFT_VERSION = 4.0;
 			};
 			name = Debug;
@@ -1290,6 +1373,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
+				STRIP_INSTALLED_PRODUCT = NO;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				SWIFT_VERSION = 4.0;
 				VALIDATE_PRODUCT = YES;
@@ -1311,6 +1395,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = de.gerrietreents2.openLibreReader;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRIP_INSTALLED_PRODUCT = NO;
+				STRIP_SWIFT_SYMBOLS = NO;
 				SWIFT_OBJC_BRIDGING_HEADER = "openLibreReader/openLibreReader-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.0;
@@ -1332,8 +1418,52 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = de.gerrietreents2.openLibreReader;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRIP_INSTALLED_PRODUCT = NO;
+				STRIP_SWIFT_SYMBOLS = NO;
 				SWIFT_OBJC_BRIDGING_HEADER = "openLibreReader/openLibreReader-Bridging-Header.h";
 				SWIFT_VERSION = 4.0;
+			};
+			name = Release;
+		};
+		96791FA62022749700E87D98 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 43X8NV3CXC;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = openLibreReaderTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.gerrietreents2.openLibreReaderTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/openLibreReader.app/openLibreReader";
+			};
+			name = Debug;
+		};
+		96791FA72022749700E87D98 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 43X8NV3CXC;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = openLibreReaderTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.gerrietreents2.openLibreReaderTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/openLibreReader.app/openLibreReader";
 			};
 			name = Release;
 		};
@@ -1469,6 +1599,15 @@
 			buildConfigurations = (
 				6C6CAB951F0FB6F000810568 /* Debug */,
 				6C6CAB961F0FB6F000810568 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		96791FA82022749700E87D98 /* Build configuration list for PBXNativeTarget "openLibreReaderTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				96791FA62022749700E87D98 /* Debug */,
+				96791FA72022749700E87D98 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

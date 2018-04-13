@@ -10,6 +10,8 @@
 #define kCalibrationBGValue @"CALIBRATION_BG_VALUE"
 
 @interface Calibration : Configurable
++(instancetype) instance;
+
 -(void) registerForRaw;
 -(void)unregister;
 

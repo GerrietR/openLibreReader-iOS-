@@ -35,17 +35,20 @@
 /* chart: below target */
 "Below Target" = "unter Ziel";
 
+/* linregcalibration.bg */
+"BG" = "BZ";
+
 /* blueReader: sensor ok */
 "blueReader ok" = "blueReader ok";
 
 /* calibration.title */
 "Calibration" = "Kalibration";
 
-/* blueReader.cancel */
-"cancel" = "Abbrechen";
-
 /* alarmalert.title */
 "Cancel" = "Abbrechen";
+
+/* blueReader.cancel */
+"cancel" = "Abbrechen";
 
 /* unitalert.change */
 "Change the Unit" = "Die Anzeigeeinheit ändern";
@@ -100,6 +103,9 @@
 
 /* NoCalibration: default Headline */
 "Default Calibration" = "Standard Kalibration";
+
+/* CalibrationMethod.StatusDelay */
+"Delaying" = "Warten";
 
 /* device.title */
 "Device" = "Gerät";
@@ -200,6 +206,9 @@
 /* blueReader: Not able to connect to device */
 "Not able to connect to %@" = "Keine Verbindung zu %@";
 
+/* CalibrationMethod.Statistics */
+"Number of Calibrations" = "Anzahl Kalibrierungen";
+
 /* notification.app */
 "Open opneLibreReader" = "openLibreReader App öffnen";
 
@@ -234,6 +243,9 @@
 
 /* device.description */
 "Select and configure used Device" = "Gerät auswählen und einrichten";
+
+/* linregcalibration.sensor */
+"Sensor" = "Sensor";
 
 /* limitter.sensorage */
 "Sensor running for %d days, %d hours and %d minutes" = "Sensor läuft seit %d Tagen, %d Stunden und %d minuten";
@@ -293,6 +305,9 @@
 /* nightscout: Description */
 "Values are recieved from a Nightscout instance.\nAlarms might stop working, if app is not actively showing." = "Werte werden von einer Nightscout Instanz empfangen.\nWenn die App nicht angezeigt wird, können keine Daten empfangen werden und Alarme ausgelöst werden!";
 
+/* CalibrationMethod.StatusWait */
+"Waiting for next value" = "Warten auf den nächsten Wert";
+
 /* No comment provided by engineer. */
 "%@ can't be empty" = "";
 
@@ -304,6 +319,9 @@
 
 /* No comment provided by engineer. */
 "Take Photo" = "";
+
+/* demoDevice: Description */
+"Values are generated randomly" = "";
 
 /* No comment provided by engineer. */
 "XLFormViewController_ValidationErrorTitle" = "";
