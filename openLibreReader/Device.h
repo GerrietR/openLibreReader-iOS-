@@ -33,5 +33,8 @@
 -(NSString*) settingsSequeIdentifier;
 
 -(NSArray*) getRequestedDeviceUUIDs;
+
+-(BOOL) canForceValue;
+-(void) forceValue;
 @end
 

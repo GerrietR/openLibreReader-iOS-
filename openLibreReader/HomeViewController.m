@@ -26,11 +26,13 @@
     @property (nonatomic, strong) IBOutlet UIButton* connectDevice;
     @property (nonatomic, strong) IBOutlet UIImageView* batteryStatus;
     @property (nonatomic, strong) IBOutlet UIButton* alarms;
+    @property (nonatomic, strong) IBOutlet UIButton* value;
 
     @property (nonatomic, strong) NSMutableArray* data;
     @property (nonatomic, strong) NSMutableArray* dataColors;
     @property NSTimeInterval first;
     @property (strong) NSTimer* updater;
+    @property (strong) NSTimer* reader;
 @end
 
 @implementation HomeViewController
@@ -230,6 +232,17 @@
         }
         _connectDevice.hidden = YES;
     }
+
+    if([[[Configuration instance] device] canForceValue]) {
+        if([[NSDate date] timeIntervalSince1970]-[[Storage instance] lastBGValue] > 55.0)
+        {
+            [_value setHidden:NO];
+        } else {
+            [_value setHidden:YES];
+        }
+    } else {
+        [_value setHidden:YES];
+    }
 }
 
 -(void) timer:(NSTimer*)timer {
@@ -338,6 +351,10 @@
     }
 }
 
+-(IBAction) readButton:(id)sender {
+    [[[Configuration instance] device] forceValue];
+    [_value setHidden:YES];
+}
 -(UIStatusBarStyle)preferredStatusBarStyle{
     return UIStatusBarStyleLightContent;
 }
@@ -379,6 +396,14 @@
             } else if(ds.status != DEVICE_CONNECTED && ds.status != DEVICE_OK && ds.status!=DEVICE_ERROR) {
                 dispatch_async(dispatch_get_main_queue(), ^{
                     self.connectDevice.hidden = NO;
+                });
+            } else if(ds.status==DEVICE_ERROR) {
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    if([[[Configuration instance] device] canForceValue]) {
+                        [_value setHidden:NO];
+                    } else {
+                        [_value setHidden:YES];
+                    }
                 });
             } else {
                 dispatch_async(dispatch_get_main_queue(), ^{
@@ -423,6 +448,23 @@
     
     dispatch_async(dispatch_get_main_queue(), ^{
         [self updateUI];//:data];
+        [_value setHidden:YES];
+        if(_reader) {
+            [_reader invalidate];
+            _reader = nil;
+        }
+        _reader = [NSTimer scheduledTimerWithTimeInterval:55.0 target:self selector:@selector(readEnable:) userInfo:nil repeats:NO];
+    });
+}
+
+-(void) readEnable:(NSTimer*)timer {
+    _reader = nil;
+    dispatch_async(dispatch_get_main_queue(), ^{
+        if([[[Configuration instance] device] canForceValue]) {
+            [_value setHidden:NO];
+        } else {
+            [_value setHidden:YES];
+        }
     });
 }
 

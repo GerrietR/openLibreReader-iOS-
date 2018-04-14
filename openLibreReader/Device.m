@@ -71,4 +71,12 @@
     return nil;
 }
 
+-(BOOL) canForceValue {
+    return false;
+}
+-(void) forceValue {
+    @throw [NSException exceptionWithName:@"Instantiationexception"
+                                   reason:@"not possible"
+                                 userInfo:nil];
+}
 @end

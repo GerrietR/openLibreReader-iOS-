@@ -338,4 +338,15 @@
 -(NSString*) settingsSequeIdentifier {
     return @"blueReaderDeviceSettings";
 }
+
+-(BOOL) canForceValue {
+    return YES;
+}
+
+-(void) forceValue {
+    [[NSNotificationCenter defaultCenter] postNotificationName:BLUETOOTH_SEND_DATA
+                                                        object:@{
+                                                                 @"data":[@"l" dataUsingEncoding:NSUTF8StringEncoding],
+                                                                 @"characteristic":_tx}];
+}
 @end
