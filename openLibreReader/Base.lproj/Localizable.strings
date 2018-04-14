@@ -241,6 +241,9 @@
 /* CalibrationMethod.remove */
 "Remove method" = "Remove method";
 
+/* report.title */
+"Report" = "Report";
+
 /* last reading second */
 "second" = "second";
 
@@ -252,6 +255,9 @@
 
 /* device.description */
 "Select and configure used Device" = "Select and configure used Device";
+
+/* about.description */
+"Send Bugreports\n" = "Send Bugreports";
 
 /* linregcalibration.sensor */
 "Sensor" = "Sensor";

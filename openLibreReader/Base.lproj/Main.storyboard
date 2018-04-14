@@ -95,6 +95,13 @@
                                     <action selector="alarmButton:" destination="9pv-A4-QxB" eventType="touchUpInside" id="f4S-Bg-z7M"/>
                                 </connections>
                             </button>
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="contactAdd" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pb5-Z6-Qf9">
+                                <rect key="frame" x="281" y="108" width="22" height="22"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <connections>
+                                    <action selector="readButton:" destination="9pv-A4-QxB" eventType="touchUpInside" id="fLi-fZ-ENZ"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -143,6 +150,7 @@
                         <outlet property="drift" destination="2eX-mS-v3V" id="udq-LQ-wIc"/>
                         <outlet property="lastTime" destination="VTe-AU-kyH" id="6rn-zS-Vxv"/>
                         <outlet property="statusLabel" destination="AKK-8b-u6O" id="JxQ-zc-EMx"/>
+                        <outlet property="value" destination="pb5-Z6-Qf9" id="zTu-P7-KPV"/>
                         <segue destination="G8h-hA-tCQ" kind="presentation" identifier="showConfiguration" id="THj-X5-qfE"/>
                         <segue destination="PLS-gZ-vyH" kind="unwind" identifier="unwind" unwindAction="myUnwindAction:" id="14U-xN-eL9"/>
                     </connections>
@@ -866,6 +874,7 @@
                         <segue destination="Udd-kg-u9c" kind="show" identifier="limitterDeviceSettings" id="BMS-cy-mKK"/>
                         <segue destination="GVp-dO-a6l" kind="show" identifier="SimpleLinearRegressionCalibrationSettings" id="X92-Dg-Xuf"/>
                         <segue destination="JEf-xN-GKP" kind="show" identifier="CalibrationSettings" id="gnG-pr-Dud"/>
+                        <segue destination="9ji-8L-na9" kind="show" identifier="report" id="5fa-0d-dNK"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="brz-oA-ZbW" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1428,6 +1437,50 @@
                 <navigationItem title="Calibration" id="peE-Ql-xWO"/>
             </objects>
             <point key="canvasLocation" x="-999" y="1553"/>
+        </scene>
+        <!--Report-->
+        <scene sceneID="3Yx-r4-ZHD">
+            <objects>
+                <viewController storyboardIdentifier="Report" title="Report" id="9ji-8L-na9" customClass="ReportViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="tOK-ur-44f"/>
+                        <viewControllerLayoutGuide type="bottom" id="5yB-LD-xqy"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="0xF-6a-dfg">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="618"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="No0-cd-3gK">
+                                <rect key="frame" x="16" y="72" width="343" height="473"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <string key="text">Send a LogReport to bugs@bluetoolz.de
+It contains the log Database. To see the full contents of the log database, please transfer the database via iTunes to you computer and use a sqlite viewer like Mozilla FireFox or sqliteviewer.
+If you have specific bugs, please Write them into the email.</string>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences" autocorrectionType="no" spellCheckingType="no" smartDashesType="no" smartInsertDeleteType="no" smartQuotesType="no"/>
+                            </textView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Cmi-Za-51h">
+                                <rect key="frame" x="24" y="554" width="335" height="44"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                <color key="backgroundColor" red="0.90601851850000004" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
+                                <state key="normal" title="Send log Database">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="sendMail:" destination="9ji-8L-na9" eventType="touchUpInside" id="nqp-Cm-Dx4"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Report" id="gyz-UM-dSR"/>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="oqe-wU-eKI" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1714.4000000000001" y="2444.527736131934"/>
         </scene>
     </scenes>
     <resources>

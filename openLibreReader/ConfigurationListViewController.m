@@ -57,6 +57,10 @@
                        @{@"title":NSLocalizedString(@"About", @"about.title"),
                          @"description":NSLocalizedString(@"About this app and Disclaimer.\n",@"about.description"),
                          @"controller":@"about"
+                         },
+                       @{@"title":NSLocalizedString(@"Report", @"report.title"),
+                         @"description":NSLocalizedString(@"Send Bugreports\n",@"about.description"),
+                         @"controller":@"report"
                          }
                        ];
 

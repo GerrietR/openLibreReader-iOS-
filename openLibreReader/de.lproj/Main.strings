@@ -280,3 +280,15 @@
 
 /* Class = "UIButton"; normalTitle = "Use this values"; ObjectID = "v4t-Te-y20"; */
 "v4t-Te-y20.normalTitle" = "Diese Werte verwenden";
+
+/* Class = "UIViewController"; title = "Report"; ObjectID = "9ji-8L-na9"; */
+"9ji-8L-na9.title" = "Fehlerbericht";
+
+/* Class = "UIButton"; normalTitle = "Send log Database"; ObjectID = "Cmi-Za-51h"; */
+"Cmi-Za-51h.normalTitle" = "Logdatenbank schicken";
+
+/* Class = "UITextView"; text = "Send a LogReport to bugs@bluetoolz.de\nIt contains the log Database. To see the full contents of the log database, please transfer the database via iTunes to you computer and use a sqlite viewer like Mozilla FireFox or sqliteviewer.\nIf you have specific bugs, please Write them into the email."; ObjectID = "No0-cd-3gK"; */
+"No0-cd-3gK.text" = "Schicke die Logdatenbank an bugs@bluetoolz.de. \nDiese enthält die Logdaten dieser App. Um alle Einträge sehen zu können, die Datei log.sqlite per iTunes Dateitransfer auf einen Computer übertragen und mit einem entsprechenden Programm wie Mozilla FireFox oder sqliteviewer ansehen.\n\nBesondere Fehler oder Hinweise bitte mit in die Email schreiben";
+
+/* Class = "UINavigationItem"; title = "Report"; ObjectID = "gyz-UM-dSR"; */
+"gyz-UM-dSR.title" = "Fehlerbericht";
