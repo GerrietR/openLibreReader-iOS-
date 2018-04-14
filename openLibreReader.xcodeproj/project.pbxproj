@@ -69,7 +69,6 @@
 		96640DE81FED31920035CCC4 /* ConnectivityHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96640DE71FED31920035CCC4 /* ConnectivityHandler.swift */; };
 		96791F9720226CDC00E87D98 /* CalibrationListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 96791F9620226CDC00E87D98 /* CalibrationListViewController.m */; };
 		96791F9A20226CED00E87D98 /* calibrationValue.m in Sources */ = {isa = PBXBuildFile; fileRef = 96791F9920226CED00E87D98 /* calibrationValue.m */; };
-		96791FA22022749700E87D98 /* openLibreReaderTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 96791FA12022749700E87D98 /* openLibreReaderTests.m */; };
 		967D19721FE5484A0088DCF5 /* Interface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 967D19701FE5484A0088DCF5 /* Interface.storyboard */; };
 		967D19741FE5484A0088DCF5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 967D19731FE5484A0088DCF5 /* Assets.xcassets */; };
 		967D197B1FE5484A0088DCF5 /* openLibreWatch Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 967D197A1FE5484A0088DCF5 /* openLibreWatch Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
@@ -269,8 +268,6 @@
 		96791F9820226CED00E87D98 /* calibrationValue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = calibrationValue.h; sourceTree = "<group>"; };
 		96791F9920226CED00E87D98 /* calibrationValue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = calibrationValue.m; sourceTree = "<group>"; };
 		96791F9F2022749700E87D98 /* openLibreReaderTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = openLibreReaderTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		96791FA12022749700E87D98 /* openLibreReaderTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = openLibreReaderTests.m; sourceTree = "<group>"; };
-		96791FA32022749700E87D98 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		967D196E1FE548490088DCF5 /* openLibreWatch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = openLibreWatch.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		967D19711FE5484A0088DCF5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Interface.storyboard; sourceTree = "<group>"; };
 		967D19731FE5484A0088DCF5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -446,7 +443,6 @@
 				967D196F1FE548490088DCF5 /* openLibreWatch */,
 				967D197E1FE5484A0088DCF5 /* openLibreWatch Extension */,
 				6C56F19B2011352800528A94 /* openLibreReaderWidget */,
-				96791FA02022749700E87D98 /* openLibreReaderTests */,
 				6C6CAB7B1F0FB6F000810568 /* Products */,
 				6C6CABB11F0FDCE400810568 /* Frameworks */,
 				6CE27134200F829500660E56 /* Recovered References */,

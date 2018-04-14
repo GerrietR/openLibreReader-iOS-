@@ -106,7 +106,8 @@ static SimpleLinearRegressionCalibration* __instance;
         double delta = NAN;
         if([before timestamp] + (10*60) > [[NSDate date] timeIntervalSince1970]) {
             delta = rawV-before.value;
-            delta /= ([[NSDate date] timeIntervalSince1970] - before.timestamp)/60.0;
+            double minutes = ([[NSDate date] timeIntervalSince1970] - before.timestamp)/60.0;
+            delta /= minutes;
         }
         bgValue* bgV = [[bgValue alloc] initWith:rawV from:[raw rawSource] at:[[NSDate date] timeIntervalSince1970] delta:delta raw:raw];
         [[NSNotificationCenter defaultCenter] postNotificationName:kCalibrationBGValue object:bgV];
