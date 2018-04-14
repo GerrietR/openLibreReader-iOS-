@@ -84,13 +84,18 @@
         _addCalibration.enabled = false;
         _delayStepper.enabled = false;
         _bloodglucose.enabled = false;
-         if([[[[Configuration instance] displayUnit] lowercaseString] isEqualToString:@"mmol"]) {
-             _bloodglucose.text = [NSString stringWithFormat:@"%@", [[Configuration instance] valueWithoutUnit:[c getCurrentBG]]];
-         }
-         else
-         {
-             _bloodglucose.text = [NSString stringWithFormat:@"%.0lf", [c getCurrentBG]];
-         }
+        if([[[[Configuration instance] displayUnit] lowercaseString] isEqualToString:@"mmol"]) {
+            NSNumberFormatter *numberFormatter = [[NSNumberFormatter alloc] init];
+            [numberFormatter setLocale:[NSLocale localeWithLocaleIdentifier:@"en_US"]];
+            NSNumber *number = [numberFormatter numberFromString:[[Configuration instance] valueWithoutUnit:[c getCurrentBG]]];
+            [numberFormatter setLocale:[NSLocale currentLocale]];
+            [numberFormatter setMaximumFractionDigits:1];
+            _bloodglucose.text = [NSString stringWithFormat:@"%@", [numberFormatter stringFromNumber:number]];
+        }
+        else
+        {
+            _bloodglucose.text = [NSString stringWithFormat:@"%.0lf", [c getCurrentBG]];
+        }
         _cancelCalibration.enabled = true;
         _calibrationProgress.hidden = false;
         _calibrationProgress.progress = progress;
@@ -127,7 +132,7 @@
             _timer = nil;
         }
     }
-    _statistics.text =[ NSString stringWithFormat:@"Number of Calibrations: %lu", [c getNumberOfCalibration]];
+    _statistics.text =[ NSString stringWithFormat:@"%@: %lu", NSLocalizedString(@"Number of Calibrations",@"CalibrationMethod.Statistics"), [c getNumberOfCalibration]];
     _displayUnit.text = [[Configuration instance] displayUnit];
 }
 
@@ -154,8 +159,11 @@
 }
 
 - (IBAction)addCalibration:(id)sender {
+    NSNumberFormatter *numberFormatter = [[NSNumberFormatter alloc] init];
+    [numberFormatter setLocale:[NSLocale currentLocale]];
     SimpleLinearRegressionCalibration* c = [SimpleLinearRegressionCalibration instance];
-    float bloodglucose = _bloodglucose.text.floatValue;
+    NSNumber *number = [numberFormatter numberFromString: _bloodglucose.text];
+    float bloodglucose = [number floatValue];
     if([[[[Configuration instance] displayUnit] lowercaseString] isEqualToString:@"mmol"]) {
         bloodglucose = [[Configuration instance] fromValue:bloodglucose];
     }

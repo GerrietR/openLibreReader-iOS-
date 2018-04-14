@@ -38,6 +38,9 @@
 /* chart: below target */
 "Below Target" = "unter Ziel";
 
+/* linregcalibration.bg */
+"BG" = "BZ";
+
 /* blueReader: sensor ok */
 "blueReader ok" = "blueReader ok";
 
@@ -212,6 +215,9 @@
 /* blueReader: Not able to connect to device */
 "Not able to connect to %@" = "Keine Verbindung zu %@";
 
+/* CalibrationMethod.Statistics */
+"Number of Calibrations" = "Anzahl Kalibrierungen";
+
 /* notification.app */
 "Open opneLibreReader" = "openLibreReader App öffnen";
 
@@ -246,6 +252,9 @@
 
 /* device.description */
 "Select and configure used Device" = "Gerät auswählen und einrichten";
+
+/* linregcalibration.sensor */
+"Sensor" = "Sensor";
 
 /* limitter.sensorage */
 "Sensor running for %d days, %d hours and %d minutes" = "Sensor läuft seit %d Tagen, %d Stunden und %d minuten";
@@ -312,7 +321,7 @@
 "Values are recieved from a Nightscout instance.\nAlarms might stop working, if app is not actively showing." = "Werte werden von einer Nightscout Instanz empfangen.\nWenn die App nicht angezeigt wird, können keine Daten empfangen werden und Alarme ausgelöst werden!";
 
 /* CalibrationMethod.StatusWait */
-"Waiting for next value" = "Warte auf nächsten Wert";
+"Waiting for next value" = "Warten auf den nächsten Wert";
 
 /* No comment provided by engineer. */
 "XLFormViewController_ValidationErrorTitle" = "Validation fehlgeschlagen";

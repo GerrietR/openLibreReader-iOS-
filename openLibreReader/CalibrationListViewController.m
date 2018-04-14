@@ -58,9 +58,11 @@
     NSString *dateString = [dateFormat stringFromDate:today];
     
     Configuration *conf = [Configuration instance];
-    NSString *stringForCell = [NSString stringWithFormat:@"%@: BG %@, Sensor %@", dateString,
+    NSString *stringForCell = [NSString stringWithFormat:@"%@: %@ %@, %@ %@", dateString,
+                               NSLocalizedString(@"BG",@"linregcalibration.bg"),
                                [conf valueWithUnit:[value referenceValue]],
-                               [conf valueWithUnit:[value value]]]; // TODO localization
+                               NSLocalizedString(@"Sensor",@"linregcalibration.sensor"),
+                               [conf valueWithUnit:[value value]]]; 
     [cell.textLabel setText:stringForCell];
     cell.textLabel.adjustsFontSizeToFitWidth=YES;
     return cell;

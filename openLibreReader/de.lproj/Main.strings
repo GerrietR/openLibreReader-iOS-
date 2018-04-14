@@ -207,13 +207,13 @@
 "th6-GJ-kId.title" = "LimiTTer Einstellungen";
 
 /* Class = "UIViewController"; title = "SimpleLinearRegressionCalibration Settings"; ObjectID = "GVp-dO-a6l"; */
-"GVp-dO-a6l.title" = "Einfach lineare Regressions-Kalibration";
+"GVp-dO-a6l.title" = "Einfach lineare Regressions-Kalibrierung";
 
 /* Class = "UILabel"; text = "Slope"; ObjectID = "Zhj-2h-8zo"; */
 "Zhj-2h-8zo.text" = "Steigung";
 
 /* Class = "UINavigationItem"; title = "Linear Regression Calibration"; ObjectID = "ejm-s3-DjK"; */
-"ejm-s3-DjK.title" = "Lineare regression Kalibration";
+"ejm-s3-DjK.title" = "Lineare Regression Kalibrierung";
 
 /* Class = "UIButton"; normalTitle = "Remove Method"; ObjectID = "mdk-8B-uPD"; */
 "mdk-8B-uPD.normalTitle" = "Methode entfernen";
@@ -222,22 +222,22 @@
 "occ-xh-3La.text" = "Schnittpunkt";
 
 /* Class = "UIViewController"; title = "Calibration Settings"; ObjectID = "JEf-xN-GKP"; */
-"JEf-xN-GKP.title" = "Kalibrtionseinstellungen";
+"JEf-xN-GKP.title" = "Kalibrierungseinstellungen";
 
 /* Class = "UINavigationItem"; title = "Calibration"; ObjectID = "RNw-ay-mgf"; */
-"RNw-ay-mgf.title" = "Kalibration";
+"RNw-ay-mgf.title" = "Kalibrierung";
 
 /* Class = "UIButton"; normalTitle = "remove method"; ObjectID = "jbj-1K-UF7"; */
 "jbj-1K-UF7.normalTitle" = "Methode entfernen";
 
 /* Class = "UINavigationItem"; title = "Calibration"; ObjectID = "peE-Ql-xWO"; */
-"peE-Ql-xWO.title" = "Kalibration";
+"peE-Ql-xWO.title" = "Kalibrierung";
 
 /* Class = "UINavigationItem"; title = "Linear Regression Calibration"; ObjectID = "Hqr-nZ-tyf"; */
-"Hqr-nZ-tyf.title" = "Lineare regression Kalibration";
+"Hqr-nZ-tyf.title" = "Lineare Regression Kalibrierung";
 
 /* Class = "UILabel"; text = "New Calibration"; ObjectID = "0GK-Rl-6SZ"; */
-"0GK-Rl-6SZ.text" = "Neue Kalibration";
+"0GK-Rl-6SZ.text" = "Neue Kalibrierung";
 
 /* Class = "UILabel"; text = "Parameter"; ObjectID = "0jH-Bh-3Of"; */
 "0jH-Bh-3Of.text" = "Parameter";
@@ -252,22 +252,22 @@
 "Inq-1B-1qx.normalTitle" = "Berechnen";
 
 /* Class = "UIButton"; normalTitle = "forget Device"; ObjectID = "Nf5-IN-UDy"; */
-"Nf5-IN-UDy.normalTitle" = "Gerät entfernen";
+"Nf5-IN-UDy.normalTitle" = "Methode entfernen";
 
 /* Class = "UILabel"; text = "Calibrations"; ObjectID = "OC3-81-uYk"; */
-"OC3-81-uYk.text" = "Kalibrationen";
+"OC3-81-uYk.text" = "Kalibrierungen";
 
 /* Class = "UINavigationItem"; title = "Demo Settings"; ObjectID = "S7I-RH-EcP"; */
-"S7I-RH-EcP.title" = "Demo Einstellungen";
+"S7I-RH-EcP.title" = "";
 
 /* Class = "UIViewController"; title = "Demo Settings"; ObjectID = "Sjj-2a-PDJ"; */
-"Sjj-2a-PDJ.title" = "Demo Einstellungen";
+"Sjj-2a-PDJ.title" = "";
 
 /* Class = "UILabel"; text = "Delay"; ObjectID = "Z6v-an-A21"; */
-"Z6v-an-A21.text" = "Verzögerung";
+"Z6v-an-A21.text" = "Warten";
 
 /* Class = "UILabel"; text = "BG"; ObjectID = "c2I-hA-jE9"; */
-"c2I-hA-jE9.text" = "BG";
+"c2I-hA-jE9.text" = "BZ";
 
 /* Class = "UIButton"; normalTitle = "Graph"; ObjectID = "fkd-ct-pd8"; */
 "fkd-ct-pd8.normalTitle" = "Graph";
@@ -276,16 +276,19 @@
 "iqN-Tk-XT2.text" = "mg/dl";
 
 /* Class = "UILabel"; text = "Calibration Status"; ObjectID = "j7O-Zi-uMj"; */
-"j7O-Zi-uMj.text" = "Kalibrationsstatus";
+"j7O-Zi-uMj.text" = "Status der Kalibrierung";
 
 /* Class = "UILabel"; text = "Statistics"; ObjectID = "rg3-ke-wjs"; */
 "rg3-ke-wjs.text" = "Statistik";
 
 /* Class = "UILabel"; text = "Do Demo"; ObjectID = "u5g-Tc-Tn1"; */
-"u5g-Tc-Tn1.text" = "Demo ausführen";
+"u5g-Tc-Tn1.text" = "";
 
 /* Class = "UIButton"; normalTitle = "Add Calibration"; ObjectID = "x0f-xk-uVc"; */
-"x0f-xk-uVc.normalTitle" = "Kalibration hinzufügen";
+"x0f-xk-uVc.normalTitle" = "Kalibrierung hinzufügen";
 
 /* Class = "UIButton"; normalTitle = "View"; ObjectID = "xJ2-wo-TcB"; */
-"xJ2-wo-TcB.normalTitle" = "View";
+"xJ2-wo-TcB.normalTitle" = "Ansehen";
+
+/* Class = "UIButton"; normalTitle = "Use this values"; ObjectID = "v4t-Te-y20"; */
+"v4t-Te-y20.normalTitle" = "Diese Werte verwenden";

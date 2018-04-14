@@ -38,6 +38,9 @@
 /* chart: below target */
 "Below Target" = "Below Target";
 
+/* linregcalibration.bg */
+"BG" = "BG";
+
 /* blueReader: sensor ok */
 "blueReader ok" = "blueReader ok";
 
@@ -212,6 +215,9 @@
 /* blueReader: Not able to connect to device */
 "Not able to connect to %@" = "Not able to connect to %@";
 
+/* CalibrationMethod.Statistics */
+"Number of Calibrations" = "Number of Calibrations";
+
 /* notification.app */
 "Open opneLibreReader" = "Open openLibreReader App";
 
@@ -246,6 +252,9 @@
 
 /* device.description */
 "Select and configure used Device" = "Select and configure used Device";
+
+/* linregcalibration.sensor */
+"Sensor" = "Sensor";
 
 /* limitter.sensorage */
 "Sensor running for %d days, %d hours and %d minutes" = "Sensor running for %d days, %d hours and %d minutes";
