@@ -133,11 +133,10 @@
     }
 }
 -(void) failed:(NSNotification*) notification {
-    if(![self device] ||
-       [[[self device] identifier] isEqual:[(CBPeripheral*)[[notification object] objectForKey:@"peripheral"] identifier]]) {
+    if(![self device] || [[[self device] identifier] isEqual:[((CBPeripheral*)[notification object])identifier]]) {
         DeviceStatus* ds = [[DeviceStatus alloc] init];
         ds.status = DEVICE_DISCONNECTED;
-        ds.statusText = [NSString stringWithFormat:NSLocalizedString(@"failed connection to %@",@"blueReader: failed connecting to device"),[[[notification object] objectForKey:@"peripheral"] name]];
+        ds.statusText = [NSString stringWithFormat:NSLocalizedString(@"failed connection to %@",@"blueReader: failed connecting to device"),[[notification object] name]];
         ds.device = nil;
         [[NSNotificationCenter defaultCenter] postNotificationName:kDeviceStatusNotification object:ds];
         self.lastDeviceStatus = ds;
