@@ -251,17 +251,8 @@
 /* Class = "UIButton"; normalTitle = "Calculate"; ObjectID = "Inq-1B-1qx"; */
 "Inq-1B-1qx.normalTitle" = "Berechnen";
 
-/* Class = "UIButton"; normalTitle = "forget Device"; ObjectID = "Nf5-IN-UDy"; */
-"Nf5-IN-UDy.normalTitle" = "Methode entfernen";
-
 /* Class = "UILabel"; text = "Calibrations"; ObjectID = "OC3-81-uYk"; */
 "OC3-81-uYk.text" = "Kalibrierungen";
-
-/* Class = "UINavigationItem"; title = "Demo Settings"; ObjectID = "S7I-RH-EcP"; */
-"S7I-RH-EcP.title" = "";
-
-/* Class = "UIViewController"; title = "Demo Settings"; ObjectID = "Sjj-2a-PDJ"; */
-"Sjj-2a-PDJ.title" = "";
 
 /* Class = "UILabel"; text = "Delay"; ObjectID = "Z6v-an-A21"; */
 "Z6v-an-A21.text" = "Warten";
@@ -280,9 +271,6 @@
 
 /* Class = "UILabel"; text = "Statistics"; ObjectID = "rg3-ke-wjs"; */
 "rg3-ke-wjs.text" = "Statistik";
-
-/* Class = "UILabel"; text = "Do Demo"; ObjectID = "u5g-Tc-Tn1"; */
-"u5g-Tc-Tn1.text" = "";
 
 /* Class = "UIButton"; normalTitle = "Add Calibration"; ObjectID = "x0f-xk-uVc"; */
 "x0f-xk-uVc.normalTitle" = "Kalibrierung hinzufügen";
