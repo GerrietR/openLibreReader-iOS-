@@ -47,11 +47,11 @@
 /* calibration.title */
 "Calibration" = "Kalibration";
 
-/* blueReader.cancel */
-"cancel" = "Abbrechen";
-
 /* alarmalert.title */
 "Cancel" = "Abbrechen";
+
+/* blueReader.cancel */
+"cancel" = "Abbrechen";
 
 /* unitalert.change */
 "Change the Unit" = "Die Anzeigeeinheit ändern";

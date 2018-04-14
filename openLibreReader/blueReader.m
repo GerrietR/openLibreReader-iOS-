@@ -55,6 +55,7 @@
         NSUUID* lastUsed = [[NSUUID alloc] initWithUUIDString:[deviceData objectForKey:@"blueReaderUUID"]];
         if(lastUsed) {
             [[NSNotificationCenter defaultCenter] postNotificationName:BLUETOOTH_RESTORE_DEVICE object:lastUsed];
+            [[NSNotificationCenter defaultCenter] postNotificationName:BLUETOOTH_START_SCAN object:[NSNumber numberWithBool:YES]];
         } else {
             DeviceStatus* ds = [[DeviceStatus alloc] init];
             ds.status = NO_DEVICE;

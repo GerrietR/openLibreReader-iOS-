@@ -47,11 +47,11 @@
 /* calibration.title */
 "Calibration" = "Calibration";
 
-/* blueReader.cancel */
-"cancel" = "cancel";
-
 /* alarmalert.title */
 "Cancel" = "Cancel";
+
+/* blueReader.cancel */
+"cancel" = "cancel";
 
 /* unitalert.change */
 "Change the Unit" = "Change the Unit";

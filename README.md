@@ -14,6 +14,7 @@ openLibreReader for iOS is a project to connect the various Libre Transmitters t
 - todayWidget
 - simple watch app
 - simple linear regression calibration
+    - calibration values (auto slope/intersect calculation) Thanks Gerriet!
 
 ## planned features:
 - more watch support
@@ -22,7 +23,7 @@ openLibreReader for iOS is a project to connect the various Libre Transmitters t
     - bluecon
     - transmitter
 - calibrations
-    - add calibration values (auto slope/intersect calculation)
+    - calibrationgraph
 - historie
 - statistics
 - add more values
