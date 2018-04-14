@@ -39,8 +39,16 @@
 
 @implementation AppDelegate
 
+void myExceptionHandler(NSException *exception)
+{
+    NSArray *stack = [exception callStackReturnAddresses];
+    [[Storage instance] log:[NSString stringWithFormat:@"Exception1 %@ at %@",[exception description], [stack description]] from:@"main"];
+}
+
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+
+     NSSetUncaughtExceptionHandler(&myExceptionHandler);
 
     [[Storage instance] log:[NSString stringWithFormat:@"app did finish launching with optiosn %@",[launchOptions description]] from:@"main"];
     if(launchOptions)
