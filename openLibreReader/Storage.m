@@ -507,7 +507,7 @@ static Storage* __instance;
     @try {
         [self openCalibrationDB];
         sqlite3_stmt *statement = nil;
-        if (sqlite3_prepare_v2(_calibration, "select timestamp, value, reference_value, calibration_module from calibration where timestamp > ? and timestamp <= ?", -1, &statement, NULL) == SQLITE_OK) {
+        if (sqlite3_prepare_v2(_calibration, "select timestamp, value, reference_value, calibration_module from calibration where timestamp > ? and timestamp <= ? order by timestamp desc", -1, &statement, NULL) == SQLITE_OK) {
             sqlite3_bind_int64(statement, 1, (unsigned long)from);
             sqlite3_bind_int64(statement, 2, (unsigned long)to);
         } else{

@@ -24,6 +24,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *cancelCalibration;
 @property (weak, nonatomic) IBOutlet UIButton *calculateButton;
 @property (weak, nonatomic) IBOutlet UILabel *statistics;
+@property (weak, nonatomic) IBOutlet UILabel *displayUnit;
 @property (nonatomic, strong) IBOutlet UIButton* forget;
 @property NSTimer *timer; // retain?
 @end
@@ -83,7 +84,13 @@
         _addCalibration.enabled = false;
         _delayStepper.enabled = false;
         _bloodglucose.enabled = false;
-        _bloodglucose.text = [NSString stringWithFormat:@"%.0lf", [c getCurrentBG]];
+         if([[[[Configuration instance] displayUnit] lowercaseString] isEqualToString:@"mmol"]) {
+             _bloodglucose.text = [NSString stringWithFormat:@"%@", [[Configuration instance] valueWithoutUnit:[c getCurrentBG]]];
+         }
+         else
+         {
+             _bloodglucose.text = [NSString stringWithFormat:@"%.0lf", [c getCurrentBG]];
+         }
         _cancelCalibration.enabled = true;
         _calibrationProgress.hidden = false;
         _calibrationProgress.progress = progress;
@@ -121,6 +128,7 @@
         }
     }
     _statistics.text =[ NSString stringWithFormat:@"Number of Calibrations: %lu", [c getNumberOfCalibration]];
+    _displayUnit.text = [[Configuration instance] displayUnit];
 }
 
 - (void)_timerFired:(NSTimer *)timer {
@@ -147,7 +155,11 @@
 
 - (IBAction)addCalibration:(id)sender {
     SimpleLinearRegressionCalibration* c = [SimpleLinearRegressionCalibration instance];
-    [c startCalibration:_bloodglucose.text.floatValue delay:_delayStepper.value ];
+    float bloodglucose = _bloodglucose.text.floatValue;
+    if([[[[Configuration instance] displayUnit] lowercaseString] isEqualToString:@"mmol"]) {
+        bloodglucose = [[Configuration instance] fromValue:bloodglucose];
+    }
+    [c startCalibration:bloodglucose delay:_delayStepper.value ];
     if (!_timer) {
         _timer = [NSTimer scheduledTimerWithTimeInterval:1.0f
                                                   target:self

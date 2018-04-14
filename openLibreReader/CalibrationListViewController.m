@@ -6,6 +6,7 @@
 //  Copyright © 2018 Sandra Keßler. All rights reserved.
 //
 
+#import "Configuration.h"
 #import "CalibrationListViewController.h"
 #import "Storage.h"
 #import "calibrationValue.h"
@@ -53,9 +54,15 @@
     NSDate *today = [NSDate dateWithTimeIntervalSince1970:value.timestamp];
     NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
     [dateFormat setDateStyle:NSDateFormatterShortStyle];
+    [dateFormat setTimeStyle:NSDateFormatterShortStyle];
     NSString *dateString = [dateFormat stringFromDate:today];
-    NSString *stringForCell = [NSString stringWithFormat:@"%@: BG %d CGM %d", dateString, [value referenceValue], [value value]];
+    
+    Configuration *conf = [Configuration instance];
+    NSString *stringForCell = [NSString stringWithFormat:@"%@: BG %@, Sensor %@", dateString,
+                               [conf valueWithUnit:[value referenceValue]],
+                               [conf valueWithUnit:[value value]]]; // TODO localization
     [cell.textLabel setText:stringForCell];
+    cell.textLabel.adjustsFontSizeToFitWidth=YES;
     return cell;
 }
 
