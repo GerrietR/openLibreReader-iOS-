@@ -64,13 +64,44 @@ static Storage* __instance;
         [self openBatteryDB];
         [self openCalibrationDB];
 
-        if(![self executeQuery:@"CREATE TABLE IF NOT EXISTS log (id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, timestamp INTEGER, message TEXT)" onDB:_log]){
+        if(![self executeQuery:@"CREATE TABLE IF NOT EXISTS log (id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, timestamp INTEGER, message TEXT, modul TEXT)" onDB:_log]){
             [self closeValueDB];
             [self closeLogDB];
             [self closeBatteryDB];
             [self closeCalibrationDB];
             return nil;
         }
+        [DatabaseUtils ensureDefinition:@{@"tablename":@"log",
+                                          @"fields":@[
+                                                  @{@"cid":[NSNumber numberWithInt:0],
+                                                    @"name":@"id",
+                                                    @"type":@"INTEGER",
+                                                    @"notnull":[NSNumber numberWithInt:1],
+                                                    //@"dflt_value":NULL,
+                                                    @"pk":[NSNumber numberWithInt:1]
+                                                    },
+                                                  @{@"cid":[NSNumber numberWithInt:1],
+                                                    @"name":@"timestamp",
+                                                    @"type":@"INTEGER",
+                                                    @"notnull":[NSNumber numberWithInt:0],
+                                                    //@"dflt_value":NULL,
+                                                    @"pk":[NSNumber numberWithInt:0]
+                                                    },
+                                                  @{@"cid":[NSNumber numberWithInt:2],
+                                                    @"name":@"message",
+                                                    @"type":@"TEXT",
+                                                    @"notnull":[NSNumber numberWithInt:0],
+                                                    //@"dflt_value":NULL,
+                                                    @"pk":[NSNumber numberWithInt:0]
+                                                    },
+                                                  @{@"cid":[NSNumber numberWithInt:3],
+                                                    @"name":@"modul",
+                                                    @"type":@"TEXT",
+                                                    @"notnull":[NSNumber numberWithInt:0],
+                                                    //@"dflt_value":NULL,
+                                                    @"pk":[NSNumber numberWithInt:0]
+                                                    }]} database:_log];
+        
         if(![self executeQuery:@"CREATE TABLE IF NOT EXISTS bg_values (id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, timestamp INTEGER, raw_source TEXT, raw_data BLOB, value INTEGER, value_module TEXT, value_data BLOB)" onDB:_db]){
             [self closeValueDB];
             [self closeLogDB];
@@ -156,36 +187,6 @@ static Storage* __instance;
             return true;
         if(sqlite3_open([[_documentsDirectory stringByAppendingPathComponent:[LOG_DB stringByAppendingString:@".sqlite"] ] UTF8String], &_log) == SQLITE_OK)
         {
-            [DatabaseUtils ensureDefinition:@{@"tablename":@"log",
-                                              @"fields":@[
-                                                      @{@"cid":[NSNumber numberWithInt:0],
-                                                        @"name":@"id",
-                                                        @"type":@"INTEGER",
-                                                        @"notnull":[NSNumber numberWithInt:1],
-                                                        //@"dflt_value":NULL,
-                                                        @"pk":[NSNumber numberWithInt:1]
-                                                        },
-                                                      @{@"cid":[NSNumber numberWithInt:1],
-                                                        @"name":@"timestamp",
-                                                        @"type":@"INTEGER",
-                                                        @"notnull":[NSNumber numberWithInt:0],
-                                                        //@"dflt_value":NULL,
-                                                        @"pk":[NSNumber numberWithInt:0]
-                                                        },
-                                                      @{@"cid":[NSNumber numberWithInt:2],
-                                                        @"name":@"message",
-                                                        @"type":@"TEXT",
-                                                        @"notnull":[NSNumber numberWithInt:0],
-                                                        //@"dflt_value":NULL,
-                                                        @"pk":[NSNumber numberWithInt:0]
-                                                        },
-                                                      @{@"cid":[NSNumber numberWithInt:3],
-                                                        @"name":@"modul",
-                                                        @"type":@"TEXT",
-                                                        @"notnull":[NSNumber numberWithInt:0],
-                                                        //@"dflt_value":NULL,
-                                                        @"pk":[NSNumber numberWithInt:0]
-                                                        }]} database:_log];
             return YES;
         }
     }@catch(NSException *e){
