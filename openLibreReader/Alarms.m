@@ -14,7 +14,8 @@
 typedef enum {
     kNoData,
     kLow,
-    kHigh
+    kHigh,
+    kError
 } AlarmType;
 
 Alarms* instance = nil;
@@ -128,6 +129,15 @@ Alarms* instance = nil;
             objNotificationContent.categoryIdentifier=@"noData";
             identifier=@"high";
             break;
+        case kError:
+            objNotificationContent.title = NSLocalizedString(@"Sensor Error!",@"notification.errorTitle");
+            objNotificationContent.body = NSLocalizedString(@"Please check transmitter location",@"notification.errorBody");
+            //objNotificationContent.sound = [UNNotificationSound soundNamed:@"default_error_shorter.caf"];
+            objNotificationContent.badge = @(1);
+
+            objNotificationContent.categoryIdentifier=@"noData";
+            identifier=@"error";
+            break;
     }
     UNTimeIntervalNotificationTrigger *trigger = nil;
     if(minutes>0) {
@@ -170,6 +180,9 @@ Alarms* instance = nil;
             break;
         case kLow:
             types = @[@"low"];
+            break;
+        case kError:
+            types = @[@"error"];
             break;
     }
     //NSLog(@"removing type: %@",types);
@@ -221,18 +234,45 @@ Alarms* instance = nil;
     DeviceStatus* status = notification.object;
     if(status.status == DEVICE_OK) {
         [self removeMessage:kNoData];
-    }
-    [[UNUserNotificationCenter currentNotificationCenter] getPendingNotificationRequestsWithCompletionHandler:^(NSArray<UNNotificationRequest *> * _Nonnull requests) {
-        BOOL found = NO;
-        for(UNNotificationRequest* request in requests) {
-            if([request.identifier isEqualToString:@"noData"]) found = YES;
-        }
-        if(!found) {
-            if(![[Configuration instance] alarmsDisabled] || [[NSDate date] compare:[[Configuration instance] alarmsDisabled]] ==  NSOrderedDescending) {
-                    [self scheduleMessage:[[Configuration instance] alarmNoDataMinutes] identifier:kNoData repeats:[[Configuration instance] alarmNoDataRepeats] urgent:NO];
+        [self removeMessage:kError];
+        [[UNUserNotificationCenter currentNotificationCenter] getPendingNotificationRequestsWithCompletionHandler:^(NSArray<UNNotificationRequest *> * _Nonnull requests) {
+            BOOL found = NO;
+            for(UNNotificationRequest* request in requests) {
+                if([request.identifier isEqualToString:@"noData"]) found = YES;
+                if([request.identifier isEqualToString:@"error"]) [_player stop];
             }
-        }
-    }];
+            if(!found) {
+                if(![[Configuration instance] alarmsDisabled] || [[NSDate date] compare:[[Configuration instance] alarmsDisabled]] ==  NSOrderedDescending) {
+                    [self scheduleMessage:[[Configuration instance] alarmNoDataMinutes] identifier:kNoData repeats:[[Configuration instance] alarmNoDataRepeats] urgent:NO];
+                }
+            }
+        }];
+    } else if(status.status == DEVICE_ERROR) {
+        [[UNUserNotificationCenter currentNotificationCenter] getPendingNotificationRequestsWithCompletionHandler:^(NSArray<UNNotificationRequest *> * _Nonnull requests) {
+            BOOL found = NO;
+            for(UNNotificationRequest* request in requests) {
+                if([request.identifier isEqualToString:@"error"]) found = YES;
+            }
+            if(!found) {
+                [self scheduleMessage:0 identifier:kError repeats:60 urgent:YES];
+            }
+        }];
+        [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryPlayback withOptions:AVAudioSessionCategoryOptionDuckOthers error:nil];
+        [[AVAudioSession sharedInstance] setActive:YES error:nil];
+        [_player play];
+    } else {
+        [[UNUserNotificationCenter currentNotificationCenter] getPendingNotificationRequestsWithCompletionHandler:^(NSArray<UNNotificationRequest *> * _Nonnull requests) {
+            BOOL found = NO;
+            for(UNNotificationRequest* request in requests) {
+                if([request.identifier isEqualToString:@"noData"]) found = YES;
+            }
+            if(!found) {
+                if(![[Configuration instance] alarmsDisabled] || [[NSDate date] compare:[[Configuration instance] alarmsDisabled]] ==  NSOrderedDescending) {
+                    [self scheduleMessage:[[Configuration instance] alarmNoDataMinutes] identifier:kNoData repeats:[[Configuration instance] alarmNoDataRepeats] urgent:NO];
+                }
+            }
+        }];
+    }
 }
 
 -(void)userNotificationCenter:(UNUserNotificationCenter *)center willPresentNotification:(UNNotification *)notification withCompletionHandler:(void (^)(UNNotificationPresentationOptions options))completionHandler{
@@ -341,8 +381,14 @@ Alarms* instance = nil;
 {
     __block BOOL hasRunning = NO;
     dispatch_semaphore_t sema = dispatch_semaphore_create(0);
-    [[UNUserNotificationCenter currentNotificationCenter] getDeliveredNotificationsWithCompletionHandler:^(NSArray<UNNotification *> * _Nonnull notifications) {
-        hasRunning = [notifications count]>0;
+    //[[UNUserNotificationCenter currentNotificationCenter] getDeliveredNotificationsWithCompletionHandler:^(NSArray<UNNotification *> * _Nonnull notifications) {
+    [[UNUserNotificationCenter currentNotificationCenter] getPendingNotificationRequestsWithCompletionHandler:^(NSArray<UNNotificationRequest *> * _Nonnull requests) {
+        for(UNNotificationRequest* not in requests) {
+            if(![not.identifier isEqualToString:@"noData"]) {
+                hasRunning = YES;
+            }
+        }
+        //hasRunning = [requests count]>0;
         dispatch_semaphore_signal(sema);
 
     }];

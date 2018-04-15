@@ -337,3 +337,9 @@
 
 /* No comment provided by engineer. */
 "XLFormViewController_ValidationErrorTitle" = "Validation fehlgeschlagen";
+
+/* notification.errorBody */
+"Please check transmitter location" = "";
+
+/* notification.errorTitle */
+"Sensor Error!" = "";
