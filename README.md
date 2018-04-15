@@ -31,3 +31,4 @@ openLibreReader for iOS is a project to connect the various Libre Transmitters t
     - insulin
 - better ns support
     - upload of more data
+- more alarm control and sounds
