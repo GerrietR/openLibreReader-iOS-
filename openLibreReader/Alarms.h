@@ -16,11 +16,13 @@ typedef enum {
     kAlarmDisabled,
 } AlarmState;
 
-AlarmState alarmGetState(void);
-void alarmsCancelDelivered(void);
-void alarmsDisable(NSTimeInterval interval);
-
 @interface Alarms : NSObject<UNUserNotificationCenterDelegate, AVAudioPlayerDelegate>
++(instancetype) instance;
+- (void) notifyTermination;
+
+-(AlarmState) getState;
+-(void) cancelDelivered;
+-(void) disable:(NSTimeInterval)interval;
 
 @end
 

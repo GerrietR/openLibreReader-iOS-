@@ -29,6 +29,12 @@
 /* alarms.title */
 "Alarms" = "Alarms";
 
+/* notification.terminated */
+"App Terminated!" = "App Terminated!";
+
+/* notification.terminatedBody */
+"Attention, app has been terminated!" = "Attention, app has been terminated! Open app again to receive BG Values!";
+
 /* notification.highBody */
 "Attention, value is above %@!" = "Attention, value is above %@!";
 

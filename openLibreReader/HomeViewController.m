@@ -281,7 +281,7 @@
         }
         _lastTime.text = [NSString stringWithFormat:NSLocalizedString(@"%d %@ ago",@"last reading"),((int)d),sufix];
     }
-    switch(alarmGetState())
+    switch([[Alarms instance] getState])
     {
         case kAlarmRunning:
             [_alarms setImage:[UIImage imageNamed:@"alarm-red"] forState:UIControlStateNormal];
@@ -316,25 +316,25 @@
 }
 
 -(IBAction)alarmButton:(id)sender {
-    switch(alarmGetState())
+    switch([[Alarms instance] getState])
     {
         case kAlarmRunning:
             //FIXME showing last one would be nice
-            alarmsCancelDelivered();
+            [[Alarms instance] cancelDelivered];
             break;
         case kAlarmEnabled: {
             UIAlertController* alert = [UIAlertController alertControllerWithTitle:NSLocalizedString(@"Disable Alarms",@"alarmalert.title") message:nil preferredStyle:UIAlertControllerStyleActionSheet];
             UIAlertAction* thirty = [UIAlertAction actionWithTitle:NSLocalizedString(@"30 minutes",@"alarmalert.title") style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-                alarmsDisable(30*60);
+                [[Alarms instance]  disable:(30*60)];
             }];
             UIAlertAction* one = [UIAlertAction actionWithTitle:NSLocalizedString(@"1 hour",@"alarmalert.title") style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-                alarmsDisable(60*60);
+                [[Alarms instance] disable:(60*60)];
             }];
             UIAlertAction* two = [UIAlertAction actionWithTitle:NSLocalizedString(@"2 hours",@"alarmalert.title") style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-                alarmsDisable(120*60);
+                [[Alarms instance] disable:(120*60)];
             }];
             UIAlertAction* until = [UIAlertAction actionWithTitle:NSLocalizedString(@"until re-enable",@"alarmalert.title") style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-                alarmsDisable(-1);
+                [[Alarms instance] disable:(-1)];
             }];
 
             UIAlertAction* cancel = [UIAlertAction actionWithTitle:NSLocalizedString(@"Cancel",@"alarmalert.title") style:UIAlertActionStyleDestructive handler:nil];
@@ -346,7 +346,7 @@
             [self presentViewController:alert animated:YES completion:nil];
         } break;
         case kAlarmDisabled:
-            alarmsDisable(NO);
+            [[Alarms instance] disable:(NO)];
             break;
     }
 }

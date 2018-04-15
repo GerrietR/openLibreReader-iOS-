@@ -28,6 +28,8 @@
 #import <WatchConnectivity/WatchConnectivity.h>
 #import "openLibreReader-Swift.h"
 
+#import "Alarms.h"
+
 @interface AppDelegate ()
 @property (strong) BluetoothService* bluetoothService;
 @property (strong) Alarms* alarms;
@@ -55,6 +57,8 @@ void myExceptionHandler(NSException *exception)
         NSLog(@"launchies: %@",[launchOptions debugDescription]);
 
     _alarms = [[Alarms alloc] init];
+
+    [_alarms cancelDelivered];
     registerCalibration([Calibration class]);
     registerCalibration([TestCalibration class]);
     registerCalibration([SimpleLinearRegressionCalibration class]);
@@ -207,7 +211,7 @@ void myExceptionHandler(NSException *exception)
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     [[Storage instance] log:@"app will terminate" from:@"main"];
     [[[Configuration instance] device] reload];
-
+    [[Alarms instance] notifyTermination];
 }
 
 -(void)applicationSignificantTimeChange:(UIApplication *)application{

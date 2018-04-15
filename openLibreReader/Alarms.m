@@ -25,6 +25,9 @@ Alarms* instance = nil;
 
 @implementation Alarms
 
++(instancetype) instance {
+    return instance;
+}
 -(instancetype) init {
     if(instance)
         return instance;
@@ -99,7 +102,7 @@ Alarms* instance = nil;
             [self removeMessage:kNoData];
             objNotificationContent.title = NSLocalizedString(@"no Data!",@"notification.noDataTitle");
             objNotificationContent.body = [NSString stringWithFormat:NSLocalizedString(@"no Data for %d minutes",@"notification.noDataBody"),minutes];
-            objNotificationContent.sound = [UNNotificationSound soundNamed:@"default_error_shorter.caf"];
+            //objNotificationContent.sound = [UNNotificationSound soundNamed:@"default_error_shorter.caf"];
             objNotificationContent.badge = @(1);
 
             objNotificationContent.categoryIdentifier=@"noData";
@@ -109,7 +112,7 @@ Alarms* instance = nil;
             objNotificationContent.title = NSLocalizedString(@"Low Value!",@"notification.lowTitle");
             objNotificationContent.body = [NSString stringWithFormat:NSLocalizedString(@"Attention, value is below %@!",@"notification.lowBody"),
                                            [[Configuration instance] valueWithUnit:[[Configuration instance] alarmLowBG]]];
-            objNotificationContent.sound = [UNNotificationSound soundNamed:@"default_error_shorter.caf"];
+            //objNotificationContent.sound = [UNNotificationSound soundNamed:@"default_error_shorter.caf"];
             objNotificationContent.badge = @(1);
 
             objNotificationContent.categoryIdentifier=@"noData";
@@ -119,7 +122,7 @@ Alarms* instance = nil;
             objNotificationContent.title = NSLocalizedString(@"High Value!",@"notification.highTitle");
             objNotificationContent.body = [NSString stringWithFormat:NSLocalizedString(@"Attention, value is above %@!",@"notification.highBody"),
                                            [[Configuration instance] valueWithUnit:[[Configuration instance] alarmHighBG]]];
-            objNotificationContent.sound = [UNNotificationSound soundNamed:@"default_error_shorter.caf"];
+            //objNotificationContent.sound = [UNNotificationSound soundNamed:@"default_error_shorter.caf"];
             objNotificationContent.badge = @(1);
 
             objNotificationContent.categoryIdentifier=@"noData";
@@ -185,6 +188,9 @@ Alarms* instance = nil;
                     [self scheduleMessage:0 identifier:kLow repeats:[[Configuration instance] alarmLowBGRepeats] urgent:YES];
                 }
             }];
+            [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryPlayback withOptions:AVAudioSessionCategoryOptionDuckOthers error:nil];
+            [[AVAudioSession sharedInstance] setActive:YES error:nil];
+            [_player play];
         } else {
             [self removeMessage:kLow];
         }
@@ -198,6 +204,9 @@ Alarms* instance = nil;
                     [self scheduleMessage:0 identifier:kHigh repeats:[[Configuration instance] alarmHighBGRepeats] urgent:YES];
                 }
             }];
+            [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryPlayback withOptions:AVAudioSessionCategoryOptionDuckOthers error:nil];
+            [[AVAudioSession sharedInstance] setActive:YES error:nil];
+            [_player play];
         } else {
             [self removeMessage:kHigh];
 
@@ -228,7 +237,10 @@ Alarms* instance = nil;
 
 -(void)userNotificationCenter:(UNUserNotificationCenter *)center willPresentNotification:(UNNotification *)notification withCompletionHandler:(void (^)(UNNotificationPresentationOptions options))completionHandler{
     if([[Configuration instance] overrideMute]) {
-        if ([AVAudioSession sharedInstance].otherAudioPlaying) {
+        [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryPlayback withOptions:AVAudioSessionCategoryOptionDuckOthers error:nil];
+        [[AVAudioSession sharedInstance] setActive:YES error:nil];
+        [_player play];
+        /*if ([AVAudioSession sharedInstance].otherAudioPlaying) {
             // you can check and play only if there is no other audio playing
             // maybe use another category, or enable mixing or duck option
             [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryPlayback withOptions:AVAudioSessionCategoryOptionDuckOthers error:nil];
@@ -241,7 +253,7 @@ Alarms* instance = nil;
             NSLog(@"startung playint");
         } else {
             NSLog(@"notplaying");
-        }
+        }*/
 
         completionHandler(UNAuthorizationOptionAlert | UNAuthorizationOptionBadge);
     } else {
@@ -288,9 +300,44 @@ Alarms* instance = nil;
     [UIApplication sharedApplication].applicationIconBadgeNumber--;
     completionHandler();
 }
-@end
 
-AlarmState alarmGetState()
+- (void) notifyTermination {
+    [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryPlayback withOptions:AVAudioSessionCategoryOptionDuckOthers error:nil];
+    [[AVAudioSession sharedInstance] setActive:YES error:nil];
+    [_player play];
+
+    UNMutableNotificationContent *objNotificationContent = [[UNMutableNotificationContent alloc] init];
+    NSString* identifier;
+    objNotificationContent.title = NSLocalizedString(@"App Terminated!",@"notification.terminated");
+    objNotificationContent.body = NSLocalizedString(@"Attention, app has been terminated!",@"notification.terminatedBody");
+    objNotificationContent.sound = [UNNotificationSound soundNamed:@"default_error_shorter.caf"];
+    objNotificationContent.badge = @(1);
+
+    objNotificationContent.categoryIdentifier=@"terminated";
+    identifier=@"terminated";
+
+    UNTimeIntervalNotificationTrigger *trigger = nil;
+    trigger = [UNTimeIntervalNotificationTrigger triggerWithTimeInterval:(60) repeats:YES];
+    UNNotificationRequest *request = [UNNotificationRequest requestWithIdentifier:identifier
+                                                                          content:objNotificationContent trigger:trigger];
+
+    UNUserNotificationCenter *center = [UNUserNotificationCenter currentNotificationCenter];
+
+    [center addNotificationRequest:request withCompletionHandler:^(NSError * _Nullable error) {
+        if (error) {
+            [[Storage instance] log:[NSString stringWithFormat:@"failed to make notification: %@",[error debugDescription]] from:@"Alarms"];
+        }
+    }];
+    request = [UNNotificationRequest requestWithIdentifier:identifier content:objNotificationContent trigger:nil];
+    [center addNotificationRequest:request withCompletionHandler:^(NSError * _Nullable error) {
+        if (error) {
+            [[Storage instance] log:[NSString stringWithFormat:@"failed to make notification: %@",[error debugDescription]] from:@"Alarms"];
+        }
+
+    }];
+}
+
+-(AlarmState) getState
 {
     __block BOOL hasRunning = NO;
     dispatch_semaphore_t sema = dispatch_semaphore_create(0);
@@ -303,7 +350,7 @@ AlarmState alarmGetState()
 
     if(hasRunning)
         return kAlarmRunning;
-    
+
     if([[Configuration instance] alarmsDisabled] && [[NSDate date] compare:[[Configuration instance] alarmsDisabled]] ==  NSOrderedAscending) {
         return kAlarmDisabled;
     }
@@ -311,11 +358,20 @@ AlarmState alarmGetState()
     return kAlarmEnabled;
 }
 
-void alarmsCancelDelivered() {
+-(void) cancelDelivered {
     [[UNUserNotificationCenter currentNotificationCenter] removeAllDeliveredNotifications];
+    [[UNUserNotificationCenter currentNotificationCenter] removeAllPendingNotificationRequests];
+    if([_player isPlaying]) {
+        [_player stop];
+        [[AVAudioSession sharedInstance] setActive:NO withOptions:AVAudioSessionSetActiveOptionNotifyOthersOnDeactivation error:nil];
+    }
 }
 
-void alarmsDisable(NSTimeInterval interval) {
+-(void) disable:(NSTimeInterval) interval {
+    if([_player isPlaying]) {
+        [_player stop];
+        [[AVAudioSession sharedInstance] setActive:NO withOptions:AVAudioSessionSetActiveOptionNotifyOthersOnDeactivation error:nil];
+    }
     if(interval==-1) {
         [[UNUserNotificationCenter currentNotificationCenter] removeAllPendingNotificationRequests];
         [[Configuration instance] setAlarmsDisabled:YES];
@@ -326,3 +382,8 @@ void alarmsDisable(NSTimeInterval interval) {
         [[Configuration instance] setAlarmsDisabledUntil:[NSDate dateWithTimeIntervalSinceNow:interval]];
     }
 }
+
+@end
+
+
+

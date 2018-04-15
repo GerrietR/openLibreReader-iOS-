@@ -29,6 +29,12 @@
 /* alarms.title */
 "Alarms" = "Alarme";
 
+/* notification.terminated */
+"App Terminated!" = "App wurde beendet!";
+
+/* notification.terminatedBody */
+"Attention, app has been terminated!" = "Achtung, App wurde beendet! Um wieder Messwerte zu empfangen app wieder öffnen!";
+
 /* notification.highBody */
 "Attention, value is above %@!" = "Achtung, Wert über %@!";
 
