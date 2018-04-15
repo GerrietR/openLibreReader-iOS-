@@ -14,6 +14,7 @@
 #import "Device.h"
 
 #import "Configuration.h"
+#import "DatabaseUtils.h"
 
 #define VALUES_DB @"value"
 #define LOG_DB @"log"
@@ -153,7 +154,40 @@ static Storage* __instance;
     @try{
         if(_log)
             return true;
-        return sqlite3_open([[_documentsDirectory stringByAppendingPathComponent:[LOG_DB stringByAppendingString:@".sqlite"] ] UTF8String], &_log) != SQLITE_OK;
+        if(sqlite3_open([[_documentsDirectory stringByAppendingPathComponent:[LOG_DB stringByAppendingString:@".sqlite"] ] UTF8String], &_log) == SQLITE_OK)
+        {
+            [DatabaseUtils ensureDefinition:@{@"tablename":@"log",
+                                              @"fields":@[
+                                                      @{@"cid":[NSNumber numberWithInt:0],
+                                                        @"name":@"id",
+                                                        @"type":@"INTEGER",
+                                                        @"notnull":[NSNumber numberWithInt:1],
+                                                        //@"dflt_value":NULL,
+                                                        @"pk":[NSNumber numberWithInt:1]
+                                                        },
+                                                      @{@"cid":[NSNumber numberWithInt:1],
+                                                        @"name":@"timestamp",
+                                                        @"type":@"INTEGER",
+                                                        @"notnull":[NSNumber numberWithInt:0],
+                                                        //@"dflt_value":NULL,
+                                                        @"pk":[NSNumber numberWithInt:0]
+                                                        },
+                                                      @{@"cid":[NSNumber numberWithInt:2],
+                                                        @"name":@"message",
+                                                        @"type":@"TEXT",
+                                                        @"notnull":[NSNumber numberWithInt:0],
+                                                        //@"dflt_value":NULL,
+                                                        @"pk":[NSNumber numberWithInt:0]
+                                                        },
+                                                      @{@"cid":[NSNumber numberWithInt:3],
+                                                        @"name":@"modul",
+                                                        @"type":@"TEXT",
+                                                        @"notnull":[NSNumber numberWithInt:0],
+                                                        //@"dflt_value":NULL,
+                                                        @"pk":[NSNumber numberWithInt:0]
+                                                        }]} database:_log];
+            return YES;
+        }
     }@catch(NSException *e){
         NSLog(@"got error on %@",[e debugDescription]);
     }
@@ -216,7 +250,7 @@ static Storage* __instance;
         [_logLock lock];
         NSLog(@"[%@]: %@", from, message);
         [self openLogDB];
-        BOOL r =  [self executeQuery:[NSString stringWithFormat:@"INSERT INTO log (timestamp,message) VALUES (\"%ld\",\"%@\")", (unsigned long)[[NSDate date] timeIntervalSince1970], message] onDB:_log];
+        BOOL r =  [self executeQuery:[NSString stringWithFormat:@"INSERT INTO log (timestamp,message,modul) VALUES (\"%ld\",\"%@\",\"%@\")", (unsigned long)[[NSDate date] timeIntervalSince1970], message, from] onDB:_log];
         [self closeLogDB];
         [_logLock unlock];
         return r;

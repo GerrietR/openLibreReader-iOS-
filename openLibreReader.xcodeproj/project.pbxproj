@@ -61,6 +61,7 @@
 		6C8ADC3F200F8E4200147072 /* CalibrationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C8ADC3E200F8E4200147072 /* CalibrationViewController.m */; };
 		6CAEE6811F617AD1001EBDEF /* BluetoothStatus.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CAEE6801F617AD1001EBDEF /* BluetoothStatus.m */; };
 		6CAF386A2082917E009A9D49 /* Report.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CAF38692082917E009A9D49 /* Report.m */; };
+		6CAF386D20835763009A9D49 /* DatabaseUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CAF386B20835762009A9D49 /* DatabaseUtils.m */; };
 		6CC754A91F5DAD48008194E1 /* ConfigurationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CC754A81F5DAD48008194E1 /* ConfigurationViewController.m */; };
 		6CC754AC1F5DB9D5008194E1 /* ConfigurationTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CC754AB1F5DB9D5008194E1 /* ConfigurationTableViewCell.m */; };
 		6CC754B31F5F1606008194E1 /* Configurable.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CC754B21F5F1606008194E1 /* Configurable.m */; };
@@ -246,6 +247,8 @@
 		6CAEE6801F617AD1001EBDEF /* BluetoothStatus.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BluetoothStatus.m; sourceTree = "<group>"; };
 		6CAF38682082917D009A9D49 /* Report.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Report.h; sourceTree = "<group>"; };
 		6CAF38692082917E009A9D49 /* Report.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Report.m; sourceTree = "<group>"; };
+		6CAF386B20835762009A9D49 /* DatabaseUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DatabaseUtils.m; sourceTree = "<group>"; };
+		6CAF386C20835762009A9D49 /* DatabaseUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DatabaseUtils.h; sourceTree = "<group>"; };
 		6CB547F61F71ACD100F085BC /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Main.strings; sourceTree = "<group>"; };
 		6CB547F81F71ACDE00F085BC /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		6CC754A71F5DAD48008194E1 /* ConfigurationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConfigurationViewController.h; sourceTree = "<group>"; };
@@ -411,6 +414,8 @@
 				6C6CABCA1F12920900810568 /* bgValue.m */,
 				6C6CABCD1F12B0B200810568 /* batteryValue.h */,
 				6C6CABCE1F12B0B200810568 /* batteryValue.m */,
+				6CAF386C20835762009A9D49 /* DatabaseUtils.h */,
+				6CAF386B20835762009A9D49 /* DatabaseUtils.m */,
 			);
 			name = Data;
 			sourceTree = "<group>";
@@ -1037,6 +1042,7 @@
 				96791F9720226CDC00E87D98 /* CalibrationListViewController.m in Sources */,
 				6C64BFF11F6F16E900879A51 /* mgdl.m in Sources */,
 				6C6CABCF1F12B0B200810568 /* batteryValue.m in Sources */,
+				6CAF386D20835763009A9D49 /* DatabaseUtils.m in Sources */,
 				6C4184CD1F9BCFA400B156F7 /* limitter.m in Sources */,
 				6C56D4F41F969F43000BC92A /* NSUploadViewController.m in Sources */,
 				6C6CABC11F11B69D00810568 /* Calibration.m in Sources */,
