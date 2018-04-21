@@ -13,6 +13,7 @@
 #import "calibrationValue.h"
 #import "Storage.h"
 #import "Device.h"
+#import "Configuration.h"
 
 static SimpleLinearRegressionCalibration* __instance;
 
@@ -21,6 +22,8 @@ static SimpleLinearRegressionCalibration* __instance;
     float   referenceValue;
     NSDate*  compareAtTimestamp;
     NSDate*  started;
+    bool    readForced;
+    NSTimer *timer; 
 }
 @end
 
@@ -80,6 +83,7 @@ static SimpleLinearRegressionCalibration* __instance;
         isCalibrating = false;
         referenceValue = 0.0;
         compareAtTimestamp = nil;
+        readForced = false;
     }
     return self;
 }
@@ -119,6 +123,7 @@ static SimpleLinearRegressionCalibration* __instance;
                 [[Storage instance]  addCalibration: [raw rawValue] reference:referenceValue valueTime:[now timeIntervalSince1970] module:@"SimpleLinearRegressionCalibration"];
                 // todo: calculate new regression parameters
                 isCalibrating = false;
+                readForced = false;
             }
         }
     }
@@ -132,6 +137,19 @@ static SimpleLinearRegressionCalibration* __instance;
         started = [NSDate date];
         isCalibrating = true;
         referenceValue = bg;
+        readForced = false;
+        if (timer)
+        {
+            [timer invalidate];
+            timer = 0;
+        }
+        timer = [NSTimer timerWithTimeInterval:delay*60+5
+                                                  target:self
+                                                selector:@selector(_timerFired:)
+                                                userInfo:nil
+                                                 repeats:NO];
+        [[NSRunLoop mainRunLoop] addTimer:timer forMode:NSDefaultRunLoopMode];
+        
     }
     else
     {
@@ -139,22 +157,41 @@ static SimpleLinearRegressionCalibration* __instance;
     }
 }
 
--(bool) isCalibrating:(float*) progress
+- (void)_timerFired:(NSTimer *)timer {
+    if (!readForced)
+    {
+        readForced = true;
+        [[[Configuration instance] device] forceValue];
+    }
+}
+
+-(bool) isCalibrating:(float*) progress remaining:(NSTimeInterval*)remaining
 {
     if (isCalibrating)
     {
         if (fabs([started timeIntervalSince1970] - [compareAtTimestamp timeIntervalSince1970]) < 1.0 )
         {
             *progress=1;
+            *remaining = 0.0;
         } else {
             *progress = ([[NSDate date] timeIntervalSince1970] - [started timeIntervalSince1970]) /
-                        ([compareAtTimestamp timeIntervalSince1970] - [started timeIntervalSince1970]);
+            ([compareAtTimestamp timeIntervalSince1970] - [started timeIntervalSince1970]);
+            *remaining = [compareAtTimestamp timeIntervalSinceNow];
+            if (*progress > 1.0)
+            {
+                if (!readForced)
+                {
+                    readForced = true;
+                    [[[Configuration instance] device] forceValue];
+                }
+            }
         }
         return true;
     }
     else
     {
         *progress = 0.0;
+        *remaining = 0.0;
         return false;
     }
 }
@@ -178,7 +215,13 @@ static SimpleLinearRegressionCalibration* __instance;
 
 -(void) cancelCalibration
 {
+    if (timer)
+    {
+        [timer invalidate];
+        timer = 0;
+    }
     isCalibrating = false;
+    readForced = false;
 }
 
 - (void)linearRegressionInternal:(double*)slope intercept:(double*)intercept xvalues:(NSArray *)xvalues yvalues:(NSArray *)yvalues {

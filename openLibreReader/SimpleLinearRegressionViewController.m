@@ -79,7 +79,8 @@
 -(void)updateUI {
     SimpleLinearRegressionCalibration* c = [SimpleLinearRegressionCalibration instance];
     float progress = 0.0;
-    if ([c isCalibrating:&progress])
+    NSTimeInterval remaining = 0.0;
+    if ([c isCalibrating:&progress remaining:&remaining ])
     {
         _addCalibration.enabled = false;
         _delayStepper.enabled = false;
@@ -101,12 +102,26 @@
         _calibrationProgress.progress = progress;
         if (progress < 1.0)
         {
-            _calibrationStatus.text= NSLocalizedString(@"Delaying",@"CalibrationMethod.StatusDelay");
+            NSDateComponentsFormatter *formatter = [[NSDateComponentsFormatter alloc] init];
+            formatter.unitsStyle = NSDateComponentsFormatterUnitsStyleFull;
+            formatter.includesApproximationPhrase = YES;
+            formatter.includesTimeRemainingPhrase = YES;
+            formatter.allowedUnits = NSCalendarUnitMinute;
+            NSString* remainingString = [formatter stringFromTimeInterval:remaining];
+            NSString* delayingString = NSLocalizedString(@"Delaying",@"CalibrationMethod.StatusDelay");
+            _calibrationStatus.text = [NSString stringWithFormat:@"%@ (%@)", delayingString, remainingString];
         } else {
             _calibrationStatus.text= NSLocalizedString(@"Waiting for next value",@"CalibrationMethod.StatusWait");
         }
         _calibrationStatus.hidden = false;
         _calculateButton.enabled = false;
+        if (!_timer) {
+            _timer = [NSTimer scheduledTimerWithTimeInterval:1.0f
+                                                      target:self
+                                                    selector:@selector(_timerFired:)
+                                                    userInfo:nil
+                                                     repeats:YES];
+        }
     }
     else
     {

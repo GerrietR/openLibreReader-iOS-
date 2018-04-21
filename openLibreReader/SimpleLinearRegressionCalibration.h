@@ -13,7 +13,7 @@
 
 -(void) startCalibration:(float)bg delay:(int)delay;
 
--(bool) isCalibrating:(float*)progress;
+-(bool) isCalibrating:(float*)progress remaining:(NSTimeInterval*)remaining;
 
 -(float) getCurrentBG;
 
