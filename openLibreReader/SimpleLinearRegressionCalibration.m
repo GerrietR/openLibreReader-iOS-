@@ -161,7 +161,10 @@ static SimpleLinearRegressionCalibration* __instance;
     if (!readForced)
     {
         readForced = true;
-        [[[Configuration instance] device] forceValue];
+        if ([[[Configuration instance] device] canForceValue])
+        {
+            [[[Configuration instance] device] forceValue];
+        }
     }
 }
 
@@ -182,7 +185,10 @@ static SimpleLinearRegressionCalibration* __instance;
                 if (!readForced)
                 {
                     readForced = true;
-                    [[[Configuration instance] device] forceValue];
+                    if ([[[Configuration instance] device] canForceValue])
+                    {
+                        [[[Configuration instance] device] forceValue];
+                    }
                 }
             }
         }
