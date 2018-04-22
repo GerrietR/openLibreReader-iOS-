@@ -70,6 +70,14 @@
     [self updateUI];
 }
 
+- (void)viewWillDisappear:(BOOL)animated {
+    if (_timer)
+    {
+        [_timer invalidate];
+        _timer = nil;
+    }
+}
+
 -(void)viewDidDisappear:(BOOL)animated {
     for(int i = 0; i < 100; i++) {
         [[self.view viewWithTag:i] resignFirstResponder];
