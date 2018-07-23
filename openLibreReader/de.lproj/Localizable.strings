@@ -1,7 +1,4 @@
 
-/* No comment provided by engineer. */
-"%@ can't be empty" = "%@ darf nicht leer sein";
-
 /* last reading */
 "%d %@ ago" = "%1$d %2$@ her";
 
@@ -53,11 +50,14 @@
 /* calibration.title */
 "Calibration" = "Kalibration";
 
-/* alarmalert.title */
-"Cancel" = "Abbrechen";
+/* calchart: calibrations */
+"Calibrations" = "Kalibrierungen";
 
 /* blueReader.cancel */
 "cancel" = "Abbrechen";
+
+/* alarmalert.title */
+"Cancel" = "Abbrechen";
 
 /* unitalert.change */
 "Change the Unit" = "Die Anzeigeeinheit ändern";
@@ -67,9 +67,6 @@
 
 /* unitalert.title */
 "Change Unit" = "Anzeigeeinheit ändern";
-
-/* No comment provided by engineer. */
-"Choose From Library" = "Aus Bibliothek auswählen";
 
 /* nsUpload.close */
 "close" = "schließen";
@@ -164,9 +161,6 @@
 /* last reading hours */
 "hours" = "Stunden";
 
-/* No comment provided by engineer. */
-"Invalid email address" = "Ungültige Emailadresse";
-
 /* limit.title */
 "Limit Values" = "Grenzen";
 
@@ -197,6 +191,9 @@
 /* nightscout.title */
 "Nightscout Uploader" = "Nightscout Uploader";
 
+/* chart: no Calibration */
+"No Calibrations available" = "Keine Kalibrierungen verfügbar";
+
 /* notification.noDataBody */
 "no Data for %d minutes" = "keine Daten für %d Minuten!";
 
@@ -215,9 +212,6 @@
 /* chart: no Values */
 "No Values available" = "keine Daten verfügbar";
 
-/* noData recieved message */
-"noDataYet" = "warte auf Daten…";
-
 /* blueReader: Not able to connect to device */
 "Not able to connect to %@" = "Keine Verbindung zu %@";
 
@@ -232,6 +226,9 @@
 
 /* RandomCalibration: headline */
 "Random Calibration" = "zufällige Kalibration";
+
+/* calchart: regression */
+"Regression Line" = "Regressionslinie";
 
 /* blueReader: reloading
    nightscout: reloading */
@@ -290,20 +287,11 @@
 /* notification.30 */
 "Snooze for 30 minutes" = "30 Minuten schlummern";
 
-/* No comment provided by engineer. */
-"Take Photo" = "Photo machen";
-
 /* blueReader: Description */
 "The blueReader is used to fetch values from the libre Tag.\nThe interval of fetches can be configured in 1 minute intervals." = "Der blueReader wird für die Datenübertragung verwendet.\nDas Interval der Auslesung kann in minütlichen Schritten festgelegt werden.";
 
 /* RandomCalibration: description */
 "The correct (without any calibration applied) raw value is saved to database, but the display value is randomized to test varoius functions." = "Die Werte werden ohne Kalibration gesichert, aber zufällige Werte werden angezeigt. (Nur für Tests verschiedener Funktionen zu verwenden!)";
-
-/* limitter: Description */
-"The limitter is used to fetch values from the libre Tag." = "Der LimiTTer selbstbau Transmitter.\nWährend die App im Hintergrund ist, können Daten verpasst werden!";
-
-/* limitter: Description */
-"The LimiTTer is used to fetch values from the libre Tag." = "LimiTTer diy Transmitter";
 
 /* limitter: Description */
 "The LimiTTer or SweetReader is used to fetch values from the libre Tag." = "Der SweetReader oder LimiTTer selbstbau Transmitter.\nWährend die App im Hintergrund ist, können Daten verpasst werden!";
@@ -326,9 +314,6 @@
 /* Description for mmol unit */
 "use this if your values are measured in mmol, typically between 3.3 and 9.5" = "Diese Option für Werte in mmol/l benutzen, typischerweise liegen diese zwischen 3.3 und 9.5";
 
-/* demoDevice: Description */
-"Values are generated randomly" = "Werte sind zufallsgeneriert";
-
 /* nightscout: Description */
 "Values are recieved from a Nightscout instance.\nAlarms might stop working, if app is not actively showing." = "Werte werden von einer Nightscout Instanz empfangen.\nWenn die App nicht angezeigt wird, können keine Daten empfangen werden und Alarme ausgelöst werden!";
 
@@ -336,10 +321,25 @@
 "Waiting for next value" = "Warten auf den nächsten Wert";
 
 /* No comment provided by engineer. */
-"XLFormViewController_ValidationErrorTitle" = "Validation fehlgeschlagen";
+"%@ can't be empty" = "";
+
+/* No comment provided by engineer. */
+"Choose From Library" = "";
+
+/* No comment provided by engineer. */
+"Invalid email address" = "";
+
+/* noData recieved message */
+"noDataYet" = "";
 
 /* notification.errorBody */
 "Please check transmitter location" = "";
 
 /* notification.errorTitle */
 "Sensor Error!" = "";
+
+/* No comment provided by engineer. */
+"Take Photo" = "";
+
+/* No comment provided by engineer. */
+"XLFormViewController_ValidationErrorTitle" = "";

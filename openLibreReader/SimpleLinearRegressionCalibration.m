@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#include <math.h>
 #import "SimpleLinearRegressionCalibration.h"
 #import "bgRawValue.h"
 #import "bgValue.h"
@@ -23,7 +24,8 @@ static SimpleLinearRegressionCalibration* __instance;
     NSDate*  compareAtTimestamp;
     NSDate*  started;
     bool    readForced;
-    NSTimer *timer; 
+    NSTimer *timer;
+    NSDate* calibrationsStartDate;
 }
 @end
 
@@ -77,6 +79,14 @@ static SimpleLinearRegressionCalibration* __instance;
     [[Storage instance] saveDeviceData:data];
 }
 
+-(NSDate*) getCalibrationsStartDate {
+    return [calibrationsStartDate copy];
+};
+
+-(void) setCalibrationsStartDate: (NSDate*)startDate {
+    calibrationsStartDate = [startDate copy];
+};
+
 -(instancetype) init {
     self = [super init];
     if (self) {
@@ -84,6 +94,7 @@ static SimpleLinearRegressionCalibration* __instance;
         referenceValue = 0.0;
         compareAtTimestamp = nil;
         readForced = false;
+        calibrationsStartDate = [NSDate distantPast];
     }
     return self;
 }
@@ -132,6 +143,12 @@ static SimpleLinearRegressionCalibration* __instance;
 -(void) startCalibration:(float)bg delay:(int)delay {
     if (!isCalibrating)
     {
+  /*      NSDate* now = [[NSDate date] init];
+        [[Storage instance]  addCalibration:149.0 reference:125.0 valueTime:[now timeIntervalSince1970] module:@"SimpleLinearRegressionCalibration"];
+        [[Storage instance]  addCalibration:131.0 reference:115.0 valueTime:[now timeIntervalSince1970]-60*60*12 module:@"SimpleLinearRegressionCalibration"];
+        [[Storage instance]  addCalibration:126.0 reference:105.0 valueTime:[now timeIntervalSince1970]-60*60*24 module:@"SimpleLinearRegressionCalibration"];
+        [[Storage instance]  addCalibration:112.0 reference:95.0 valueTime:[now timeIntervalSince1970]-60*60*36 module:@"SimpleLinearRegressionCalibration"];
+    */
         NSDate* delayTill = [[NSDate date] initWithTimeIntervalSinceNow:delay*60];
         compareAtTimestamp = delayTill;
         started = [NSDate date];
@@ -215,9 +232,14 @@ static SimpleLinearRegressionCalibration* __instance;
 }
 
 -(unsigned long) getNumberOfCalibration{
-    NSArray* values = [[Storage instance]  calibrationFrom:[[NSDate distantPast] timeIntervalSince1970]  to:[[NSDate date] timeIntervalSince1970]];
+    NSArray* values = [[Storage instance]  calibrationFrom:[calibrationsStartDate timeIntervalSince1970]  to:[[NSDate date] timeIntervalSince1970]];
     return [values count];
 };
+
+-(NSArray*) getCalibrations;
+{
+    return [[Storage instance]  calibrationFrom:[calibrationsStartDate timeIntervalSince1970]  to:[[NSDate date] timeIntervalSince1970]];
+}
 
 -(void) cancelCalibration
 {
@@ -271,9 +293,29 @@ static SimpleLinearRegressionCalibration* __instance;
     if (slope) *slope=b;
 }
 
+- (double)qualityOfLinearRegressionInternal:(double)slope intercept:(double)intercept xvalues:(NSArray *)xvalues yvalues:(NSArray *)yvalues {
+    
+    NSUInteger n = [xvalues count];
+    double ax, ay, sX, sY, ssX, ssY, ssXY, sumOfSquaredErrors, radius, ry, dy;
+    
+    sX = sY = ssX = ssY = ssXY = 0;
+    // Sum of squares X, Y & X*Y
+    for (int i = 0; i < n; i++)
+    {
+        ax = [xvalues[i] doubleValue];
+        ay = [yvalues[i] doubleValue];
+        ry = intercept + slope * ax;
+        
+        dy = (ay - ry);
+        ssY += dy * dy;
+    }
+    sumOfSquaredErrors = ssY / n;
+    return sqrt(sumOfSquaredErrors);
+}
+
 - (void) linearRegression: (double*)slope intercept:(double*)intercept
 {
-    NSArray* values = [[Storage instance]  calibrationFrom:[[NSDate distantPast] timeIntervalSince1970]  to:[[NSDate date] timeIntervalSince1970]];
+    NSArray* values = [[Storage instance]  calibrationFrom:[calibrationsStartDate timeIntervalSince1970]  to:[[NSDate date] timeIntervalSince1970]];
     NSMutableArray *xValues = [NSMutableArray array];
     NSMutableArray *yValues = [NSMutableArray array];
     calibrationValue* calibration;
@@ -285,6 +327,22 @@ static SimpleLinearRegressionCalibration* __instance;
     [self linearRegressionInternal:slope intercept:intercept xvalues:xValues yvalues:yValues];
     
 }
+
+- (double) qualityOfLinearRegression: (double)slope intercept:(double)intercept
+{
+    NSArray* values = [[Storage instance]  calibrationFrom:[calibrationsStartDate timeIntervalSince1970]  to:[[NSDate date] timeIntervalSince1970]];
+    NSMutableArray *xValues = [NSMutableArray array];
+    NSMutableArray *yValues = [NSMutableArray array];
+    calibrationValue* calibration;
+    for (calibration in values)
+    {
+        [xValues addObject:[NSNumber numberWithInt:calibration.value]];
+        [yValues addObject:[NSNumber numberWithInt:calibration.referenceValue]];
+    }
+    return [self qualityOfLinearRegressionInternal:slope intercept:intercept xvalues:xValues yvalues:yValues];
+    
+}
+
 
 -(void) deleteCalibration:(NSTimeInterval)timestamp{
     [[Storage instance]  deleteCalibration:timestamp module:@"SimpleLinearRegressionCalibration"];

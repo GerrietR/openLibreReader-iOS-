@@ -8,6 +8,7 @@
 
 
 #import <UIKit/UIKit.h>
+#import "CalibrationGraphViewController.h"
 
-@interface SimpleLinearRegressionViewController : UIViewController
+@interface SimpleLinearRegressionViewController : UIViewController<DataTransferDelegate>
 @end

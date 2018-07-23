@@ -19,13 +19,25 @@
 
 -(unsigned long) getNumberOfCalibration;
 
+-(NSArray*) getCalibrations;
+
 -(void) cancelCalibration;
 
 -(void) setSlope: (double)value;
 
 -(void) setIntercept: (double)value;
 
--(void) linearRegression: (double*)slope intercept:(double*)intercept;
+-(void) setCalibrationsStartDate: (NSDate*)startDate;
+
+-(double) getSlope;
+
+-(double) getIntercept;
+
+-(NSDate*) getCalibrationsStartDate;
+
+-(void) linearRegression: (double*)slope intercept:(double*)intercept ;
+
+-(double) qualityOfLinearRegression: (double)slope intercept:(double)intercept;
 
 -(void) deleteCalibration:(NSTimeInterval)timestamp;
 

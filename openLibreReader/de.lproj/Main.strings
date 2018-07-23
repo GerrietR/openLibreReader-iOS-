@@ -292,3 +292,15 @@
 
 /* Class = "UINavigationItem"; title = "Report"; ObjectID = "gyz-UM-dSR"; */
 "gyz-UM-dSR.title" = "Fehlerbericht";
+
+/* Class = "UILabel"; text = "Use last days"; ObjectID = "2Gm-cz-FuL"; */
+"2Gm-cz-FuL.text" = "Anzahl genutzter Tage";
+
+/* Class = "UILabel"; text = "Label Labe"; ObjectID = "Fia-8z-cRx"; */
+"Fia-8z-cRx.text" = "";
+
+/* Class = "UIButton"; normalTitle = "Calculate"; ObjectID = "T1b-gX-drc"; */
+"T1b-gX-drc.normalTitle" = "Berechnen";
+
+/* Class = "UILabel"; text = "Deviation"; ObjectID = "tgg-lt-9rM"; */
+"tgg-lt-9rM.text" = "Abweichung";

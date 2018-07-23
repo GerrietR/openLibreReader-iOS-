@@ -79,6 +79,7 @@
 		967D19861FE5484B0088DCF5 /* ComplicationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 967D19851FE5484B0088DCF5 /* ComplicationController.swift */; };
 		967D19881FE5484B0088DCF5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 967D19871FE5484B0088DCF5 /* Assets.xcassets */; };
 		967D198D1FE5484B0088DCF5 /* openLibreWatch.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 967D196E1FE548490088DCF5 /* openLibreWatch.app */; };
+		96A5A8C620E0084100185CCD /* CalibrationGraphViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 96A5A8C520E0084100185CCD /* CalibrationGraphViewController.m */; };
 		96A9E8121FF7B73C00FB60CA /* SimpleLinearRegressionCalibration.m in Sources */ = {isa = PBXBuildFile; fileRef = 96A9E8111FF7B73B00FB60CA /* SimpleLinearRegressionCalibration.m */; };
 		96A9E81B1FF902D600FB60CA /* SimpleLinearRegressionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 96A9E81A1FF902D600FB60CA /* SimpleLinearRegressionViewController.m */; };
 		EDBBF87F32623D66DFC18D8B /* Pods_openLibreWatch_Extension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FBBE57AC03A4F245B2148718 /* Pods_openLibreWatch_Extension.framework */; };
@@ -285,6 +286,8 @@
 		967D198A1FE5484B0088DCF5 /* PushNotificationPayload.apns */ = {isa = PBXFileReference; lastKnownFileType = text; path = PushNotificationPayload.apns; sourceTree = "<group>"; };
 		967D19961FE55B860088DCF5 /* openLibreWatch.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = openLibreWatch.entitlements; sourceTree = "<group>"; };
 		967D19971FE55BBA0088DCF5 /* openLibreWatch Extension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "openLibreWatch Extension.entitlements"; sourceTree = "<group>"; };
+		96A5A8C420E007E100185CCD /* CalibrationGraphViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CalibrationGraphViewController.h; sourceTree = "<group>"; };
+		96A5A8C520E0084100185CCD /* CalibrationGraphViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CalibrationGraphViewController.m; sourceTree = "<group>"; };
 		96A9E8101FF7B71C00FB60CA /* SimpleLinearRegressionCalibration.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SimpleLinearRegressionCalibration.h; sourceTree = "<group>"; };
 		96A9E8111FF7B73B00FB60CA /* SimpleLinearRegressionCalibration.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SimpleLinearRegressionCalibration.m; sourceTree = "<group>"; };
 		96A9E8191FF902BC00FB60CA /* SimpleLinearRegressionViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SimpleLinearRegressionViewController.h; sourceTree = "<group>"; };
@@ -366,6 +369,8 @@
 				96A9E81A1FF902D600FB60CA /* SimpleLinearRegressionViewController.m */,
 				6C8ADC3B200F8E4200147072 /* CalibrationViewController.h */,
 				6C8ADC3E200F8E4200147072 /* CalibrationViewController.m */,
+				96A5A8C420E007E100185CCD /* CalibrationGraphViewController.h */,
+				96A5A8C520E0084100185CCD /* CalibrationGraphViewController.m */,
 			);
 			name = Calibration;
 			sourceTree = "<group>";
@@ -1041,6 +1046,7 @@
 				6C6CAB821F0FB6F000810568 /* AppDelegate.m in Sources */,
 				96791F9720226CDC00E87D98 /* CalibrationListViewController.m in Sources */,
 				6C64BFF11F6F16E900879A51 /* mgdl.m in Sources */,
+				96A5A8C620E0084100185CCD /* CalibrationGraphViewController.m in Sources */,
 				6C6CABCF1F12B0B200810568 /* batteryValue.m in Sources */,
 				6CAF386D20835763009A9D49 /* DatabaseUtils.m in Sources */,
 				6C4184CD1F9BCFA400B156F7 /* limitter.m in Sources */,

@@ -22,10 +22,14 @@
 @property (weak, nonatomic) IBOutlet UIProgressView *calibrationProgress;
 @property (weak, nonatomic) IBOutlet UILabel *calibrationStatus;
 @property (weak, nonatomic) IBOutlet UIButton *cancelCalibration;
+@property (weak, nonatomic) IBOutlet UISwitch *limitCalibration;
+@property (weak, nonatomic) IBOutlet UITextField *calibrationDays;
 @property (weak, nonatomic) IBOutlet UIButton *calculateButton;
 @property (weak, nonatomic) IBOutlet UILabel *statistics;
 @property (weak, nonatomic) IBOutlet UILabel *displayUnit;
 @property (nonatomic, strong) IBOutlet UIButton* forget;
+@property (strong, nonatomic) IBOutlet UIButton *graphButton;
+@property (strong, nonatomic) IBOutlet UIButton *useValues;
 @property NSTimer *timer; // retain?
 @end
 
@@ -45,6 +49,7 @@
     [super viewDidLoad];
     _calculateButton.layer.cornerRadius = 4;
     _forget.layer.cornerRadius = 4;
+    _useValues.layer.cornerRadius = 4;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -83,6 +88,13 @@
         [[self.view viewWithTag:i] resignFirstResponder];
     }
 }
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if ([[segue destinationViewController] isKindOfClass:[CalibrationGraphViewController class]]) {
+        [[segue destinationViewController] setParentView : self];
+    }
+}
+
 
 -(void)updateUI {
     SimpleLinearRegressionCalibration* c = [SimpleLinearRegressionCalibration instance];
@@ -143,11 +155,13 @@
         {
             _calculateButton.enabled = true;
             _calculateButton.backgroundColor = _calculateButton.tintColor;
+            _graphButton.enabled = true;
         }
         else
         {
             _calculateButton.enabled = false;
             _calculateButton.backgroundColor = UIColor.lightGrayColor;
+            _graphButton.enabled = false;
         }
         if (_timer)
         {
@@ -157,6 +171,7 @@
     }
     _statistics.text =[ NSString stringWithFormat:@"%@: %lu", NSLocalizedString(@"Number of Calibrations",@"CalibrationMethod.Statistics"), [c getNumberOfCalibration]];
     _displayUnit.text = [[Configuration instance] displayUnit];
+    _calibrationDays.enabled = _limitCalibration.on;
 }
 
 - (void)_timerFired:(NSTimer *)timer {
@@ -165,14 +180,6 @@
 
 
 -(IBAction)next:(id)sender {
-  /*  SimpleLinearRegressionCalibration* model = [SimpleLinearRegressionCalibration instance];
-    if(sender == _slope) {
-        double v = [[_slope.text stringByReplacingOccurrencesOfString:@"," withString:@"."] doubleValue];
-        [model setSlope:v];
-    } else if(sender == _intercept) {
-        double v = [[_intercept.text stringByReplacingOccurrencesOfString:@"," withString:@"."] doubleValue];
-        [model setIntercept:v];
-    }*/
 }
 
 - (IBAction)cancelCalibration:(id)sender {
@@ -199,7 +206,10 @@
                                                  repeats:YES];
     }
 }
+
+
 - (IBAction)calculateRegressionParameters:(id)sender {
+    [self updateCalibrationModel];
     SimpleLinearRegressionCalibration* c = [SimpleLinearRegressionCalibration instance];
     double intercept = 0.0;
     double slope = 0.0;
@@ -208,7 +218,24 @@
     _intercept.text = [NSString stringWithFormat:@"%.2lf", intercept];
 }
 
--(IBAction)check:(id)sender {
+
+- (void)updateCalibrationModel {
+    NSNumberFormatter *numberFormatter = [[NSNumberFormatter alloc] init];
+    SimpleLinearRegressionCalibration* c = [SimpleLinearRegressionCalibration instance];
+    NSNumber* limitToDays = [numberFormatter numberFromString: _calibrationDays.text];
+    NSDate* daysDate =  limitToDays == nil? [NSDate distantPast] : [NSDate dateWithTimeIntervalSinceNow: -limitToDays.integerValue*60*60*24];
+    NSDate* startFrom = _limitCalibration.on? daysDate:[NSDate distantPast];
+    [c setCalibrationsStartDate:startFrom];
+}
+
+- (IBAction)changeCalibrationDays:(id)sender {
+    [self updateCalibrationModel];
+    [self updateUI];
+}
+- (IBAction)limitCalibrationChanged:(id)sender {
+    _calibrationDays.enabled = _limitCalibration.on;
+    [self updateCalibrationModel];
+    [self updateUI];
 }
 
 - (void)dismissKeyboards {
@@ -223,6 +250,10 @@
     if (_intercept.isEditing)
     {
         [_intercept endEditing:YES];
+    }
+    if (_calibrationDays.isEditing)
+    {
+        [_calibrationDays endEditing:YES];
     }
 }
 
@@ -285,5 +316,22 @@
     [alert addAction:remove];
     [self presentViewController:alert animated:YES completion:nil];
 }
+
+-(void) updateRegression: (double)slope intercept:(double)intercept
+{
+    _slope.text = [NSString stringWithFormat:@"%.2lf", slope];
+    _intercept.text = [NSString stringWithFormat:@"%.2lf", intercept];
+};
+
+-(NSString*) getSlope
+{
+    return _slope.text;
+};
+
+-(NSString*) getIntercept
+{
+    return _intercept.text;
+};
+
 @end
 
