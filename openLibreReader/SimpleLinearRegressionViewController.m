@@ -50,6 +50,10 @@
     _calculateButton.layer.cornerRadius = 4;
     _forget.layer.cornerRadius = 4;
     _useValues.layer.cornerRadius = 4;
+    _limitCalibration.on=false;
+    _calibrationDays.text=@"";
+    SimpleLinearRegressionCalibration* c = [SimpleLinearRegressionCalibration instance];
+    [c setCalibrationsStartDate:[NSDate distantPast]];
 }
 
 - (void)didReceiveMemoryWarning {
